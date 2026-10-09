@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NgayapBeks! — Eksplorasi Bekasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8331A;
+    --orange: #F5621E;
+    --gold: #F0A500;
+    --navy: #0D1B2A;
+    --navy-mid: #142033;
+    --navy-light: #1E2F45;
+    --slate: #2A3F58;
+    --cream: #F7F3EE;
+    --muted: #8FA3B1;
+    --white: #FFFFFF;
+    --text-body: #C8D8E4;
+    --radius: 4px;
+    --radius-lg: 10px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 100;
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 0 32px;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 16px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .nav-logo span { color: var(--red); }
+
+  /* Switch Kota / Kabupaten */
+  .mode-switch {
+    display: flex;
+    background: var(--navy-light);
+    border-radius: 99px;
+    padding: 4px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .mode-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 99px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    color: var(--muted);
+    background: transparent;
+    white-space: nowrap;
+  }
+  .mode-btn.active {
+    background: var(--red);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(232,51,26,0.4);
+  }
+
+  /* Region Tabs */
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    color: var(--muted);
+    background: transparent;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.1); }
+  .tab-btn.active {
+    color: var(--gold);
+    border-color: rgba(240,165,0,0.3);
+    background: rgba(240,165,0,0.07);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 32px 64px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 30%, rgba(232,51,26,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(240,165,0,0.1) 0%, transparent 55%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  }
+  .hero-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .hero-title .accent { color: var(--red); }
+  .hero-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-weight: 300;
+    color: var(--text-body);
+    max-width: 540px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-val span { color: var(--red); }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .content-area {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 32px 100px;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    max-width: 520px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  /* ─── REGION PANEL ─── */
+  .region-panel { display: none; }
+  .region-panel.active { display: block; }
+
+  /* Overview banner */
+  .region-banner {
+    border-radius: var(--radius-lg);
+    padding: 36px 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .region-banner.timur  { background: linear-gradient(135deg, #1a0d0a 0%, #2e1208 40%, #0D1B2A 100%); border: 1px solid rgba(232,51,26,0.2); }
+  .region-banner.barat  { background: linear-gradient(135deg, #0a0f1a 0%, #0d1f35 40%, #0D1B2A 100%); border: 1px solid rgba(0,120,220,0.2); }
+  .region-banner.selatan{ background: linear-gradient(135deg, #0a1a0e 0%, #0d2a15 40%, #0D1B2A 100%); border: 1px solid rgba(20,180,80,0.2); }
+  .region-banner.utara  { background: linear-gradient(135deg, #140a1a 0%, #220d35 40%, #0D1B2A 100%); border: 1px solid rgba(150,50,200,0.2); }
+  .region-banner.pusat  { background: linear-gradient(135deg, #1a1208 0%, #2a1e0a 40%, #0D1B2A 100%); border: 1px solid rgba(240,165,0,0.2); }
+  .region-banner.cikarang { background: linear-gradient(135deg, #0a1a1a 0%, #0d2a28 40%, #0D1B2A 100%); border: 1px solid rgba(0,180,160,0.2); }
+  .region-banner.tambun { background: linear-gradient(135deg, #0f0a1a 0%, #1c0d2e 40%, #0D1B2A 100%); border: 1px solid rgba(100,80,200,0.2); }
+  .region-banner.cibitung { background: linear-gradient(135deg, #1a0f0a 0%, #2a180d 40%, #0D1B2A 100%); border: 1px solid rgba(200,100,30,0.2); }
+  .region-banner.tarumajaya { background: linear-gradient(135deg, #0a1a16 0%, #0d2e26 40%, #0D1B2A 100%); border: 1px solid rgba(0,160,120,0.2); }
+
+  .banner-accent {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.3;
+  }
+  .timur .banner-accent   { background: var(--red); }
+  .barat .banner-accent   { background: #0078DC; }
+  .selatan .banner-accent { background: #14B450; }
+  .utara .banner-accent   { background: #9632C8; }
+  .pusat .banner-accent   { background: var(--gold); }
+  .cikarang .banner-accent   { background: #00B4A0; }
+  .tambun .banner-accent     { background: #6450C8; }
+  .cibitung .banner-accent   { background: #C8641E; }
+  .tarumajaya .banner-accent { background: #00A078; }
+
+  .banner-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 99px;
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+  .timur .banner-tag   { background: rgba(232,51,26,0.2); color: #FF7A6A; }
+  .barat .banner-tag   { background: rgba(0,120,220,0.2); color: #6ABAFF; }
+  .selatan .banner-tag { background: rgba(20,180,80,0.2); color: #6AFFAA; }
+  .utara .banner-tag   { background: rgba(150,50,200,0.2); color: #CC8AFF; }
+  .pusat .banner-tag   { background: rgba(240,165,0,0.2); color: #FFD060; }
+  .cikarang .banner-tag   { background: rgba(0,180,160,0.2); color: #5AFFF0; }
+  .tambun .banner-tag     { background: rgba(100,80,200,0.2); color: #A090FF; }
+  .cibitung .banner-tag   { background: rgba(200,100,30,0.2); color: #FFB070; }
+  .tarumajaya .banner-tag { background: rgba(0,160,120,0.2); color: #50FFD0; }
+
+  .banner-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .banner-desc {
+    color: var(--text-body);
+    font-size: 0.9rem;
+    max-width: 560px;
+    line-height: 1.65;
+  }
+
+  /* ─── CARDS GRID ─── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: border-color 0.18s, transform 0.18s;
+  }
+  .card:hover {
+    border-color: rgba(255,255,255,0.14);
+    transform: translateY(-2px);
+  }
+  .card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .card-body {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .card-badge {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 99px;
+    background: rgba(240,165,0,0.12);
+    color: var(--gold);
+  }
+
+  /* ─── SPOTS LIST ─── */
+  .spots-section { margin-bottom: 48px; }
+  .spots-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .spot-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    transition: border-color 0.18s;
+  }
+  .spot-item:hover { border-color: rgba(255,255,255,0.1); }
+  .spot-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--slate);
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 20px;
+  }
+  .spot-info {}
+  .spot-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .spot-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ─── CULINARY ─── */
+  .culinary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .food-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    transition: border-color 0.18s, transform 0.18s;
+  }
+  .food-card:hover { border-color: rgba(240,165,0,0.2); transform: translateY(-2px); }
+  .food-emoji { font-size: 2rem; display: block; margin-bottom: 10px; }
+  .food-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+  .food-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 48px 0;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 32px;
+    text-align: center;
+    color: var(--slate);
+    font-size: 0.8rem;
+  }
+  footer strong { color: var(--red); font-family: 'Syne', sans-serif; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; }
+    .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 0; gap: 10px; }
+    .nav-logo { font-size: 1.1rem; }
+    .mode-btn { font-size: 0.72rem; padding: 5px 12px; }
+    .tab-btn { font-size: 0.75rem; padding: 6px 10px; }
+    .hero { padding: 0 16px 48px; min-height: 70vh; }
+    .content-area { padding: 40px 16px 60px; }
+    .hero-stats { gap: 28px; }
+    .spots-grid { grid-template-columns: 1fr; }
+    .region-banner { padding: 24px 20px; }
+    .banner-heading { font-size: 1.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Ngayap<span>Beks!</span></div>
+
+    <!-- Mode Switch -->
+    <div class="mode-switch">
+      <button class="mode-btn active" id="btnKota" onclick="switchMode('kota')">Kota Bekasi</button>
+      <button class="mode-btn" id="btnKab" onclick="switchMode('kabupaten')">Kab. Bekasi</button>
+    </div>
+
+    <!-- Region Tabs (dynamically filled) -->
+    <div class="nav-tabs" id="navTabs"></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="heroEyebrow">Kota Bekasi, Jawa Barat</div>
+    <h1 class="hero-title" id="heroTitle">
+      Tempat Lahir<br>Para <span class="accent">Perantau</span><br>Sejati.
+    </h1>
+    <p class="hero-subtitle" id="heroSubtitle">
+      Bekasi bukan sekadar penyangga Jakarta — ini kota yang punya jiwa sendiri. Kuliner, budaya, dan semangat warganya membentuk identitas yang unik dan tak tergantikan.
+    </p>
+    <div class="hero-stats" id="heroStats">
+      <div class="stat-item">
+        <div class="stat-val">3<span>.7</span>M</div>
+        <div class="stat-label">Penduduk Kota</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">12<span></span></div>
+        <div class="stat-label">Kecamatan</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">210<span>km²</span></div>
+        <div class="stat-label">Luas Wilayah</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="content-area" id="mainContent"></main>
+
+<footer>
+  Dibuat dengan ❤️ untuk warga Bekasi · <strong>NgayapBeks!</strong> &copy; 2024
+</footer>
+
+<script>
+const DATA = {
+  kota: {
+    tabs: ['timur','barat','selatan','utara'],
+    labels: { timur:'Bekasi Timur', barat:'Bekasi Barat', selatan:'Bekasi Selatan', utara:'Bekasi Utara' },
+    hero: {
+      eyebrow: 'Kota Bekasi, Jawa Barat',
+      title: `Tempat Lahir<br>Para <span class="accent">Perantau</span><br>Sejati.`,
+      subtitle: 'Bekasi bukan sekadar penyangga Jakarta — ini kota yang punya jiwa sendiri. Kuliner, budaya, dan semangat warganya membentuk identitas yang unik dan tak tergantikan.',
+      stats: [
+        { val: '3<span>.7</span>M', label: 'Penduduk Kota' },
+        { val: '12', label: 'Kecamatan' },
+        { val: '210<span>km²</span>', label: 'Luas Wilayah' },
+      ]
+    },
+    regions: {
+      timur: {
+        colorClass: 'timur',
+        tag: 'Bekasi Timur',
+        heading: 'Sentra Hunian & Kuliner',
+        desc: 'Bekasi Timur dikenal sebagai kawasan residensial padat dengan perumahan-perumahan besar serta pusat kuliner yang terus berkembang. Jantung dari kehidupan sosial warga Bekasi.',
+        highlights: [
+          { icon: '🏙️', title: 'Perumahan Galaxy', body: 'Kawasan residensial bergengsi dengan fasilitas lengkap, mall Galaxy, dan beragam pilihan kuliner modern.' },
+          { icon: '🌿', title: 'Taman Wisata Bunga Wiladatika', body: 'Taman seluas 14 ha yang menjadi ruang hijau dan rekreasi keluarga paling populer di Bekasi Timur.' },
+          { icon: '🏪', title: 'Pasar Kranggan', body: 'Pasar tradisional legendaris yang ramai dari subuh, sumber bahan segar dan jajanan khas Bekasi.' },
+          { icon: '🎓', title: 'Kampus & Pendidikan', body: 'Banyak institusi pendidikan bermutu tersebar di wilayah ini, menjadikannya kawasan terpelajar.' },
+        ],
+        spots: [
+          { name: 'Taman Bunga Wiladatika', desc: 'Destinasi foto dan piknik favorit keluarga' },
+          { name: 'Mall Grand Galaxy Park', desc: 'Pusat perbelanjaan terbesar di Bekasi Timur' },
+          { name: 'Setu Rawa Gede', desc: 'Danau alami untuk memancing dan bersantai' },
+          { name: 'Pasar Kranggan', desc: 'Surga kuliner pagi hari sejak 1980-an' },
+          { name: 'Ruko Galaxi Boulevard', desc: 'Deretan kuliner malam paling hidup' },
+          { name: 'GOR Bekasi Timur', desc: 'Gelanggang olahraga serbaguna warga' },
+        ],
+        food: [
+          { emoji: '🍜', name: 'Soto Mie Bekasi', desc: 'Kuah bening gurih dengan mi kuning, daging, dan risol — ciri khas Bekasi Timur.' },
+          { emoji: '🐟', name: 'Gabus Pucung', desc: 'Ikan gabus masak hitam bumbu pucung — kuliner asli Betawi Bekasi yang langka.' },
+          { emoji: '🍡', name: 'Kue Cucur', desc: 'Kue tradisional dari tepung beras gula merah yang legit dan harum.' },
+          { emoji: '🥩', name: 'Sate Maranggi', desc: 'Sate khas dengan bumbu kecap manis dan sambal tomat, populer di warung pinggir jalan.' },
+        ]
+      },
+      barat: {
+        colorClass: 'barat',
+        tag: 'Bekasi Barat',
+        heading: 'Gerbang Bisnis & Industri',
+        desc: 'Bekasi Barat adalah wajah komersial Kota Bekasi. Berbatasan langsung dengan Jakarta, kawasan ini menjadi pusat bisnis, mal besar, dan infrastruktur modern yang terus tumbuh.',
+        highlights: [
+          { icon: '🏢', title: 'Kawasan Bisnis Harapan Indah', body: 'Kompleks perumahan dan bisnis premium dengan banyak pusat perbelanjaan, perkantoran, dan fasilitas modern.' },
+          { icon: '🚉', title: 'Stasiun Bekasi', body: 'Hub transportasi utama yang menghubungkan Bekasi dengan Jakarta dan kota-kota lain di Jawa.' },
+          { icon: '🛒', title: 'Bekasi Square & Mal Bekasi', body: 'Dua pusat perbelanjaan besar yang menjadi ikon kawasan dan destinasi belanja jutaan warga.' },
+          { icon: '🌊', title: 'Taman Segara', body: 'Ruang terbuka hijau yang menjadi paru-paru kawasan padat ini, nyaman untuk jogging pagi.' },
+        ],
+        spots: [
+          { name: 'Mal Bekasi', desc: 'Pusat belanja legendaris Kota Bekasi sejak tahun 90-an' },
+          { name: 'Bekasi Square', desc: 'Mall modern dengan bioskop dan food court lengkap' },
+          { name: 'Perumahan Harapan Indah', desc: 'Kawasan hunian terencana terlengkap di Bekasi Barat' },
+          { name: 'Stasiun Bekasi', desc: 'Simpul transportasi KRL dan bus antar kota' },
+          { name: 'Taman Segara', desc: 'Area jogging dan olahraga warga paling ramai' },
+          { name: 'Ruko Harapan Indah', desc: 'Pusat kuliner dan usaha mikro yang vibrant' },
+        ],
+        food: [
+          { emoji: '🍲', name: 'Sayur Asem Betawi', desc: 'Sayur asem segar dengan melinjo, jagung muda, dan labu — sajian wajib makan siang.' },
+          { emoji: '🥘', name: 'Semur Jengkol', desc: 'Jengkol dimasak kecap manis berbumbu rempah — hidangan kontroversial yang dicinta warga.' },
+          { emoji: '🥗', name: 'Asinan Bekasi', desc: 'Sayur asin segar disiram kuah pedas asam dengan kacang goreng dan kerupuk.' },
+          { emoji: '🍱', name: 'Nasi Ulam Betawi', desc: 'Nasi campur berbumbu kelapa parut dengan lauk serundeng dan empal tipis.' },
+        ]
+      },
+      selatan: {
+        colorClass: 'selatan',
+        tag: 'Bekasi Selatan',
+        heading: 'Kawasan Hijau & Elit',
+        desc: 'Bekasi Selatan merupakan kawasan residensial paling berkembang dengan banyak perumahan terencana, pusat pendidikan internasional, dan RTH yang cukup luas dibanding wilayah lainnya.',
+        highlights: [
+          { icon: '🌳', title: 'Summarecon Bekasi', body: 'Kota mandiri modern seluas ratusan hektar dengan fasilitas premium, mal, hotel bintang lima, dan area residensial terencana.' },
+          { icon: '🎓', title: 'Sekolah Internasional', body: 'Banyak sekolah berstandar internasional berdiri di sini, menjadi pilihan keluarga ekspatriat dan kelas menengah atas.' },
+          { icon: '🏊', title: 'Taman Rekreasi Kota', body: 'Beberapa taman kota dengan fasilitas jogging track, kolam renang publik, dan area bermain anak tersebar merata.' },
+          { icon: '🏥', title: 'Rumah Sakit Modern', body: 'Pusat layanan kesehatan berteknologi tinggi melayani warga Bekasi Selatan dan sekitarnya.' },
+        ],
+        spots: [
+          { name: 'Summarecon Mall Bekasi', desc: 'Mal premium kelas atas dengan brand internasional' },
+          { name: 'Taman Kota Summarecon', desc: 'Area hijau modern di tengah kawasan kota mandiri' },
+          { name: 'Grand Wisata Bekasi', desc: 'Township modern dengan danau buatan dan lingkungan asri' },
+          { name: 'RS Mitra Keluarga', desc: 'Rumah sakit referensi utama di Bekasi Selatan' },
+          { name: 'Perum Jaka Permai', desc: 'Kawasan hunian established dengan nuansa tenang' },
+          { name: 'Kawasan Kuliner Pangkal Perjuangan', desc: 'Deretan resto dan kafe hits kaum muda' },
+        ],
+        food: [
+          { emoji: '🍣', name: 'Kuliner Fusion Modern', desc: 'Banyak restoran fusion dan kafe estetik tumbuh di kawasan ini mengikuti selera warga urban.' },
+          { emoji: '🥩', name: 'Tongseng Kambing', desc: 'Tongseng berkuah kental berbumbu rempah yang menghangatkan, banyak warung legendaris di wilayah ini.' },
+          { emoji: '🍰', name: 'Kafe Artisan', desc: 'Kedai kopi spesialti dan bakeri artisan yang menjamur mengikuti tren warga muda Bekasi Selatan.' },
+          { emoji: '🍜', name: 'Bakmi Betawi', desc: 'Mie telur dimasak dengan kaldu ayam bening dan campuran sayuran segar khas Betawi.' },
+        ]
+      },
+      utara: {
+        colorClass: 'utara',
+        tag: 'Bekasi Utara',
+        heading: 'Kawasan Industri & Rakyat',
+        desc: 'Bekasi Utara dikenal sebagai kawasan industri dan pergudangan yang besar, namun juga merupakan wilayah dengan kepadatan penduduk tinggi dan kehidupan rakyat yang autentik.',
+        highlights: [
+          { icon: '🏭', title: 'Kawasan Industri Jababeka Utara', body: 'Salah satu kawasan industri terbesar di Asia Tenggara yang menjadi tulang punggung ekonomi wilayah ini.' },
+          { icon: '⚓', title: 'Pelabuhan & Pergudangan', body: 'Kawasan logistik dan pergudangan besar yang mendukung distribusi barang ke seluruh Indonesia.' },
+          { icon: '🕌', title: 'Nuansa Budaya Betawi', body: 'Tradisi Betawi masih kental di permukiman lama — ondel-ondel, gambang kromong, dan upacara adat masih terjaga.' },
+          { icon: '🏘️', title: 'Kampung Wisata Kayuringin', body: 'Salah satu permukiman tradisional yang masih mempertahankan karakter asli perkampungan Betawi-Bekasi.' },
+        ],
+        spots: [
+          { name: 'Kawasan Industri Jababeka', desc: 'Kompleks industri dengan ribuan pabrik dari berbagai negara' },
+          { name: 'Kampung Kayuringin', desc: 'Permukiman tua dengan arsitektur dan tradisi Betawi' },
+          { name: 'Pasar Baru Bekasi', desc: 'Pusat perdagangan tradisional yang masih ramai sejak zaman Belanda' },
+          { name: 'Setu Pengasinan', desc: 'Danau alami yang jadi spot memancing dan jogging warga' },
+          { name: 'Kali Bekasi Utara', desc: 'Sungai historis yang menjadi jalur perdagangan zaman kolonial' },
+          { name: 'Masjid Al-Barkah', desc: 'Masjid raya kebanggaan Bekasi Utara dengan arsitektur megah' },
+        ],
+        food: [
+          { emoji: '🐔', name: 'Ayam Goreng Betawi', desc: 'Ayam goreng berbumbu rempah khas dengan sambal terasi dan lalapan — sederhana tapi autentik.' },
+          { emoji: '🍛', name: 'Nasi Goreng Gila', desc: 'Kreasi nasi goreng dengan bahan super banyak — daging, sosis, telur — lahir dari warung pinggir jalan Bekasi Utara.' },
+          { emoji: '🫕', name: 'Pindang Bandeng', desc: 'Bandeng dimasak kuah asam pedas dengan belimbing wuluh — sajian istimewa acara keluarga.' },
+          { emoji: '☕', name: 'Kopi Tubruk Teko', desc: 'Kopi hitam diseduh langsung dari teko di warung kopi tua — ritual pagi buruh pabrik.' },
+        ]
+      }
+    }
+  },
+  kabupaten: {
+    tabs: ['cikarang','tambun','cibitung','tarumajaya'],
+    labels: { cikarang:'Cikarang', tambun:'Tambun', cibitung:'Cibitung', tarumajaya:'Tarumajaya' },
+    hero: {
+      eyebrow: 'Kabupaten Bekasi, Jawa Barat',
+      title: `Denyut Industri<br>dan <span class="accent">Bumi</span><br>Subur.`,
+      subtitle: 'Kabupaten Bekasi adalah kawasan yang menyangga ekonomi nasional — dari Cikarang sebagai kota industri terbesar ASEAN hingga kawasan pesisir Tarumajaya yang memukau.',
+      stats: [
+        { val: '3<span>.4</span>M', label: 'Penduduk Kabupaten' },
+        { val: '23', label: 'Kecamatan' },
+        { val: '1.484<span>km²</span>', label: 'Luas Wilayah' },
+      ]
+    },
+    regions: {
+      cikarang: {
+        colorClass: 'cikarang',
+        tag: 'Cikarang',
+        heading: 'Pusat Industri Terbesar ASEAN',
+        desc: 'Cikarang bukan sekadar kawasan industri biasa — ini adalah mesin ekonomi yang menggerakkan jutaan tenaga kerja. Kota industri terpadu yang menjadi kebanggaan Kabupaten Bekasi dan Indonesia.',
+        highlights: [
+          { icon: '🏭', title: 'Jababeka Industrial City', body: 'Kawasan industri seluas 5.600 ha dengan lebih dari 1.650 perusahaan dari 30 negara — salah satu yang terbesar di ASEAN.' },
+          { icon: '🏙️', title: 'MM2100 Industrial Town', body: 'Kota industri mandiri dengan perumahan, komersial, dan pabrik dalam satu kawasan terencana yang modern.' },
+          { icon: '🎭', title: 'President University', body: 'Universitas internasional terkemuka di dalam kawasan industri yang mencetak SDM industri global.' },
+          { icon: '🌟', title: 'Delta Silicon Industrial Park', body: 'Kawasan industri modern dengan infrastruktur berstandar internasional untuk industri hi-tech.' },
+        ],
+        spots: [
+          { name: 'Jababeka Industrial City', desc: 'Kawasan industri dengan 1.650+ perusahaan multinasional' },
+          { name: 'President University', desc: 'Kampus internasional di jantung kawasan industri' },
+          { name: 'Cikarang Techno Park', desc: 'Pusat riset dan teknologi terpadu' },
+          { name: 'Mal Lippo Cikarang', desc: 'Pusat perbelanjaan modern warga Cikarang' },
+          { name: 'Taman Jababeka', desc: 'Ruang hijau dan rekreasi keluarga' },
+          { name: 'Setu Cikarang', desc: 'Danau alami yang menyejukkan kawasan industri' },
+        ],
+        food: [
+          { emoji: '🍜', name: 'Soto Kuning Cikarang', desc: 'Soto berbumbu kunyit kaya rempah dengan potongan daging sapi dan jeroan.' },
+          { emoji: '🐠', name: 'Ikan Bakar Citarik', desc: 'Ikan segar bakar bumbu kecap dari warga sekitar sungai Citarik.' },
+          { emoji: '🥙', name: 'Seblak Cikarang', desc: 'Kerupuk aci kuah pedas dengan aneka topping — jajanan favorit pekerja pabrik.' },
+          { emoji: '☕', name: 'Warung Kopi Jababeka', desc: 'Kopi susu khas warung tenda yang menjadi ritual pagi ribuan buruh pabrik setiap hari.' },
+        ]
+      },
+      tambun: {
+        colorClass: 'tambun',
+        tag: 'Tambun',
+        heading: 'Pusat Pertanian & Permukiman',
+        desc: 'Tambun adalah wajah lain Kabupaten Bekasi yang lebih tenang — kawasan pertanian padi yang subur berpadu dengan permukiman perumahan yang terus berkembang pesat.',
+        highlights: [
+          { icon: '🌾', title: 'Lumbung Padi Bekasi', body: 'Tambun Selatan dan Tambun Utara masih memiliki hamparan sawah luas yang menjadi sumber ketahanan pangan Bekasi.' },
+          { icon: '🏡', title: 'Perumahan Grand Wisata', desc: 'Township premium dengan danau buatan, taman luas, dan fasilitas lengkap yang menjadi pilihan keluarga modern.' },
+          { icon: '🦟', title: 'Situ Rawa Binong', body: 'Lahan basah alami yang menjadi habitat burung migrasi dan destinasi birdwatching.' },
+          { icon: '⛪', title: 'Gereja Tua Tambun', body: 'Peninggalan kolonial Belanda yang menjadi cagar budaya dan saksi sejarah perkembangan Tambun.' },
+        ],
+        spots: [
+          { name: 'Situ Rawa Binong', desc: 'Danau alam surga burung dan ikan air tawar' },
+          { name: 'Perumahan Grand Wisata', desc: 'Township modern dengan lanskap danau yang asri' },
+          { name: 'Pasar Tambun', desc: 'Pasar tradisional dengan hasil tani segar langsung petani' },
+          { name: 'Gereja Tua Tambun', desc: 'Cagar budaya kolonial bersejarah di Tambun Selatan' },
+          { name: 'Sawah Tambun Utara', desc: 'Hamparan padi menghijau pemandangan pedesaan asli' },
+          { name: 'Rawa Gede', desc: 'Situs sejarah pembantaian 1947 yang kini jadi memorial' },
+        ],
+        food: [
+          { emoji: '🌶️', name: 'Sambal Oncom', desc: 'Sambal khas Betawi-Sunda dari fermentasi kacang dengan cabai rawit pedas maksimal.' },
+          { emoji: '🍚', name: 'Nasi Liwet Tambun', desc: 'Nasi dimasak santan dengan lauk ikan asin dan sambal terasi — sajian sarapan petani.' },
+          { emoji: '🐸', name: 'Gulai Kodok', desc: 'Kodok sawah dimasak gulai kuning — makanan tradisional warga sekitar sawah Tambun.' },
+          { emoji: '🌽', name: 'Jagung Bakar Muda', desc: 'Jagung muda hasil tani sendiri, dibakar dan dilumuri margarin — camilan sore legendaris.' },
+        ]
+      },
+      cibitung: {
+        colorClass: 'cibitung',
+        tag: 'Cibitung',
+        heading: 'Kawasan Logistik & Pangan',
+        desc: 'Cibitung merupakan kawasan strategis yang menjadi simpul distribusi dan logistik penting, dengan kehadiran gudang modern dan industri pengolahan pangan skala besar.',
+        highlights: [
+          { icon: '📦', title: 'Kawasan Logistik Cibitung', body: 'Pusat distribusi nasional dengan banyak gudang modern dan fasilitas cold chain untuk produk pangan.' },
+          { icon: '🌿', title: 'Pertanian Organik', body: 'Beberapa kelompok tani di Cibitung mulai mengembangkan pertanian organik yang memasok sayuran segar ke Jakarta.' },
+          { icon: '🏗️', title: 'Industri Kimia & Material', body: 'Kawasan industri kimia dan material bangunan yang menjadi pemasok kebutuhan konstruksi se-Jabodetabek.' },
+          { icon: '🛣️', title: 'Akses Tol Cibitung', body: 'Gerbang tol Cibitung menghubungkan kawasan ini dengan jaringan jalan tol Trans Jawa secara efisien.' },
+        ],
+        spots: [
+          { name: 'Kawasan Industri Cibitung', desc: 'Kompleks industri pengolahan dan logistik besar' },
+          { name: 'Pasar Induk Cibitung', desc: 'Pasar besar distribusi sembako dan sayuran segar' },
+          { name: 'Setu Muara Gembong', desc: 'Situ alami untuk memancing dan bersantai' },
+          { name: 'Kampung Pisang Cibitung', desc: 'Sentra produksi pisang kepok dan tanduk Bekasi' },
+          { name: 'SPBU Rest Area Cibitung', desc: 'Kompleks istirahat tol yang lengkap dengan kuliner' },
+          { name: 'Rawa Bambu', desc: 'Kawasan rawa alami dengan keanekaragaman hayati' },
+        ],
+        food: [
+          { emoji: '🍌', name: 'Pisang Sale Cibitung', desc: 'Pisang kepok dikeringkan dan digoreng — oleh-oleh khas yang renyah manis.' },
+          { emoji: '🥩', name: 'Empal Gentong', desc: 'Daging sapi masak kuah santan berbumbu ketumbar dan jinten — disantap dengan nasi putih hangat.' },
+          { emoji: '🍤', name: 'Udang Galah Goreng', desc: 'Udang galah segar dari tambak lokal digoreng crispy dengan tepung berbumbu.' },
+          { emoji: '🧆', name: 'Tempe Gembus', desc: 'Tempe dari ampas tahu berbumbu ketumbar yang gurih — makanan rakyat yang kaya protein.' },
+        ]
+      },
+      tarumajaya: {
+        colorClass: 'tarumajaya',
+        tag: 'Tarumajaya',
+        heading: 'Pesisir Pantai & Mangrove',
+        desc: 'Tarumajaya adalah sisi paling eksotis Kabupaten Bekasi — kawasan pesisir Laut Jawa dengan ekosistem mangrove, nelayan tradisional, dan keindahan alam yang masih terjaga.',
+        highlights: [
+          { icon: '🌊', title: 'Pantai Pisangan', body: 'Pantai berpasir hitam menghadap Laut Jawa yang menjadi tujuan wisata keluarga dari seluruh penjuru Bekasi.' },
+          { icon: '🌿', title: 'Hutan Mangrove Muaragembong', body: 'Kawasan mangrove terluas di Teluk Jakarta yang menjadi habitat elang bondol dan berbagai spesies langka.' },
+          { icon: '🚢', title: 'Dermaga Nelayan', body: 'Dermaga tradisional tempat ratusan perahu nelayan berlabuh dan menjual hasil tangkapan segar setiap pagi.' },
+          { icon: '🦁', title: 'Kampung Nelayan', body: 'Permukiman nelayan tradisional dengan arsitektur rumah panggung di atas air yang autentik dan unik.' },
+        ],
+        spots: [
+          { name: 'Pantai Pisangan', desc: 'Pantai wisata keluarga dengan sunset yang indah' },
+          { name: 'Hutan Mangrove Muaragembong', desc: 'Kawasan konservasi mangrove terluas di Teluk Jakarta' },
+          { name: 'Dermaga Tarumajaya', desc: 'Pusat aktivitas nelayan dan lelang ikan segar pagi hari' },
+          { name: 'Kampung Nelayan Muara', desc: 'Desa nelayan tradisional di atas air yang autentik' },
+          { name: 'Pulau Cangkir', desc: 'Pulau kecil dekat pantai untuk snorkeling dan memancing' },
+          { name: 'Ekowisata Mangrove', desc: 'Tracking jalur boardwalk di tengah hutan bakau' },
+        ],
+        food: [
+          { emoji: '🦞', name: 'Kepiting Soka Goreng', desc: 'Kepiting soka (cangkang lunak) digoreng krispy — hidangan premium laut khas pesisir Tarumajaya.' },
+          { emoji: '🦐', name: 'Udang Rebon Pepes', desc: 'Udang rebon segar dari laut Jawa dibungkus daun pisang dan dikukus dengan bumbu rempah.' },
+          { emoji: '🐙', name: 'Cumi Bakar Lada Hitam', desc: 'Cumi segar ditangkap nelayan lokal dibakar dengan bumbu lada hitam dan kecap manis.' },
+          { emoji: '🍲', name: 'Pindang Ikan Tenggiri', desc: 'Tenggiri segar dimasak kuah asam pedas dengan belimbing wuluh dan tomat — sajian pesisir sempurna.' },
+        ]
+      }
+    }
+  }
+};
+
+let currentMode = 'kota';
+let currentRegion = 'timur';
+
+function switchMode(mode) {
+  currentMode = mode;
+  const firstTab = DATA[mode].tabs[0];
+  currentRegion = firstTab;
+
+  // Update buttons
+  document.getElementById('btnKota').classList.toggle('active', mode === 'kota');
+  document.getElementById('btnKab').classList.toggle('active', mode === 'kabupaten');
+
+  renderTabs();
+  renderHero();
+  renderContent();
+}
+
+function switchRegion(region) {
+  currentRegion = region;
+  renderTabs();
+  renderContent();
+}
+
+function renderTabs() {
+  const modeData = DATA[currentMode];
+  const tabs = modeData.tabs;
+  const labels = modeData.labels;
+  const container = document.getElementById('navTabs');
+  container.innerHTML = tabs.map(t => `
+    <button class="tab-btn ${t === currentRegion ? 'active' : ''}" onclick="switchRegion('${t}')">
+      ${labels[t]}
+    </button>
+  `).join('');
+}
+
+function renderHero() {
+  const h = DATA[currentMode].hero;
+  document.getElementById('heroEyebrow').textContent = h.eyebrow;
+  document.getElementById('heroTitle').innerHTML = h.title;
+  document.getElementById('heroSubtitle').textContent = h.subtitle;
+  document.getElementById('heroStats').innerHTML = h.stats.map(s => `
+    <div class="stat-item">
+      <div class="stat-val">${s.val}</div>
+      <div class="stat-label">${s.label}</div>
+    </div>
+  `).join('');
+}
+
+function renderContent() {
+  const r = DATA[currentMode].regions[currentRegion];
+  const mc = document.getElementById('mainContent');
+
+  mc.innerHTML = `
+    <div class="region-panel active">
+
+      <!-- Banner -->
+      <div class="region-banner ${r.colorClass}">
+        <div class="banner-accent"></div>
+        <div class="banner-tag">${r.tag}</div>
+        <div class="banner-heading">${r.heading}</div>
+        <div class="banner-desc">${r.desc}</div>
+      </div>
+
+      <!-- Highlights -->
+      <div class="section-label">Kenali Wilayahnya</div>
+      <div class="section-title">Yang Membuat ${r.tag} Khas</div>
+      <p class="section-desc">Empat hal yang paling mendefinisikan karakter dan kehidupan di wilayah ini.</p>
+      <div class="cards-grid">
+        ${r.highlights.map(h => `
+          <div class="card">
+            <span class="card-icon">${h.icon}</span>
+            <div class="card-title">${h.title}</div>
+            <div class="card-body">${h.body || h.desc || ''}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Spots -->
+      <div class="spots-section">
+        <div class="section-label">Jalan-Jalan</div>
+        <div class="section-title">Tempat yang Wajib Dikunjungi</div>
+        <p class="section-desc">Dari spot populer hingga sudut tersembunyi yang sayang dilewatkan.</p>
+        <div class="spots-grid">
+          ${r.spots.map((s, i) => `
+            <div class="spot-item">
+              <div class="spot-num">0${i+1}</div>
+              <div class="spot-info">
+                <div class="spot-name">${s.name}</div>
+                <div class="spot-desc">${s.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Culinary -->
+      <div>
+        <div class="section-label">Kuliner</div>
+        <div class="section-title">Makanan yang Bikin Kangen</div>
+        <p class="section-desc">Rasa-rasa yang paling mewakili lidah dan jiwa warga ${r.tag}.</p>
+        <div class="culinary-grid">
+          ${r.food.map(f => `
+            <div class="food-card">
+              <span class="food-emoji">${f.emoji}</span>
+              <div class="food-name">${f.name}</div>
+              <div class="food-desc">${f.desc}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+// Init
+renderTabs();
+renderHero();
+renderContent();
+</script>
+</body>
+</html>
