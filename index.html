@@ -180,7 +180,7 @@
   .section-desc { color: var(--muted); font-size: 0.92rem; max-width: 560px; margin-bottom: 32px; line-height: 1.6; }
 
   /* ─── REGION BANNER ─── */
-  .region-banner { border-radius: var(--radius-lg); padding: 36px 40px; margin-bottom: 40px; position: relative; overflow: hidden; }
+  .region-banner { border-radius: var(--radius-lg); padding: 36px 40px; margin-bottom: 28px; position: relative; overflow: hidden; }
   .region-banner.timur   { background: linear-gradient(135deg,#1a0d0a 0%,#2e1208 40%,#0D1B2A 100%); border:1px solid rgba(232,51,26,0.2); }
   .region-banner.barat   { background: linear-gradient(135deg,#0a0f1a 0%,#0d1f35 40%,#0D1B2A 100%); border:1px solid rgba(0,120,220,0.2); }
   .region-banner.selatan { background: linear-gradient(135deg,#0a1a0e 0%,#0d2a15 40%,#0D1B2A 100%); border:1px solid rgba(20,180,80,0.2); }
@@ -210,7 +210,29 @@
   .banner-heading { font-family:'Syne',sans-serif; font-size:1.9rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:10px; }
   .banner-desc { color:var(--text-body); font-size:0.9rem; max-width:600px; line-height:1.65; }
 
-  /* ─── CARTOGRAM MAP (REDESIGN) ─── */
+  /* ─── KELURAHAN BLOCK ─── */
+  .kel-block {
+    background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 40px;
+  }
+  .kel-block-title { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:700; margin-bottom: 12px; }
+  .kel-row { margin-bottom: 14px; }
+  .kel-row:last-child { margin-bottom: 0; }
+  .kel-row-head { font-size: 0.82rem; color: var(--text-body); display:flex; align-items:center; gap:8px; }
+  .kel-row-head b { color: var(--white); font-weight: 600; }
+  .kel-empty { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  /* ─── LOKASI CHIP (kecamatan / kelurahan di tiap kartu) ─── */
+  .loc-chip {
+    display: inline-block; font-size: 0.7rem; font-weight: 600; line-height: 1.4;
+    padding: 4px 10px; border-radius: 99px; margin-bottom: 8px;
+    background: rgba(240,165,0,0.1); color: var(--gold);
+    border: 1px solid rgba(240,165,0,0.22);
+  }
+  .loc-chip.multi { background: rgba(0,120,220,0.12); color: #7CC0FF; border-color: rgba(0,120,220,0.25); }
+  .loc-chip.unk   { background: rgba(143,163,177,0.12); color: var(--muted); border-color: rgba(143,163,177,0.25); font-weight: 500; }
+
+  /* ─── CARTOGRAM MAP ─── */
   .map-section { margin-bottom: 48px; }
   .map-shell {
     background:
@@ -263,8 +285,10 @@
   .kec-info-panel p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
   .kec-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   .kec-tag { font-size: 0.68rem; font-weight: 600; background: rgba(240,165,0,0.1); color: var(--gold); border-radius: 99px; padding: 3px 9px; }
+  .kec-tag.kel { background: rgba(255,255,255,0.06); color: var(--text-body); font-weight: 500; }
+  .kec-sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
 
-  /* ─── DATA BLOCKS (transit / mall / wisata) ─── */
+  /* ─── DATA BLOCKS ─── */
   .data-section { margin-top: 36px; }
   .data-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
   .data-head-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; }
@@ -297,13 +321,21 @@
   .t-tab:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
   .t-tab.active { color: var(--gold); border-color: rgba(240,165,0,0.35); background: rgba(240,165,0,0.07); }
   .t-tab.active .t-count { background: rgba(240,165,0,0.18); color: var(--gold); }
+  .edu-filters { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .edu-chip {
+    font-size: 0.72rem; font-weight: 600; padding: 5px 12px; border-radius: 99px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--muted);
+    transition: all 0.18s ease;
+  }
+  .edu-chip:hover { color: var(--white); border-color: rgba(255,255,255,0.22); }
+  .edu-chip.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
   .t-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
   .t-item {
     background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
     border-radius: var(--radius-lg); padding: 16px 18px; transition: border-color 0.18s;
   }
   .t-item:hover { border-color: rgba(255,255,255,0.14); }
-  .t-item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .t-item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
   .t-name { font-weight: 600; font-size: 0.9rem; color: var(--white); line-height: 1.35; }
   .t-badge { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; flex-shrink: 0; white-space: nowrap; }
   .t-badge.krl      { background: rgba(232,51,26,0.18);  color: #FF8A78; }
@@ -319,7 +351,9 @@
   .t-badge.air      { background: rgba(0,120,220,0.2);   color: #7CC0FF; }
   .t-badge.religi   { background: rgba(150,50,200,0.2);  color: #D29BFF; }
   .t-badge.alam     { background: rgba(0,160,120,0.2);   color: #50FFD0; }
-  .t-loc { font-size: 0.75rem; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
+  .t-badge.edu-negeri { background: rgba(20,180,80,0.16); color: #6AFFAA; }
+  .t-badge.edu-swasta { background: rgba(240,165,0,0.16); color: var(--gold); }
+  .t-loc { font-size: 0.75rem; color: var(--text-body); margin-bottom: 6px; font-weight: 500; }
   .t-note { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
   .t-empty {
     grid-column: 1 / -1; background: var(--navy-mid); border: 1px dashed rgba(255,255,255,0.1);
@@ -367,6 +401,7 @@
     .cg-name { font-size: 0.62rem; }
     .cg-sub { display: none; }
     .cg-counts { gap: 5px; font-size: 0.58rem; margin-top: 4px; }
+    .kel-block { padding: 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
@@ -396,6 +431,7 @@
     <div class="hero-stats" id="heroStats">
       <div class="stat-item"><div class="stat-val">2<span>.6</span>M</div><div class="stat-label">Penduduk Kota</div></div>
       <div class="stat-item"><div class="stat-val">12</div><div class="stat-label">Kecamatan</div></div>
+      <div class="stat-item"><div class="stat-val">56</div><div class="stat-label">Kelurahan</div></div>
       <div class="stat-item"><div class="stat-val">210<span>km²</span></div><div class="stat-label">Luas Wilayah</div></div>
     </div>
   </div>
@@ -404,7 +440,7 @@
 <main class="content-area" id="mainContent"></main>
 
 <footer>
-  Dibuat dengan ❤️ untuk warga Bekasi · <strong>NgayapBeks!</strong> &copy; 2024
+  Dibuat dengan ❤️ untuk warga Bekasi · <strong>NgayapBeks!</strong> &copy; 2026
 </footer>
 
 <script>
@@ -415,7 +451,7 @@
 ════════════════════════════════════════════════ */
 const CARTO = {
   kota: {
-    cols: 4, title: 'Kota Bekasi · 12 Kecamatan',
+    cols: 4, title: 'Kota Bekasi · 12 Kecamatan · 56 Kelurahan',
     tiles: [
       { id:'medan-satria',  name:'Medan Satria',  x:0, y:0 },
       { id:'bekasi-utara',  name:'Bekasi Utara',  x:1, y:0 },
@@ -467,26 +503,61 @@ const REGION_COLOR = {
 };
 
 /* ════════════════════════════════════════════════
-   DATA TERVERIFIKASI (stasiun, halte, non-halte, mal, wisata)
-   type: stasiun | halte | nonhalte | mall | wisata
-   kecs: id kecamatan terkait (lihat CARTO); [] = hanya tampil di "Seluruh Bekasi"
+   KELURAHAN KOTA BEKASI (56)
+   Sumber: daftar BPS Kota Bekasi (dikutip skripsi Undip) +
+   Perda Kota Bekasi No. 04/2004 (Jatiwaringin = Pondokgede).
+   Kab. Bekasi (desa/kelurahan) belum dimasukkan.
 ════════════════════════════════════════════════ */
-const I = (type, name, badge, badgeText, loc, note, kecs) => ({ type, name, badge, badgeText, loc, note, kecs });
+const KELURAHAN = {
+  'medan-satria':  ['Harapan Mulya','Kali Baru','Medan Satria','Pejuang'],
+  'bekasi-utara':  ['Harapan Baru','Harapan Jaya','Kaliabang Tengah','Marga Mulya','Perwira','Teluk Pucung'],
+  'bekasi-timur':  ['Aren Jaya','Bekasi Jaya','Duren Jaya','Margahayu'],
+  'rawalumbu':     ['Bojong Menteng','Bojong Rawalumbu','Pengasinan','Sepanjang Jaya'],
+  'mustikajaya':   ['Cimuning','Mustikajaya','Mustikasari','Padurenan'],
+  'bantargebang':  ['Bantargebang','Cikiwul','Ciketing Udik','Sumur Batu'],
+  'bekasi-barat':  ['Bintara','Bintara Jaya','Jakasampurna','Kota Baru','Kranji'],
+  'bekasi-selatan':['Jakamulya','Jakasetia','Kayuringin Jaya','Margajaya','Pekayon Jaya'],
+  'jatiasih':      ['Jatiasih','Jatikramat','Jatiluhur','Jatimekar','Jatirasa','Jatisari'],
+  'pondokmelati':  ['Jatimelati','Jatimurni','Jatirahayu','Jatiwarna'],
+  'jatisampurna':  ['Jatikarya','Jatiraden','Jatirangga','Jatiranggon','Jatisampurna'],
+  'pondokgede':    ['Jatibening','Jatibening Baru','Jaticempaka','Jatimakmur','Jatiwaringin']
+};
+
+/* ════════════════════════════════════════════════
+   DATA TERVERIFIKASI (stasiun, halte, non-halte, mal, wisata, pendidikan)
+   I(type, name, badge, badgeText, loc, note, kecs, kel)
+   kecs: id kecamatan terkait (lihat CARTO); [] = kecamatan belum terverifikasi
+   kel : nama kelurahan bila sudah tercatat (opsional)
+════════════════════════════════════════════════ */
+const I = (type, name, badge, badgeText, loc, note, kecs, kel) => ({ type, name, badge, badgeText, loc, note, kecs, kel: kel || null });
+
+/* PENDIDIKAN
+   E(jenjang, name, status, tipe, alamat, kel, note, kecs)
+   jenjang: sd | smp | sma | kuliah
+   status : Negeri | Swasta
+   tipe   : Umum | Islam | Kristen | Katolik | Kejuruan
+   Tambah data baru HANYA kalau alamatnya sudah dicek (mis. referensi.data.kemdikbud.go.id). */
+const E = (jenjang, name, status, tipe, addr, kel, note, kecs) => ({
+  type:'edu', jenjang, name, status, tipe,
+  badge: status === 'Negeri' ? 'edu-negeri' : 'edu-swasta',
+  badgeText: tipe === 'Umum' ? status : `${status} · ${tipe}`,
+  loc: addr, note, kecs, kel: kel || null
+});
 
 const ITEMS = [
   /* ── STASIUN ── */
-  I('stasiun','Stasiun Kranji','krl','KRL','Kranji, Kec. Bekasi Barat','KRL Commuter Line lintas Cikarang, stasiun layang menuju Manggarai dan Jakarta Kota.',['bekasi-barat']),
+  I('stasiun','Stasiun Kranji','krl','KRL','Kranji, Kec. Bekasi Barat','KRL Commuter Line lintas Cikarang, stasiun layang menuju Manggarai dan Jakarta Kota.',['bekasi-barat'],'Kranji'),
   I('stasiun','Stasiun Bekasi','krl','KRL','Jl. Ir. H. Juanda, dekat Terminal Bekasi','Stasiun utama Kota Bekasi dengan 5 jalur. Lokasi administratifnya ditulis berbeda antar sumber (Marga Mulya/Bekasi Utara atau Bekasi Timur), karena dekat batas kecamatan.',['bekasi-timur','bekasi-utara']),
-  I('stasiun','Stasiun Bekasi Timur','krl','KRL','Kawasan Duren Jaya, Kec. Bekasi Timur','KRL lintas Bekasi–Cikarang, antara Stasiun Bekasi dan Stasiun Tambun. Juga dilewati KA jarak jauh.',['bekasi-timur']),
+  I('stasiun','Stasiun Bekasi Timur','krl','KRL','Kawasan Duren Jaya, Kec. Bekasi Timur','KRL lintas Bekasi–Cikarang, antara Stasiun Bekasi dan Stasiun Tambun. Juga dilewati KA jarak jauh.',['bekasi-timur'],'Duren Jaya'),
   I('stasiun','Stasiun Tambun','krl','KRL','Kec. Tambun Selatan, Kab. Bekasi','KRL lintas Cikarang, setelah Stasiun Bekasi Timur.',['tambun-selatan']),
   I('stasiun','Stasiun Cibitung','krl','KRL','Kec. Cibitung, Kab. Bekasi','KRL lintas Cikarang, antara Stasiun Tambun dan Stasiun Metland Telaga Murni.',['cibitung']),
   I('stasiun','Stasiun Metland Telaga Murni','krl','KRL','Kec. Cikarang Barat, Kab. Bekasi','KRL lintas Cikarang, antara Stasiun Cibitung dan Stasiun Cikarang.',['cikarang-barat']),
   I('stasiun','Stasiun Cikarang','krl','KRL','Kec. Cikarang Utara, Kab. Bekasi','Stasiun ujung KRL Commuter Line lintas Bekasi–Cikarang.',['cikarang-utara']),
-  I('stasiun','Stasiun LRT Jatibening Baru','lrt','LRT','Lintas Bekasi, LRT Jabodebek','Satu dari 5 stasiun LRT Jabodebek di wilayah Bekasi.',['pondokgede']),
-  I('stasiun','Stasiun LRT Cikunir 1','lrt','LRT','Lintas Bekasi, LRT Jabodebek','Satu dari 5 stasiun LRT Jabodebek di wilayah Bekasi.',[]),
-  I('stasiun','Stasiun LRT Cikunir 2','lrt','LRT','Lintas Bekasi, LRT Jabodebek','Satu dari 5 stasiun LRT Jabodebek di wilayah Bekasi.',[]),
-  I('stasiun','Stasiun LRT Bekasi Barat','lrt','LRT','Kawasan Revo Town, Pekayon Jaya','Titik integrasi dengan BISKITA Trans Bekasi Patriot. Kuartal I 2026: 455.688 penumpang (naik 21,1% yoy). Meski bernama Bekasi Barat, letaknya di kawasan Revo Town yang beralamat di Bekasi Selatan.',['bekasi-selatan']),
-  I('stasiun','Stasiun LRT Jatimulya','lrt','LRT','Kel. Jatimulya, Kec. Tambun Selatan','Ujung lintas LRT Bekasi saat ini. Kuartal I 2026: 417.662 penumpang (naik 18,2% yoy).',['tambun-selatan']),
+  I('stasiun','Stasiun LRT Jatibening Baru','lrt','LRT','Lintas Bekasi, LRT Jabodebek','Satu dari 5 stasiun LRT Jabodebek di wilayah Bekasi.',['pondokgede'],'Jatibening Baru'),
+  I('stasiun','Stasiun LRT Cikunir 1','lrt','LRT','Lintas Bekasi, LRT Jabodebek','Satu dari 5 stasiun LRT Jabodebek di wilayah Bekasi. Kecamatannya belum terverifikasi.',[]),
+  I('stasiun','Stasiun LRT Cikunir 2','lrt','LRT','Lintas Bekasi, LRT Jabodebek','Satu dari 5 stasiun LRT Jabodebek di wilayah Bekasi. Kecamatannya belum terverifikasi.',[]),
+  I('stasiun','Stasiun LRT Bekasi Barat','lrt','LRT','Kawasan Revo Town, Pekayon Jaya','Titik integrasi dengan BISKITA Trans Bekasi Patriot. Kuartal I 2026: 455.688 penumpang (naik 21,1% yoy). Meski bernama Bekasi Barat, letaknya di kawasan Revo Town yang beralamat di Bekasi Selatan.',['bekasi-selatan'],'Pekayon Jaya'),
+  I('stasiun','Stasiun LRT Jatimulya','lrt','LRT','Kel. Jatimulya, Kec. Tambun Selatan','Ujung lintas LRT Bekasi saat ini. Kuartal I 2026: 417.662 penumpang (naik 18,2% yoy).',['tambun-selatan'],'Jatimulya'),
   I('stasiun','Stasiun LRT Bekasi Timur','plan','Rencana','Kota Bekasi','Masih rencana lintas Cawang–Bekasi Timur, belum beroperasi. Lintas yang aktif berakhir di Jatimulya.',['bekasi-timur']),
 
   /* ── HALTE ── */
@@ -499,7 +570,7 @@ const ITEMS = [
   I('halte','BISKITA Trans Wibawa Mukti','brt','BTS','Stasiun LRT Jatimulya – Stasiun KRL Cikarang','Layanan Kab. Bekasi yang menyambungkan LRT Jatimulya sampai Stasiun Cikarang.',['tambun-selatan','cikarang-utara']),
 
   /* ── NON-HALTE ── */
-  I('nonhalte','Terminal Induk Bekasi (Tipe A)','terminal','Terminal','Kel. Margahayu, Kec. Bekasi Timur','Luas sekitar 1,3 ha, terminal bus utama Kota Bekasi dan bersebelahan dengan Stasiun Bekasi.',['bekasi-timur']),
+  I('nonhalte','Terminal Induk Bekasi (Tipe A)','terminal','Terminal','Kel. Margahayu, Kec. Bekasi Timur','Luas sekitar 1,3 ha, terminal bus utama Kota Bekasi dan bersebelahan dengan Stasiun Bekasi.',['bekasi-timur'],'Margahayu'),
   I('nonhalte','Titik henti Trans Patriot (plang biru)','nonhalte','Non-halte','Sepanjang rute Koridor 1','Dari 34 titik, sebagian hanya penanda plang biru Bus Trans Patriot tanpa bangunan halte.',['bekasi-timur']),
   I('nonhalte','Angkot ruas Cut Meutia – A. Yani – Sudirman','angkot','Angkot','Pusat Kota Bekasi','Rute Trans Patriot juga dilalui angkot yang naik-turun di tepi jalan tanpa halte resmi.',['bekasi-timur']),
   I('nonhalte','Trayek K.01.A Terminal Bekasi – Cikarang','angkot','Angkot','Terminal Bekasi menuju Cikarang','Trayek dengan armada terbanyak di Terminal Bekasi, sekitar 226 kendaraan (data riset terminal).',['bekasi-timur']),
@@ -509,20 +580,34 @@ const ITEMS = [
   I('nonhalte','Bus K30 Kranji – Taman Harapan Indah','angkot','Bus','Kranji menuju Harapan Indah','Dilaporkan oleh panduan kawasan; cek trayek aktif ke Dishub sebelum dipakai.',['bekasi-barat','medan-satria']),
 
   /* ── MAL ── */
-  I('mall','Summarecon Mal Bekasi','mal','Mal','Sentra Summarecon, Jl. Boulevard Ahmad Yani, Bekasi Utara (17142)','Berdiri di lahan sekitar 80.000 m² dan dirancang sebagai pusat kuliner utama (The Downtown Walk, Food Hall). Beberapa media menulis kecamatannya Bekasi Selatan; alamat pos tercatat Bekasi Utara.',['bekasi-utara']),
+  I('mall','Summarecon Mal Bekasi','mal','Mal','Sentra Summarecon, Jl. Boulevard Ahmad Yani, Bekasi Utara (17142)','Berdiri di lahan sekitar 80.000 m² dan dirancang sebagai pusat kuliner utama (The Downtown Walk, Food Hall). Beberapa media menulis kecamatannya Bekasi Selatan; alamat pos tercatat Bekasi Utara.',['bekasi-utara'],'Marga Mulya'),
   I('mall','Grand Metropolitan Bekasi','mal','Mal','Jl. KH Noer Ali, Bekasi Selatan','Enam lantai dan dua basement, bagian dari Metland. Disebut pusat belanja terbesar di Bekasi dengan lebih dari 125.000 m² luas lantai.',['bekasi-selatan']),
   I('mall','Metropolitan Mall Bekasi','mal','Mal','Jl. KH Noer Ali, Bekasi Selatan','Salah satu mal tertua di Bekasi, berdiri sejak 1993; berdekatan dengan Grand Metropolitan.',['bekasi-selatan']),
   I('mall','Pakuwon Mall Bekasi','mal','Mal','Jl. Raya Pekayon No. 002, Bekasi Selatan','Mal di superblok Pakuwon Bekasi; disebut yang pertama menghadirkan tenant internasional di Kota Bekasi.',['bekasi-selatan']),
-  I('mall','Revo Town Bekasi','mal','Mal','Jl. Ahmad Yani, Pekayon Jaya, Bekasi Selatan','Dulunya bernama Bekasi Square. Punya wahana Revo Town Snow World dan terhubung ke Stasiun LRT Bekasi Barat.',['bekasi-selatan']),
+  I('mall','Revo Town Bekasi','mal','Mal','Jl. Ahmad Yani, Pekayon Jaya, Bekasi Selatan','Dulunya bernama Bekasi Square. Punya wahana Revo Town Snow World dan terhubung ke Stasiun LRT Bekasi Barat.',['bekasi-selatan'],'Pekayon Jaya'),
   I('mall','Mega Bekasi Hypermall','mal','Mal','Jl. Jend. Ahmad Yani No. 1, Bekasi Selatan (17141)','Dibuka 2003, tiga lantai, dengan tenant fashion, elektronik, dan kuliner.',['bekasi-selatan']),
-  I('mall','Lagoon Avenue Mall (Lave)','mal','Mal','Kawasan Grand Kamala Lagoon, Jl. Chandrabhaga, Pekayon Jaya, Bekasi Selatan','Mal yang terhubung langsung dengan kompleks apartemen.',['bekasi-selatan']),
-  I('mall','Grand Galaxy Park','mal','Mal','Jl. Grand Galaxy Boulevard, Jaka Setia, Bekasi Selatan','Mal untuk warga kawasan Grand Galaxy City dengan konsep go green dan area taman outdoor.',['bekasi-selatan']),
-  I('mall','Grand Mall Bekasi','mal','Mal','Jl. Jend. Sudirman, kawasan Kranji','Mal berukuran besar dan lega, dikenal dengan tenant elektronik lengkap. Lokasi kecamatan ditempatkan di Bekasi Barat berdasarkan kedekatan dengan Kranji.',['bekasi-barat']),
+  I('mall','Lagoon Avenue Mall (Lave)','mal','Mal','Kawasan Grand Kamala Lagoon, Jl. Chandrabhaga, Pekayon Jaya, Bekasi Selatan','Mal yang terhubung langsung dengan kompleks apartemen.',['bekasi-selatan'],'Pekayon Jaya'),
+  I('mall','Grand Galaxy Park','mal','Mal','Jl. Grand Galaxy Boulevard, Jaka Setia, Bekasi Selatan','Mal untuk warga kawasan Grand Galaxy City dengan konsep go green dan area taman outdoor.',['bekasi-selatan'],'Jakasetia'),
+  I('mall','Grand Mall Bekasi','mal','Mal','Jl. Jend. Sudirman, kawasan Kranji','Mal berukuran besar dan lega, dikenal dengan tenant elektronik lengkap. Lokasi kecamatan ditempatkan di Bekasi Barat berdasarkan kedekatan dengan Kranji (perkiraan, belum terverifikasi).',['bekasi-barat']),
   I('mall','AEON Mall Deltamas','mal','Mal','Jl. Ganesha Boulevard, Kota Deltamas, Cikarang Pusat','Diresmikan Maret 2024 di kawasan Kota Deltamas; toko AEON ke-8 di Indonesia.',['cikarang-pusat']),
   I('mall','Lippo Mall Cikarang','mal','Mal','Jl. MH Thamrin, Lippo Cikarang, Cikarang Selatan','Pusat belanja di kota mandiri Lippo Cikarang.',['cikarang-selatan']),
 
+  /* ── PENDIDIKAN (hanya entri yang alamatnya sudah dicek) ── */
+  E('kuliah','Universitas Muhammadiyah Indonesia (d/h Universitas Islam 45 Bekasi)','Swasta','Islam',
+    'Jl. Cut Mutia No. 83, Kel. Margahayu, Kec. Bekasi Timur, Kota Bekasi 17113','Margahayu',
+    'Nama dan alamat mengikuti pengumuman Bank Syariah Indonesia (2026). Sebelumnya dikenal sebagai Unisma 45 / Universitas Islam "45" Bekasi, berdiri 1982.',
+    ['bekasi-timur']),
+  E('kuliah','STIE Mulia Pratama','Swasta','Umum',
+    'Jl. H. Mulyadi Joyomartono Kav. 5, Margahayu, Bekasi Timur 17113','Margahayu',
+    'Sekolah tinggi ekonomi. Alamat dari direktori idalamat.com; status swasta berdasarkan jenis lembaganya, cek langsung ke kampus.',
+    ['bekasi-timur']),
+  E('kuliah','BINUS @Bekasi','Swasta','Umum',
+    'Jl. Lingkar Bulevar Blok WA No. 1, Summarecon Bekasi, Kel. Marga Mulya, Bekasi 17142','Marga Mulya',
+    'Situs BINUS menulis kecamatannya Medan Satria, sedangkan daftar kelurahan resmi menempatkan Marga Mulya di Bekasi Utara. Prodi antara lain Akuntansi, Manajemen, Psikologi, Computer Science.',
+    ['bekasi-utara']),
+
   /* ── WISATA ── */
-  I('wisata','Klenteng Hok Lay Kiong','religi','Religi','Jl. Kenari I, Margahayu, Bekasi Timur','Tempat ibadah umat Khonghucu, Buddha, dan Taoisme yang sarat sejarah, ramai dikunjungi sebagai objek wisata budaya.',['bekasi-timur']),
+  I('wisata','Klenteng Hok Lay Kiong','religi','Religi','Jl. Kenari I, Margahayu, Bekasi Timur','Tempat ibadah umat Khonghucu, Buddha, dan Taoisme yang sarat sejarah, ramai dikunjungi sebagai objek wisata budaya.',['bekasi-timur'],'Margahayu'),
   I('wisata','Hutan Kota Patriot Bina Bangsa','taman','Taman','Kawasan GOR / Stadion Patriot Candrabhaga','Ruang hijau dengan taman bermain, area kebugaran, dan spot piknik.',['bekasi-selatan']),
   I('wisata','Taman Kota Bekasi','taman','Taman','Jl. Jenderal Ahmad Yani, dekat pusat kota','Taman hijau di tengah kota untuk bersantai dan piknik keluarga.',['bekasi-selatan']),
   I('wisata','Danau Summarecon','air','Danau','Kawasan Summarecon Bekasi, Bekasi Utara','Danau di dalam kawasan kota mandiri Summarecon.',['bekasi-utara']),
@@ -536,6 +621,7 @@ const ITEMS = [
 
 /* ════════════════════════════════════════════════
    WILAYAH
+   highlights[].loc = teks lokasi di kartu (null = belum terverifikasi)
 ══════════════════════════════════════════════ */
 const DATA = {
   kota: {
@@ -548,6 +634,7 @@ const DATA = {
       stats: [
         { val:'2<span>.6</span>M', label:'Penduduk Kota' },
         { val:'12', label:'Kecamatan' },
+        { val:'56', label:'Kelurahan' },
         { val:'210<span>km²</span>', label:'Luas Wilayah' }
       ]
     },
@@ -557,10 +644,10 @@ const DATA = {
         heading:'Pusat Administratif & Simpul Transportasi',
         desc:'Bekasi Timur menaungi Terminal Induk Bekasi, Stasiun Bekasi Timur, dan Klenteng Hok Lay Kiong. Kecamatan seluas 14,64 km² ini punya 4 kelurahan: Bekasi Jaya, Margahayu, Duren Jaya, dan Aren Jaya.',
         highlights:[
-          { icon:'🛕', title:'Klenteng Hok Lay Kiong', body:'Tempat ibadah Khonghucu, Buddha, dan Taoisme di Jl. Kenari I, Margahayu — destinasi religi yang sarat sejarah.' },
-          { icon:'🚌', title:'Terminal Induk Bekasi', body:'Terminal Tipe A di Kelurahan Margahayu, seluas sekitar 1,3 ha, dengan trayek ke Cikarang, Tarumajaya, dan Babelan.' },
-          { icon:'🚉', title:'Stasiun Bekasi Timur', body:'Stasiun KRL lintas Bekasi–Cikarang di kawasan Duren Jaya, juga dilewati kereta jarak jauh.' },
-          { icon:'🏛️', title:'Pusat Kecamatan', body:'Pusat administrasi kecamatan berada di Bekasi Jaya. Sekitar 273,7 ribu jiwa tinggal di sini (estimasi pertengahan 2023).' }
+          { icon:'🛕', title:'Klenteng Hok Lay Kiong', loc:'Kec. Bekasi Timur · Kel. Margahayu', body:'Tempat ibadah Khonghucu, Buddha, dan Taoisme di Jl. Kenari I, Margahayu — destinasi religi yang sarat sejarah.' },
+          { icon:'🚌', title:'Terminal Induk Bekasi', loc:'Kec. Bekasi Timur · Kel. Margahayu', body:'Terminal Tipe A di Kelurahan Margahayu, seluas sekitar 1,3 ha, dengan trayek ke Cikarang, Tarumajaya, dan Babelan.' },
+          { icon:'🚉', title:'Stasiun Bekasi Timur', loc:'Kec. Bekasi Timur · Kel. Duren Jaya', body:'Stasiun KRL lintas Bekasi–Cikarang di kawasan Duren Jaya, juga dilewati kereta jarak jauh.' },
+          { icon:'🏛️', title:'Pusat Kecamatan', loc:'Kec. Bekasi Timur · Kel. Bekasi Jaya', body:'Pusat administrasi kecamatan berada di Bekasi Jaya. Sekitar 273,7 ribu jiwa tinggal di sini (estimasi pertengahan 2023).' }
         ],
         food:[
           { emoji:'🍜', name:'Soto Mie Bekasi', desc:'Kuah bening gurih dengan mi kuning, daging, dan risol — ciri khas Bekasi.' },
@@ -572,12 +659,12 @@ const DATA = {
       barat: {
         colorClass:'barat', tag:'Bekasi Barat', kecs:['bekasi-barat'],
         heading:'Gerbang Kranji',
-        desc:'Bekasi Barat berbatasan dengan Jakarta, dilayani Stasiun Kranji, dan dekat dengan Grand Mall Bekasi serta Pasar Kranji. Kecamatan ini punya 5 kelurahan dan luas 14,93 km².',
+        desc:'Bekasi Barat berbatasan dengan Jakarta, dilayani Stasiun Kranji, dan dekat dengan Grand Mall Bekasi serta Pasar Kranji. Kecamatan ini punya 5 kelurahan (Bintara, Bintara Jaya, Jakasampurna, Kota Baru, Kranji) dan luas 14,93 km².',
         highlights:[
-          { icon:'🚉', title:'Stasiun Kranji', body:'Stasiun KRL layang lintas Cikarang yang menjadi pintu masuk komuter dari sisi barat Bekasi.' },
-          { icon:'🛒', title:'Grand Mall Bekasi', body:'Mal besar dan lega di kawasan Kranji, dikenal dengan tenant elektronik yang lengkap.' },
-          { icon:'🏪', title:'Pasar Kranji', body:'Pasar ramai di sekitar stasiun; kemacetan jam sibuk menjadi tantangan khas kawasan ini.' },
-          { icon:'👥', title:'Kepadatan Penduduk', body:'Sekitar 285 ribu jiwa tinggal di 14,93 km² (estimasi pertengahan 2022).' }
+          { icon:'🚉', title:'Stasiun Kranji', loc:'Kec. Bekasi Barat · Kel. Kranji', body:'Stasiun KRL layang lintas Cikarang yang menjadi pintu masuk komuter dari sisi barat Bekasi.' },
+          { icon:'🛒', title:'Grand Mall Bekasi', loc:'Kec. Bekasi Barat · kawasan Kranji (perkiraan, belum terverifikasi)', body:'Mal besar dan lega di kawasan Kranji, dikenal dengan tenant elektronik yang lengkap.' },
+          { icon:'🏪', title:'Pasar Kranji', loc:'Kec. Bekasi Barat · sekitar Kel. Kranji', body:'Pasar ramai di sekitar stasiun; kemacetan jam sibuk menjadi tantangan khas kawasan ini.' },
+          { icon:'👥', title:'Kepadatan Penduduk', loc:'Kec. Bekasi Barat · seluruh 5 kelurahan', body:'Sekitar 285 ribu jiwa tinggal di 14,93 km² (estimasi pertengahan 2022).' }
         ],
         food:[
           { emoji:'🍲', name:'Sayur Asem Betawi', desc:'Sayur asem segar dengan melinjo, jagung muda, dan labu — sajian wajib makan siang.' },
@@ -589,12 +676,12 @@ const DATA = {
       selatan: {
         colorClass:'selatan', tag:'Bekasi Selatan', kecs:['bekasi-selatan'],
         heading:'Pusat Belanja Kota',
-        desc:'Bekasi Selatan adalah tempat berkumpulnya mal-mal besar Kota Bekasi, dari Metropolitan Mall sejak 1993 hingga Pakuwon Mall, plus Hutan Kota Patriot Bina Bangsa dan Stasiun LRT Bekasi Barat di kawasan Revo Town.',
+        desc:'Bekasi Selatan adalah tempat berkumpulnya mal-mal besar Kota Bekasi, dari Metropolitan Mall sejak 1993 hingga Pakuwon Mall, plus Hutan Kota Patriot Bina Bangsa dan Stasiun LRT Bekasi Barat di kawasan Revo Town. Kelurahannya: Jakamulya, Jakasetia, Kayuringin Jaya, Margajaya, Pekayon Jaya.',
         highlights:[
-          { icon:'🛍️', title:'Tujuh Mal Besar', body:'Grand Metropolitan, Metropolitan Mall, Pakuwon Mall, Revo Town, Mega Bekasi Hypermall, Lagoon Avenue, dan Grand Galaxy Park.' },
-          { icon:'🌳', title:'Hutan Kota Patriot Bina Bangsa', body:'Ruang hijau di kawasan GOR dan Stadion Patriot dengan taman bermain dan area kebugaran.' },
-          { icon:'🚆', title:'Akses LRT', body:'Stasiun LRT Bekasi Barat di kawasan Revo Town terhubung dengan BISKITA Trans Bekasi Patriot.' },
-          { icon:'🏞️', title:'Taman Kota Bekasi', body:'Taman hijau di Jl. Jenderal Ahmad Yani yang dekat dengan pusat kota.' }
+          { icon:'🛍️', title:'Tujuh Mal Besar', loc:'Kec. Bekasi Selatan · tersebar di beberapa kelurahan (Pekayon Jaya, Jakasetia, dll.)', body:'Grand Metropolitan, Metropolitan Mall, Pakuwon Mall, Revo Town, Mega Bekasi Hypermall, Lagoon Avenue, dan Grand Galaxy Park.' },
+          { icon:'🌳', title:'Hutan Kota Patriot Bina Bangsa', loc:'Kec. Bekasi Selatan · kelurahan belum tercatat', body:'Ruang hijau di kawasan GOR dan Stadion Patriot dengan taman bermain dan area kebugaran.' },
+          { icon:'🚆', title:'Akses LRT', loc:'Kec. Bekasi Selatan · Kel. Pekayon Jaya', body:'Stasiun LRT Bekasi Barat di kawasan Revo Town terhubung dengan BISKITA Trans Bekasi Patriot.' },
+          { icon:'🏞️', title:'Taman Kota Bekasi', loc:'Kec. Bekasi Selatan · kelurahan belum tercatat', body:'Taman hijau di Jl. Jenderal Ahmad Yani yang dekat dengan pusat kota.' }
         ],
         food:[
           { emoji:'🍣', name:'Kuliner Fusion Modern', desc:'Banyak restoran fusion dan kafe estetik di sekitar mal-mal besar.' },
@@ -606,12 +693,12 @@ const DATA = {
       utara: {
         colorClass:'utara', tag:'Bekasi Utara', kecs:['bekasi-utara'],
         heading:'Kota Mandiri & Kampung Kota',
-        desc:'Bekasi Utara menampung kawasan Summarecon Bekasi dengan mal, danau, dan hunian terencana, berdampingan dengan permukiman padat seperti Kaliabang Nangka.',
+        desc:'Bekasi Utara menampung kawasan Summarecon Bekasi dengan mal, danau, dan hunian terencana, berdampingan dengan permukiman padat seperti Kaliabang Nangka. Kecamatan ini punya 6 kelurahan, termasuk Marga Mulya.',
         highlights:[
-          { icon:'🏙️', title:'Summarecon Bekasi', body:'Kota mandiri di Jl. Boulevard Ahmad Yani dengan Summarecon Mal Bekasi, apartemen, dan area kuliner The Downtown Walk.' },
-          { icon:'🌊', title:'Danau Summarecon', body:'Danau di dalam kawasan Summarecon untuk jalan sore dan bersantai.' },
-          { icon:'🚌', title:'Halte BTS Mall Summarecon', body:'Titik awal BISKITA Trans Bekasi Patriot menuju Revo Mall dan Vida Bantar Gebang.' },
-          { icon:'🛣️', title:'Kaliabang Nangka', body:'Wilayah yang dilewati trayek angkot K.15 dari Terminal Bekasi menuju Tarumajaya.' }
+          { icon:'🏙️', title:'Summarecon Bekasi', loc:'Kec. Bekasi Utara · Kel. Marga Mulya', body:'Kota mandiri di Jl. Boulevard Ahmad Yani dengan Summarecon Mal Bekasi, apartemen, dan area kuliner The Downtown Walk.' },
+          { icon:'🌊', title:'Danau Summarecon', loc:'Kec. Bekasi Utara · kawasan Summarecon', body:'Danau di dalam kawasan Summarecon untuk jalan sore dan bersantai.' },
+          { icon:'🚌', title:'Halte BTS Mall Summarecon', loc:'Kec. Bekasi Utara · kawasan Summarecon', body:'Titik awal BISKITA Trans Bekasi Patriot menuju Revo Mall dan Vida Bantar Gebang.' },
+          { icon:'🛣️', title:'Kaliabang Nangka', loc:'Kec. Bekasi Utara · kawasan Kaliabang (kemungkinan Kel. Kaliabang Tengah, perlu cek)', body:'Wilayah yang dilewati trayek angkot K.15 dari Terminal Bekasi menuju Tarumajaya.' }
         ],
         food:[
           { emoji:'🐔', name:'Ayam Goreng Betawi', desc:'Ayam goreng berbumbu rempah dengan sambal terasi dan lalapan.' },
@@ -641,10 +728,10 @@ const DATA = {
         heading:'Pusat Industri Terbesar ASEAN',
         desc:'Cikarang adalah mesin ekonomi yang menggerakkan jutaan tenaga kerja: kota industri terpadu, ujung lintas KRL Bekasi–Cikarang, dan tuan rumah AEON Mall Deltamas.',
         highlights:[
-          { icon:'🏭', title:'Jababeka Industrial City', body:'Kawasan industri seluas 5.600 ha dengan lebih dari 1.650 perusahaan dari 30 negara — salah satu yang terbesar di ASEAN.' },
-          { icon:'🏙️', title:'MM2100 Industrial Town', body:'Kota industri mandiri dengan perumahan, komersial, dan pabrik dalam satu kawasan terencana.' },
-          { icon:'🎭', title:'President University', body:'Universitas internasional di dalam kawasan industri yang mencetak SDM industri global.' },
-          { icon:'🌟', title:'Delta Silicon Industrial Park', body:'Kawasan industri modern dengan infrastruktur berstandar internasional untuk industri hi-tech.' }
+          { icon:'🏭', title:'Jababeka Industrial City', loc:'Kec. Cikarang Utara (perlu cek)', body:'Kawasan industri seluas 5.600 ha dengan lebih dari 1.650 perusahaan dari 30 negara — salah satu yang terbesar di ASEAN.' },
+          { icon:'🏙️', title:'MM2100 Industrial Town', loc:'Kec. Cikarang Barat (perlu cek)', body:'Kota industri mandiri dengan perumahan, komersial, dan pabrik dalam satu kawasan terencana.' },
+          { icon:'🎭', title:'President University', loc:'Kec. Cikarang Utara (perlu cek)', body:'Universitas internasional di dalam kawasan industri yang mencetak SDM industri global.' },
+          { icon:'🌟', title:'Delta Silicon Industrial Park', loc:null, body:'Kawasan industri modern dengan infrastruktur berstandar internasional untuk industri hi-tech.' }
         ],
         food:[
           { emoji:'🍜', name:'Soto Kuning Cikarang', desc:'Soto berbumbu kunyit kaya rempah dengan potongan daging sapi dan jeroan.' },
@@ -658,10 +745,10 @@ const DATA = {
         heading:'Permukiman, Grand Wisata & LRT Jatimulya',
         desc:'Tambun Selatan menjadi rumah bagi township Grand Wisata dengan Go! Wet Waterpark, serta Stasiun KRL Tambun dan ujung LRT Jabodebek di Jatimulya.',
         highlights:[
-          { icon:'🏡', title:'Grand Wisata', body:'Township premium di Tambun Selatan dengan Go! Wet Waterpark di Jl. Southern Boulevard.' },
-          { icon:'🚆', title:'Stasiun Tambun & LRT Jatimulya', body:'Dua simpul kereta: KRL lintas Cikarang dan ujung lintas LRT Jabodebek Bekasi.' },
-          { icon:'🚌', title:'BISKITA Trans Wibawa Mukti', body:'Feeder yang menyambungkan LRT Jatimulya sampai Stasiun KRL Cikarang.' },
-          { icon:'🌾', title:'Tambun Utara', body:'Bagian utara Tambun yang lebih lengang dibanding Tambun Selatan.' }
+          { icon:'🏡', title:'Grand Wisata', loc:'Kec. Tambun Selatan', body:'Township premium di Tambun Selatan dengan Go! Wet Waterpark di Jl. Southern Boulevard.' },
+          { icon:'🚆', title:'Stasiun Tambun & LRT Jatimulya', loc:'Kec. Tambun Selatan · LRT di Kel. Jatimulya', body:'Dua simpul kereta: KRL lintas Cikarang dan ujung lintas LRT Jabodebek Bekasi.' },
+          { icon:'🚌', title:'BISKITA Trans Wibawa Mukti', loc:'Lintas kecamatan: Tambun Selatan → Cikarang Utara', body:'Feeder yang menyambungkan LRT Jatimulya sampai Stasiun KRL Cikarang.' },
+          { icon:'🌾', title:'Tambun Utara', loc:'Kec. Tambun Utara', body:'Bagian utara Tambun yang lebih lengang dibanding Tambun Selatan.' }
         ],
         food:[
           { emoji:'🌶️', name:'Sambal Oncom', desc:'Sambal khas Betawi-Sunda dari fermentasi kacang dengan cabai rawit pedas.' },
@@ -675,10 +762,10 @@ const DATA = {
         heading:'Kawasan Logistik & Pangan',
         desc:'Cibitung merupakan simpul distribusi dan logistik penting dengan Stasiun KRL Cibitung dan gerbang tol yang terhubung ke jaringan Trans Jawa.',
         highlights:[
-          { icon:'📦', title:'Kawasan Logistik Cibitung', body:'Pusat distribusi dengan banyak gudang modern dan fasilitas cold chain untuk produk pangan.' },
-          { icon:'🌿', title:'Pertanian Organik', body:'Beberapa kelompok tani mulai mengembangkan pertanian organik untuk pasokan sayuran ke Jakarta.' },
-          { icon:'🏗️', title:'Industri Kimia & Material', body:'Kawasan industri kimia dan material bangunan pemasok kebutuhan konstruksi Jabodetabek.' },
-          { icon:'🛣️', title:'Akses Tol Cibitung', body:'Gerbang tol Cibitung menghubungkan kawasan ini dengan jaringan tol Trans Jawa.' }
+          { icon:'📦', title:'Kawasan Logistik Cibitung', loc:'Kec. Cibitung (perlu cek)', body:'Pusat distribusi dengan banyak gudang modern dan fasilitas cold chain untuk produk pangan.' },
+          { icon:'🌿', title:'Pertanian Organik', loc:null, body:'Beberapa kelompok tani mulai mengembangkan pertanian organik untuk pasokan sayuran ke Jakarta.' },
+          { icon:'🏗️', title:'Industri Kimia & Material', loc:null, body:'Kawasan industri kimia dan material bangunan pemasok kebutuhan konstruksi Jabodetabek.' },
+          { icon:'🛣️', title:'Akses Tol Cibitung', loc:'Kec. Cibitung (perlu cek)', body:'Gerbang tol Cibitung menghubungkan kawasan ini dengan jaringan tol Trans Jawa.' }
         ],
         food:[
           { emoji:'🍌', name:'Pisang Sale Cibitung', desc:'Pisang kepok dikeringkan dan digoreng — oleh-oleh renyah manis.' },
@@ -692,9 +779,9 @@ const DATA = {
         heading:'Pesisir Utara & Mangrove',
         desc:'Kawasan pesisir utara Kabupaten Bekasi yang mencakup Tarumajaya, Babelan, dan Muaragembong. Muaragembong terkenal dengan hutan mangrovenya dan akses perairan.',
         highlights:[
-          { icon:'🌿', title:'Hutan Mangrove Muara Gembong', body:'Wisata mangrove di Desa Pantai Bahagia, Kecamatan Muaragembong.' },
-          { icon:'⛴️', title:'Akses Lewat Air', body:'Muaragembong disebut lebih cepat dijangkau naik kapal daripada sepeda motor.' },
-          { icon:'🚌', title:'Angkot K.15 & K.09', body:'Trayek dari Terminal Bekasi: K.15 menuju Tarumajaya dan K.09 menuju Babelan.' }
+          { icon:'🌿', title:'Hutan Mangrove Muara Gembong', loc:'Kec. Muaragembong · Desa Pantai Bahagia', body:'Wisata mangrove di Desa Pantai Bahagia, Kecamatan Muaragembong.' },
+          { icon:'⛴️', title:'Akses Lewat Air', loc:'Kec. Muaragembong', body:'Muaragembong disebut lebih cepat dijangkau naik kapal daripada sepeda motor.' },
+          { icon:'🚌', title:'Angkot K.15 & K.09', loc:'Lintas kecamatan: Tarumajaya (K.15) · Babelan (K.09), dari Terminal Bekasi', body:'Trayek dari Terminal Bekasi: K.15 menuju Tarumajaya dan K.09 menuju Babelan.' }
         ],
         food:[
           { emoji:'🦞', name:'Kepiting Soka Goreng', desc:'Kepiting cangkang lunak digoreng crispy — hidangan laut khas pesisir.' },
@@ -715,18 +802,34 @@ let currentRegion = 'timur';
 let scope = 'wilayah';     // 'wilayah' | 'semua'
 let tTab = 'stasiun';      // 'stasiun' | 'halte' | 'nonhalte'
 let selKec = null;         // id kecamatan terpilih (filter) atau null
+let eduTab = 'sd';         // 'sd' | 'smp' | 'sma' | 'kuliah'
+let eduFilter = 'semua';   // 'semua' | 'negeri' | 'swasta' | 'islam' | 'kristen'
 
 const TRANSIT_TABS = [
   { key:'stasiun',  label:'Stasiun' },
   { key:'halte',    label:'Halte' },
   { key:'nonhalte', label:'Non-Halte' }
 ];
+const EDU_TABS = [
+  { key:'sd',     label:'SD / MI' },
+  { key:'smp',    label:'SMP / MTs' },
+  { key:'sma',    label:'SMA / SMK / MA' },
+  { key:'kuliah', label:'Kuliah' }
+];
+const EDU_FILTERS = [
+  { key:'semua',   label:'Semua' },
+  { key:'negeri',  label:'Negeri' },
+  { key:'swasta',  label:'Swasta' },
+  { key:'islam',   label:'Berbasis Islam' },
+  { key:'kristen', label:'Kristen / Katolik' }
+];
 const EMPTY_MSG = {
   stasiun:  'Belum ada stasiun KRL/LRT di cakupan ini. Pilih Seluruh Bekasi untuk melihat stasiun terdekat.',
   halte:    'Belum ada data halte resmi yang terverifikasi di cakupan ini.',
   nonhalte: 'Belum ada data titik non-halte yang terverifikasi di cakupan ini.',
   mall:     'Belum ada mal besar yang terverifikasi di cakupan ini.',
-  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.'
+  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.',
+  edu:      'Belum ada data yang terverifikasi untuk jenjang dan filter ini di cakupan yang dipilih. Data sekolah resmi (NPSN, alamat, kelurahan, status) bisa dicek di referensi.data.kemdikbud.go.id. Belum dimasukkan di sini karena alamatnya harus diverifikasi satu per satu.'
 };
 
 /* ════════════════════════════════════════════════
@@ -739,23 +842,44 @@ function kecName(id) {
   }
   return id;
 }
+function modeOfKec(id) {
+  return CARTO.kota.tiles.some(t => t.id === id) ? 'Kota Bekasi' : 'Kab. Bekasi';
+}
 function regionOfKec(id) {
   const regs = DATA[currentMode].regions;
   return Object.keys(regs).find(k => regs[k].kecs.includes(id)) || null;
 }
-function filterItems(type) {
+function scopeMatch(i) {
   const r = DATA[currentMode].regions[currentRegion];
-  return ITEMS.filter(i => {
-    if (i.type !== type) return false;
-    if (selKec) return i.kecs.includes(selKec);
-    if (scope === 'semua') return true;
-    return i.kecs.some(k => r.kecs.includes(k));
-  });
+  if (selKec) return i.kecs.includes(selKec);
+  if (scope === 'semua') return true;
+  return i.kecs.some(k => r.kecs.includes(k));
+}
+function filterItems(type) {
+  return ITEMS.filter(i => i.type === type && scopeMatch(i));
+}
+function eduPass(i, f) {
+  if (f === 'semua')   return true;
+  if (f === 'negeri')  return i.status === 'Negeri';
+  if (f === 'swasta')  return i.status === 'Swasta';
+  if (f === 'islam')   return i.tipe === 'Islam';
+  if (f === 'kristen') return i.tipe === 'Kristen' || i.tipe === 'Katolik';
+  return true;
+}
+function eduByJenjang(j) {
+  return ITEMS.filter(i => i.type === 'edu' && i.jenjang === j && scopeMatch(i));
 }
 function countsFor(kecId) {
-  const c = { stasiun:0, mall:0, wisata:0 };
+  const c = { stasiun:0, mall:0, edu:0, wisata:0 };
   ITEMS.forEach(i => { if (i.kecs.includes(kecId) && c[i.type] !== undefined) c[i.type]++; });
   return c;
+}
+/* Label lokasi jelas di tiap kartu */
+function kecLabelHtml(kecs, kel) {
+  if (!kecs || !kecs.length) return `<div class="loc-chip unk">📍 Kecamatan belum terverifikasi</div>`;
+  if (kecs.length > 1) return `<div class="loc-chip multi">📍 Lintas / dekat batas: ${kecs.map(kecName).join(' · ')}</div>`;
+  const id = kecs[0];
+  return `<div class="loc-chip">📍 Kec. ${kecName(id)} · ${modeOfKec(id)}${kel ? ` · Kel./Desa ${kel}` : ' · kelurahan belum tercatat'}</div>`;
 }
 
 /* ════════════════════════════════════════════════
@@ -791,6 +915,30 @@ function renderHero() {
 }
 
 /* ════════════════════════════════════════════════
+   KELURAHAN BLOCK (di bawah banner)
+══════════════════════════════════════════════ */
+function buildKelBlock(r) {
+  if (currentMode !== 'kota') {
+    return `<div class="kel-block">
+      <div class="kel-block-title">Desa / Kelurahan</div>
+      <div class="kel-empty">Daftar desa dan kelurahan Kabupaten Bekasi belum dimasukkan karena belum diverifikasi.</div>
+    </div>`;
+  }
+  const total = r.kecs.reduce((n, k) => n + (KELURAHAN[k] ? KELURAHAN[k].length : 0), 0);
+  const rows = r.kecs.map(k => {
+    const list = KELURAHAN[k] || [];
+    return `<div class="kel-row">
+      <div class="kel-row-head"><b>Kec. ${kecName(k)}</b><span class="t-count">${list.length} kelurahan</span></div>
+      <div class="kec-tags">${list.map(x => `<span class="kec-tag kel">${x}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+  return `<div class="kel-block">
+    <div class="kel-block-title">Kelurahan di ${r.tag} (${total})</div>
+    ${rows}
+  </div>`;
+}
+
+/* ════════════════════════════════════════════════
    CARTOGRAM MAP
 ══════════════════════════════════════════════ */
 function buildCartogram() {
@@ -812,7 +960,7 @@ function buildCartogram() {
           <div class="cg-name">${t.name}</div>
           <div class="cg-sub">${sub}</div>
         </div>
-        <div class="cg-counts">${cell(c.stasiun,'🚆')}${cell(c.mall,'🛍')}${cell(c.wisata,'🌳')}</div>
+        <div class="cg-counts">${cell(c.stasiun,'🚆')}${cell(c.mall,'🛍')}${cell(c.edu,'🎓')}${cell(c.wisata,'🌳')}</div>
       </button>`;
   }).join('');
 
@@ -827,7 +975,7 @@ function buildCartogram() {
         <div class="map-legend">${legend}</div>
       </div>
       <div class="cg" style="--cols:${m.cols};grid-template-rows:repeat(${rows},auto)">${tiles}</div>
-      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: 🚆 stasiun · 🛍 mal · 🌳 wisata yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
+      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: 🚆 stasiun · 🛍 mal · 🎓 pendidikan · 🌳 wisata yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
     </div>
     <div class="kec-info-panel" id="kecInfoPanel">${buildKecInfo()}</div>`;
 }
@@ -835,19 +983,26 @@ function buildCartogram() {
 function buildKecInfo() {
   if (!selKec) {
     return `<h4 style="color:var(--muted);font-weight:400">Pilih kecamatan di peta</h4>
-            <p>Klik satu petak untuk memfilter stasiun, halte, mal, dan wisata di kecamatan tersebut.</p>`;
+            <p>Klik satu petak untuk memfilter stasiun, halte, mal, pendidikan, dan wisata di kecamatan tersebut.</p>`;
   }
   const c = countsFor(selKec);
   const rk = regionOfKec(selKec);
   const regs = DATA[currentMode].regions;
   const total = ITEMS.filter(i => i.kecs.includes(selKec)).length;
   const tags = [
-    `${c.stasiun} stasiun`, `${c.mall} mal`, `${c.wisata} wisata`,
+    `${c.stasiun} stasiun`, `${c.mall} mal`, `${c.edu} pendidikan`, `${c.wisata} wisata`,
     rk ? `Tab ${regs[rk].tag}` : 'Belum ada tab wilayah'
   ];
-  return `<h4>${kecName(selKec)}</h4>
+  const kel = KELURAHAN[selKec];
+  const kelHtml = kel
+    ? `<div class="kec-sub-label">${kel.length} kelurahan</div>
+       <div class="kec-tags">${kel.map(x => `<span class="kec-tag kel">${x}</span>`).join('')}</div>`
+    : `<div class="kec-sub-label">Desa / kelurahan</div>
+       <p>Daftar desa/kelurahan kecamatan ini belum dimasukkan.</p>`;
+  return `<h4>${kecName(selKec)} · ${modeOfKec(selKec)}</h4>
           <p>${total ? `${total} entri terverifikasi tercatat untuk kecamatan ini.` : 'Belum ada entri terverifikasi untuk kecamatan ini; bukan berarti tidak ada, hanya belum tercatat.'}</p>
-          <div class="kec-tags">${tags.map(t => `<span class="kec-tag">${t}</span>`).join('')}</div>`;
+          <div class="kec-tags">${tags.map(t => `<span class="kec-tag">${t}</span>`).join('')}</div>
+          ${kelHtml}`;
 }
 
 function selectKec(id) {
@@ -874,6 +1029,7 @@ function itemCard(i) {
         <div class="t-name">${i.name}</div>
         <span class="t-badge ${i.badge}">${i.badgeText}</span>
       </div>
+      ${kecLabelHtml(i.kecs, i.kel)}
       <div class="t-loc">${i.loc}</div>
       <div class="t-note">${i.note}</div>
     </div>`;
@@ -902,11 +1058,19 @@ function buildDataInner() {
   const malls = filterItems('mall');
   const wisata = filterItems('wisata');
 
+  const eduTabsHtml = EDU_TABS.map(t =>
+    `<button class="t-tab ${t.key===eduTab?'active':''}" onclick="setEduTab('${t.key}')">${t.label}<span class="t-count">${eduByJenjang(t.key).length}</span></button>`
+  ).join('');
+  const eduChips = EDU_FILTERS.map(f =>
+    `<button class="edu-chip ${f.key===eduFilter?'active':''}" onclick="setEduFilter('${f.key}')">${f.label}</button>`
+  ).join('');
+  const eduItems = eduByJenjang(eduTab).filter(i => eduPass(i, eduFilter));
+
   return `
     <div class="data-head">
       <div>
         <div class="data-head-title">Data Wilayah · ${scopeLabel}</div>
-        <div class="data-head-sub">Transportasi umum, pusat belanja, dan tempat wisata untuk cakupan yang dipilih.</div>
+        <div class="data-head-sub">Transportasi umum, pusat belanja, pendidikan, dan tempat wisata untuk cakupan yang dipilih.</div>
       </div>
       ${scopeRow}
     </div>
@@ -925,18 +1089,28 @@ function buildDataInner() {
     </div>
 
     <div class="block">
+      <div class="block-title">🎓 Pendidikan <span class="t-count">${eduItems.length}</span></div>
+      <div class="block-sub">SD, SMP, SMA/SMK, sampai perguruan tinggi, lengkap dengan alamat, kecamatan, dan kelurahan. Hanya entri yang alamatnya sudah dicek yang ditampilkan.</div>
+      <div class="transit-tabs">${eduTabsHtml}</div>
+      <div class="edu-filters">${eduChips}</div>
+      <div class="t-list">${listHtml(eduItems, 'edu')}</div>
+    </div>
+
+    <div class="block">
       <div class="block-title">🌳 Tempat Wisata <span class="t-count">${wisata.length}</span></div>
       <div class="block-sub">Taman, waterpark, danau, wisata religi, dan alam yang tercatat di sumber terverifikasi.</div>
       <div class="t-list">${listHtml(wisata, 'wisata')}</div>
     </div>
 
     <div class="t-foot">
-      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
+      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Data pendidikan baru mencakup entri yang dicek ke situs resmi kampus, pengumuman BSI, dan direktori alamat; daftar SD/SMP/SMA belum lengkap dan sebaiknya dilengkapi dari referensi.data.kemdikbud.go.id. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi. Label "perlu cek" berarti lokasinya belum diverifikasi ulang.
     </div>`;
 }
 
 function setScope(s) { scope = s; selKec = null; refreshMapData(); }
 function setTTab(t) { tTab = t; document.getElementById('dataBox').innerHTML = buildDataInner(); }
+function setEduTab(t) { eduTab = t; document.getElementById('dataBox').innerHTML = buildDataInner(); }
+function setEduFilter(f) { eduFilter = f; document.getElementById('dataBox').innerHTML = buildDataInner(); }
 
 function refreshMapData() {
   document.getElementById('mapBox').innerHTML = buildCartogram();
@@ -946,6 +1120,12 @@ function refreshMapData() {
 /* ════════════════════════════════════════════════
    MAIN RENDER
 ══════════════════════════════════════════════ */
+function highlightLoc(h) {
+  return h.loc
+    ? `<div class="loc-chip">📍 ${h.loc}</div>`
+    : `<div class="loc-chip unk">📍 Kecamatan belum terverifikasi</div>`;
+}
+
 function renderContent() {
   const r = DATA[currentMode].regions[currentRegion];
   const modeLabel = currentMode === 'kota' ? 'Kota Bekasi' : 'Kabupaten Bekasi';
@@ -958,10 +1138,12 @@ function renderContent() {
         <div class="banner-desc">${r.desc}</div>
       </div>
 
+      ${buildKelBlock(r)}
+
       <div class="map-section">
         <div class="section-label">Peta Wilayah</div>
         <div class="section-title">Peta Skematik ${modeLabel}</div>
-        <p class="section-desc">Petak berwarna menandai kecamatan di tab ${r.tag}. Klik kecamatan mana pun untuk melihat stasiun, mal, dan wisatanya.</p>
+        <p class="section-desc">Petak berwarna menandai kecamatan di tab ${r.tag}. Klik kecamatan mana pun untuk melihat stasiun, mal, pendidikan, dan wisatanya.</p>
         <div id="mapBox">${buildCartogram()}</div>
         <div class="data-section" id="dataBox">${buildDataInner()}</div>
       </div>
@@ -970,12 +1152,13 @@ function renderContent() {
 
       <div class="section-label">Kenali Wilayahnya</div>
       <div class="section-title">Yang Membuat ${r.tag} Khas</div>
-      <p class="section-desc">Hal-hal yang paling mendefinisikan karakter dan kehidupan di wilayah ini.</p>
+      <p class="section-desc">Hal-hal yang paling mendefinisikan karakter dan kehidupan di wilayah ini. Tiap kartu mencantumkan kecamatan dan kelurahannya.</p>
       <div class="cards-grid">
         ${r.highlights.map(h=>`
           <div class="card">
             <span class="card-icon">${h.icon}</span>
             <div class="card-title">${h.title}</div>
+            ${highlightLoc(h)}
             <div class="card-body">${h.body||''}</div>
           </div>`).join('')}
       </div>
