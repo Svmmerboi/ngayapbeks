@@ -306,6 +306,76 @@
   .map-legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.71rem; color: var(--muted); }
   .map-legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
+  /* ─── TRANSIT (STASIUN / HALTE / NON-HALTE) ─── */
+  .transit-section { margin-top: 36px; }
+  .transit-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 18px;
+  }
+  .transit-title {
+    font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700;
+    letter-spacing: -0.3px; color: var(--white);
+  }
+  .transit-sub { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .scope-switch {
+    display: flex; background: var(--navy-light); border-radius: 99px; padding: 3px; gap: 2px;
+  }
+  .scope-btn {
+    font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+    padding: 6px 14px; border-radius: 99px; border: none; cursor: pointer;
+    color: var(--muted); background: transparent; transition: all 0.2s ease; white-space: nowrap;
+  }
+  .scope-btn.active { background: var(--gold); color: var(--navy); }
+  .transit-tabs {
+    display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none;
+  }
+  .transit-tabs::-webkit-scrollbar { display: none; }
+  .t-tab {
+    font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+    padding: 8px 16px; border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.08); background: transparent;
+    color: var(--muted); cursor: pointer; transition: all 0.18s ease; white-space: nowrap;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .t-tab:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
+  .t-tab.active { color: var(--gold); border-color: rgba(240,165,0,0.35); background: rgba(240,165,0,0.07); }
+  .t-count {
+    font-size: 0.68rem; font-weight: 700; background: rgba(255,255,255,0.08);
+    border-radius: 99px; padding: 1px 8px; color: var(--text-body);
+  }
+  .t-tab.active .t-count { background: rgba(240,165,0,0.18); color: var(--gold); }
+  .t-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .t-item {
+    background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-lg); padding: 16px 18px; transition: border-color 0.18s;
+  }
+  .t-item:hover { border-color: rgba(255,255,255,0.14); }
+  .t-item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .t-name { font-weight: 600; font-size: 0.9rem; color: var(--white); line-height: 1.35; }
+  .t-badge {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 99px; flex-shrink: 0; white-space: nowrap;
+  }
+  .t-badge.krl      { background: rgba(232,51,26,0.18);  color: #FF8A78; }
+  .t-badge.lrt      { background: rgba(0,120,220,0.2);   color: #7CC0FF; }
+  .t-badge.plan     { background: rgba(143,163,177,0.15); color: var(--muted); }
+  .t-badge.brt      { background: rgba(240,165,0,0.16);  color: var(--gold); }
+  .t-badge.halte    { background: rgba(20,180,80,0.16);  color: #6AFFAA; }
+  .t-badge.terminal { background: rgba(150,50,200,0.2);  color: #D29BFF; }
+  .t-badge.nonhalte { background: rgba(245,98,30,0.16);  color: #FF9A66; }
+  .t-badge.angkot   { background: rgba(0,180,160,0.16);  color: #5AFFF0; }
+  .t-loc { font-size: 0.75rem; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
+  .t-note { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+  .t-empty {
+    grid-column: 1 / -1; background: var(--navy-mid); border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg); padding: 22px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  }
+  .t-foot {
+    margin-top: 14px; font-size: 0.7rem; color: var(--slate); line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;
+  }
+  .t-foot b { color: var(--muted); font-weight: 600; }
+
   /* ─── CARDS ─── */
   .cards-grid {
     display: grid;
@@ -372,6 +442,7 @@
     .spots-grid { grid-template-columns: 1fr; }
     .region-banner { padding: 24px 20px; }
     .banner-heading { font-size: 1.4rem; }
+    .t-list { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
@@ -399,7 +470,7 @@
     <h1 class="hero-title" id="heroTitle">Tempat Lahir<br>Para <span class="accent">Perantau</span><br>Sejati.</h1>
     <p class="hero-subtitle" id="heroSubtitle">Bekasi bukan sekadar penyangga Jakarta — ini kota yang punya jiwa sendiri. Kuliner, budaya, dan semangat warganya membentuk identitas yang unik dan tak tergantikan.</p>
     <div class="hero-stats" id="heroStats">
-      <div class="stat-item"><div class="stat-val">3<span>.7</span>M</div><div class="stat-label">Penduduk Kota</div></div>
+      <div class="stat-item"><div class="stat-val">2<span>.6</span>M</div><div class="stat-label">Penduduk Kota</div></div>
       <div class="stat-item"><div class="stat-val">12</div><div class="stat-label">Kecamatan</div></div>
       <div class="stat-item"><div class="stat-val">210<span>km²</span></div><div class="stat-label">Luas Wilayah</div></div>
     </div>
@@ -687,6 +758,43 @@ const MAPS = {
 };
 
 /* ────────────────────────────────────────────────
+   TRANSIT — SELURUH BEKASI (Kota + Kabupaten)
+   Tipe item: stasiun | halte | nonhalte
+   badge: krl | lrt | plan | brt | halte | terminal | nonhalte | angkot
+──────────────────────────────────────────────── */
+const TRANSIT_ALL = {
+  stasiun: [
+    { name:'Stasiun Kranji', badge:'krl', badgeText:'KRL', loc:'Kranji, Kec. Bekasi Barat', note:'KRL Commuter Line lintas Cikarang. Stasiun pertama sisi Bekasi setelah Cakung (Jakarta).' },
+    { name:'Stasiun Bekasi', badge:'krl', badgeText:'KRL', loc:'Jl. Ir. H. Juanda, Kota Bekasi', note:'Stasiun utama Kota Bekasi dengan 5 jalur, bersebelahan dengan Terminal Bekasi. Lokasi administratifnya ditulis berbeda antar sumber (Marga Mulya/Bekasi Utara atau Bekasi Timur).' },
+    { name:'Stasiun Bekasi Timur', badge:'krl', badgeText:'KRL', loc:'Kawasan Duren Jaya, Kec. Bekasi Timur', note:'Lintas KRL Bekasi–Cikarang, antara Stasiun Bekasi dan Stasiun Tambun. Juga dilewati KA jarak jauh.' },
+    { name:'Stasiun Tambun', badge:'krl', badgeText:'KRL', loc:'Kec. Tambun Selatan, Kab. Bekasi', note:'KRL lintas Cikarang, gerbang kawasan Tambun.' },
+    { name:'Stasiun Cibitung', badge:'krl', badgeText:'KRL', loc:'Kec. Cibitung, Kab. Bekasi', note:'KRL lintas Cikarang, melayani kawasan industri dan logistik Cibitung.' },
+    { name:'Stasiun Metland Telaga Murni', badge:'krl', badgeText:'KRL', loc:'Kec. Cikarang Barat, Kab. Bekasi', note:'KRL lintas Cikarang, antara Cibitung dan Cikarang.' },
+    { name:'Stasiun Cikarang', badge:'krl', badgeText:'KRL', loc:'Kec. Cikarang Utara, Kab. Bekasi', note:'Stasiun ujung lintas KRL Bekasi–Cikarang.' },
+    { name:'Stasiun LRT Jatibening Baru', badge:'lrt', badgeText:'LRT', loc:'Lintas Bekasi, LRT Jabodebek', note:'Termasuk 5 stasiun LRT Jabodebek di wilayah Bekasi.' },
+    { name:'Stasiun LRT Cikunir 1', badge:'lrt', badgeText:'LRT', loc:'Lintas Bekasi, LRT Jabodebek', note:'Termasuk 5 stasiun LRT Jabodebek di wilayah Bekasi.' },
+    { name:'Stasiun LRT Cikunir 2', badge:'lrt', badgeText:'LRT', loc:'Lintas Bekasi, LRT Jabodebek', note:'Termasuk 5 stasiun LRT Jabodebek di wilayah Bekasi.' },
+    { name:'Stasiun LRT Bekasi Barat', badge:'lrt', badgeText:'LRT', loc:'Kawasan Revo Mall, Kota Bekasi', note:'Titik integrasi dengan BISKITA Trans Bekasi Patriot. Kuartal I 2026: 455.688 penumpang (naik 21,1% yoy).' },
+    { name:'Stasiun LRT Jatimulya', badge:'lrt', badgeText:'LRT', loc:'Kel. Jatimulya, Kec. Tambun Selatan, Kab. Bekasi', note:'Ujung lintas LRT Bekasi saat ini. Kuartal I 2026: 417.662 penumpang (naik 18,2% yoy).' },
+    { name:'Stasiun LRT Bekasi Timur', badge:'plan', badgeText:'Rencana', loc:'Kota Bekasi', note:'Masih dalam rencana lintas Cawang–Bekasi Timur, belum beroperasi. Lintas yang beroperasi berakhir di Jatimulya.' }
+  ],
+  halte: [
+    { name:'Trans Patriot Koridor 1: Terminal Bekasi – Harapan Indah', badge:'brt', badgeText:'BRT', loc:'Kota Bekasi', note:'Beroperasi sejak 2018 dengan 34 halte dua arah. Koridor 2 dan 3 sempat ada lalu ditutup karena penumpang turun; status bisa berubah, cek Dishub Kota Bekasi.' },
+    { name:'BISKITA Trans Bekasi Patriot: Summarecon – Vida Bantar Gebang', badge:'brt', badgeText:'BTS', loc:'via Revo Mall (Stasiun LRT Bekasi Barat)', note:'Diresmikan 3 Maret 2024. Total 47 halte/bus stop (21 arah Summarecon–Vida, 26 arah Vida–Summarecon). Rencana jam operasi 05.00–21.00, headway sekitar 10 menit.' },
+    { name:'Halte BTS Mall Summarecon Bekasi', badge:'halte', badgeText:'Halte', loc:'Summarecon Bekasi', note:'Lokasi peresmian BISKITA Trans Bekasi Patriot oleh Menhub.' },
+    { name:'BISKITA Trans Wibawa Mukti', badge:'brt', badgeText:'BTS', loc:'Stasiun LRT Jatimulya – Stasiun KRL Cikarang', note:'Layanan Kab. Bekasi yang menyambungkan LRT Jatimulya sampai Stasiun Cikarang.' },
+    { name:'Halte Bulak Kapal', badge:'halte', badgeText:'Halte', loc:'Kawasan Bulak Kapal, Bekasi Timur', note:'Halte Trans Patriot yang berdampingan dengan halte Transjakarta.' }
+  ],
+  nonhalte: [
+    { name:'Terminal Induk Bekasi (Tipe A)', badge:'terminal', badgeText:'Terminal', loc:'Kel. Margahayu, Kec. Bekasi Timur', note:'Luas sekitar 1,3 ha. Terminal bus utama Kota Bekasi, dekat Stasiun Bekasi.' },
+    { name:'Titik henti Trans Patriot (plang biru)', badge:'nonhalte', badgeText:'Non-halte', loc:'Sepanjang rute Koridor 1', note:'Dari 34 titik Trans Patriot, sebagian hanya berupa penanda plang biru tanpa bangunan halte.' },
+    { name:'Trayek K.01.A Terminal Bekasi – Cikarang', badge:'angkot', badgeText:'Angkot', loc:'Bekasi Timur – Cikarang', note:'Trayek terpadat di Terminal Bekasi: sekitar 226 kendaraan (data riset terminal).' },
+    { name:'Trayek K.15 Terminal Bekasi – Kaliabang Nangka – Tarumajaya', badge:'angkot', badgeText:'Angkot', loc:'Bekasi Timur – Bekasi Utara – Tarumajaya', note:'Sekitar 99 kendaraan (data riset terminal).' },
+    { name:'Trayek K.09 Terminal Bekasi – Babelan', badge:'angkot', badgeText:'Angkot', loc:'Bekasi Timur – Babelan', note:'Sekitar 61 kendaraan (data riset terminal).' }
+  ]
+};
+
+/* ────────────────────────────────────────────────
    DATA
 ──────────────────────────────────────────────── */
 const DATA = {
@@ -698,7 +806,7 @@ const DATA = {
       title: `Tempat Lahir<br>Para <span class="accent">Perantau</span><br>Sejati.`,
       subtitle: 'Bekasi bukan sekadar penyangga Jakarta — ini kota yang punya jiwa sendiri. Kuliner, budaya, dan semangat warganya membentuk identitas yang unik dan tak tergantikan.',
       stats: [
-        { val:'3<span>.7</span>M', label:'Penduduk Kota' },
+        { val:'2<span>.6</span>M', label:'Penduduk Kota' },
         { val:'12', label:'Kecamatan' },
         { val:'210<span>km²</span>', label:'Luas Wilayah' }
       ]
@@ -710,6 +818,24 @@ const DATA = {
         desc:'Bekasi Timur dikenal sebagai kawasan residensial padat dengan perumahan-perumahan besar serta pusat kuliner yang terus berkembang. Jantung dari kehidupan sosial warga Bekasi.',
         mapKey:'timur',
         mapTitle:'5 Kecamatan Bekasi Timur',
+        transit: {
+          stasiun: [
+            { name:'Stasiun Bekasi Timur', badge:'krl', badgeText:'KRL', loc:'Kawasan Duren Jaya, Kec. Bekasi Timur', note:'KRL Commuter Line lintas Bekasi–Cikarang. Berada di antara Stasiun Bekasi dan Stasiun Tambun.' },
+            { name:'Stasiun Bekasi', badge:'krl', badgeText:'KRL', loc:'Jl. Ir. H. Juanda, dekat Terminal Bekasi', note:'Stasiun utama Kota Bekasi (5 jalur). Sumber berbeda menyebut lokasinya di Kel. Marga Mulya (Bekasi Utara) atau Bekasi Timur; stasiun dan terminal bersebelahan.' },
+            { name:'Stasiun LRT Bekasi Timur', badge:'plan', badgeText:'Rencana', loc:'Kota Bekasi', note:'Belum beroperasi. LRT Jabodebek yang aktif berakhir di Jatimulya (Tambun Selatan); stasiun LRT terdekat dari Bekasi Timur adalah Jatimulya dan Bekasi Barat.' }
+          ],
+          halte: [
+            { name:'Trans Patriot Koridor 1: Terminal Bekasi – Harapan Indah', badge:'brt', badgeText:'BRT', loc:'Jl. HM Joyo Martono, Cut Meutia, A. Yani, Sudirman, Sultan Agung', note:'Arah Terminal–Harapan Indah lewat jalan-jalan tersebut; arah pulang lewat Sultan Agung dan Ir. H. Djuanda. Total 34 halte dua arah.' },
+            { name:'Halte Cut Meutia', badge:'halte', badgeText:'Halte', loc:'Jl. Cut Meutia', note:'Halte Trans Patriot yang dikunjungi dalam peliputan awal operasi.' },
+            { name:'Halte Jl. Chairil Anwar', badge:'halte', badgeText:'Halte', loc:'Jl. Chairil Anwar', note:'Halte Trans Patriot yang dipakai saat uji coba gratis November 2018.' },
+            { name:'Halte Bulak Kapal', badge:'halte', badgeText:'Halte', loc:'Kawasan Bulak Kapal', note:'Berdampingan dengan halte Transjakarta agar tidak memicu kemacetan.' }
+          ],
+          nonhalte: [
+            { name:'Terminal Induk Bekasi (Tipe A)', badge:'terminal', badgeText:'Terminal', loc:'Kel. Margahayu, Kec. Bekasi Timur', note:'Luas sekitar 1,3 ha. Trayek utama: K.01.A ke Cikarang (sekitar 226 kendaraan), K.15 ke Tarumajaya via Kaliabang Nangka (sekitar 99), K.09 ke Babelan (sekitar 61).' },
+            { name:'Titik henti Trans Patriot (plang biru)', badge:'nonhalte', badgeText:'Non-halte', loc:'Sepanjang rute Koridor 1', note:'Sebagian titik hanya berupa penanda plang biru bertuliskan Bus Trans Patriot, tanpa bangunan halte.' },
+            { name:'Angkot di ruas Cut Meutia – A. Yani – Sudirman', badge:'angkot', badgeText:'Angkot', loc:'Pusat Bekasi Timur', note:'Rute Trans Patriot juga dilalui angkot yang naik-turun penumpang di tepi jalan tanpa halte resmi.' }
+          ]
+        },
         highlights:[
           { icon:'🏙️', title:'Perumahan Galaxy', body:'Kawasan residensial bergengsi dengan fasilitas lengkap, Mall Galaxy, dan beragam pilihan kuliner modern.' },
           { icon:'🌿', title:'Taman Wisata Bunga Wiladatika', body:'Taman seluas 14 ha yang menjadi ruang hijau dan rekreasi keluarga paling populer di Bekasi Timur.' },
@@ -737,6 +863,21 @@ const DATA = {
         desc:'Bekasi Barat adalah wajah komersial Kota Bekasi. Berbatasan langsung dengan Jakarta, kawasan ini menjadi pusat bisnis, mal besar, dan infrastruktur modern yang terus tumbuh.',
         mapKey:'barat',
         mapTitle:'Zona-Zona Bekasi Barat',
+        transit: {
+          stasiun: [
+            { name:'Stasiun Kranji', badge:'krl', badgeText:'KRL', loc:'Kranji, Kec. Bekasi Barat', note:'KRL Commuter Line lintas Cikarang, stasiun layang modern menuju Manggarai dan Jakarta Kota.' },
+            { name:'Stasiun LRT Bekasi Barat', badge:'lrt', badgeText:'LRT', loc:'Kawasan Revo Mall', note:'LRT Jabodebek lintas Bekasi, titik integrasi BISKITA Trans Bekasi Patriot. Kuartal I 2026: 455.688 penumpang.' },
+            { name:'Stasiun LRT Cikunir 1 & 2, Jatibening Baru', badge:'lrt', badgeText:'LRT', loc:'Perbatasan Jakarta – Bekasi', note:'Stasiun LRT Jabodebek lain di wilayah Bekasi, relevan bagi warga Bekasi Barat yang menuju Jakarta.' }
+          ],
+          halte: [
+            { name:'BISKITA Trans Bekasi Patriot: Summarecon – Vida', badge:'brt', badgeText:'BTS', loc:'Melewati Revo Mall (Stasiun LRT Bekasi Barat)', note:'Total 47 halte/bus stop dua arah. Gratis pada masa awal operasi 2024; cek tarif terbaru ke Dishub.' },
+            { name:'Trans Patriot Koridor 1 (ujung Harapan Indah)', badge:'brt', badgeText:'BRT', loc:'Terminal Bekasi – Harapan Indah via Jl. Sultan Agung', note:'Ujung barat rute Koridor 1 berada di kawasan Harapan Indah.' }
+          ],
+          nonhalte: [
+            { name:'Angkot Kranji – Jl. Sultan Agung – Jenderal Sudirman', badge:'angkot', badgeText:'Angkot', loc:'Kranji – pusat kota', note:'Dilaporkan tersedia sebagai penyambung dari Stasiun Kranji; naik-turun di tepi jalan.' },
+            { name:'Bus K30 Kranji – Taman Harapan Indah', badge:'angkot', badgeText:'Bus', loc:'Kranji – Harapan Indah', note:'Dilaporkan oleh panduan kawasan; verifikasi trayek aktif ke Dishub sebelum dipakai.' }
+          ]
+        },
         highlights:[
           { icon:'🏢', title:'Kawasan Bisnis Harapan Indah', body:'Kompleks perumahan dan bisnis premium dengan banyak pusat perbelanjaan, perkantoran, dan fasilitas modern.' },
           { icon:'🚉', title:'Stasiun Bekasi', body:'Hub transportasi utama yang menghubungkan Bekasi dengan Jakarta dan kota-kota lain di Jawa.' },
@@ -764,6 +905,17 @@ const DATA = {
         desc:'Bekasi Selatan merupakan kawasan residensial paling berkembang dengan banyak perumahan terencana, pusat pendidikan internasional, dan RTH yang cukup luas.',
         mapKey:'selatan',
         mapTitle:'Zona-Zona Bekasi Selatan',
+        transit: {
+          stasiun: [
+            { name:'Belum ada stasiun KRL di zona ini', badge:'plan', badgeText:'Info', loc:'Bekasi Selatan', note:'Akses kereta terdekat: Stasiun LRT Bekasi Barat (lewat BISKITA dari Summarecon) dan stasiun KRL Bekasi.' },
+            { name:'Stasiun LRT Bekasi Barat', badge:'lrt', badgeText:'LRT', loc:'Kawasan Revo Mall', note:'Terhubung langsung dengan BISKITA Trans Bekasi Patriot dari Summarecon Bekasi.' }
+          ],
+          halte: [
+            { name:'Halte BTS Mall Summarecon Bekasi', badge:'halte', badgeText:'Halte', loc:'Summarecon Bekasi', note:'Titik awal koridor BISKITA Trans Bekasi Patriot dan lokasi peresmian oleh Menhub, 3 Maret 2024.' },
+            { name:'BISKITA Trans Bekasi Patriot: Summarecon – Vida', badge:'brt', badgeText:'BTS', loc:'Summarecon – Revo Mall – Vida Bantar Gebang', note:'47 halte/bus stop dua arah (21 + 26). Rencana headway sekitar 10 menit.' }
+          ],
+          nonhalte: []
+        },
         highlights:[
           { icon:'🌳', title:'Summarecon Bekasi', body:'Kota mandiri modern seluas ratusan hektar dengan fasilitas premium, mal, hotel bintang lima, dan area residensial terencana.' },
           { icon:'🎓', title:'Sekolah Internasional', body:'Banyak sekolah berstandar internasional berdiri di sini, menjadi pilihan keluarga ekspatriat dan kelas menengah atas.' },
@@ -791,6 +943,16 @@ const DATA = {
         desc:'Bekasi Utara dikenal sebagai kawasan industri dan pergudangan yang besar, namun juga merupakan wilayah dengan kepadatan penduduk tinggi dan kehidupan rakyat yang autentik.',
         mapKey:'utara',
         mapTitle:'5 Kecamatan Bekasi Utara',
+        transit: {
+          stasiun: [
+            { name:'Stasiun Bekasi', badge:'krl', badgeText:'KRL', loc:'Kel. Marga Mulya (menurut sebagian sumber), Jl. Ir. H. Juanda', note:'Stasiun utama Kota Bekasi. Sebagian sumber menaruhnya di Bekasi Utara, sebagian di Bekasi Timur, karena berada dekat batas kecamatan.' }
+          ],
+          halte: [],
+          nonhalte: [
+            { name:'Trayek K.15 Terminal Bekasi – Kaliabang Nangka – Tarumajaya', badge:'angkot', badgeText:'Angkot', loc:'Melewati Kaliabang Nangka, Bekasi Utara', note:'Sekitar 99 kendaraan (data riset terminal).' },
+            { name:'Trayek K.09 Terminal Bekasi – Babelan', badge:'angkot', badgeText:'Angkot', loc:'Jalur utara menuju Babelan', note:'Sekitar 61 kendaraan (data riset terminal).' }
+          ]
+        },
         highlights:[
           { icon:'🏭', title:'Kawasan Industri Jababeka Utara', body:'Salah satu kawasan industri terbesar di Asia Tenggara yang menjadi tulang punggung ekonomi wilayah ini.' },
           { icon:'⚓', title:'Pelabuhan & Pergudangan', body:'Kawasan logistik dan pergudangan besar yang mendukung distribusi barang ke seluruh Indonesia.' },
@@ -822,9 +984,9 @@ const DATA = {
       title: `Denyut Industri<br>dan <span class="accent">Bumi</span><br>Subur.`,
       subtitle: 'Kabupaten Bekasi adalah kawasan yang menyangga ekonomi nasional — dari Cikarang sebagai kota industri terbesar ASEAN hingga kawasan pesisir Tarumajaya yang memukau.',
       stats: [
-        { val:'3<span>.4</span>M', label:'Penduduk Kabupaten' },
+        { val:'3<span>.1</span>M', label:'Penduduk Kabupaten' },
         { val:'23', label:'Kecamatan' },
-        { val:'1.484<span>km²</span>', label:'Luas Wilayah' }
+        { val:'1.274<span>km²</span>', label:'Luas Wilayah' }
       ]
     },
     regions: {
@@ -834,6 +996,18 @@ const DATA = {
         desc:'Cikarang bukan sekadar kawasan industri biasa — ini adalah mesin ekonomi yang menggerakkan jutaan tenaga kerja. Kota industri terpadu yang menjadi kebanggaan Kabupaten Bekasi dan Indonesia.',
         mapKey:'cikarang',
         mapTitle:'5 Kecamatan Cikarang',
+        transit: {
+          stasiun: [
+            { name:'Stasiun Cikarang', badge:'krl', badgeText:'KRL', loc:'Kec. Cikarang Utara', note:'Stasiun ujung KRL Commuter Line lintas Bekasi–Cikarang.' },
+            { name:'Stasiun Metland Telaga Murni', badge:'krl', badgeText:'KRL', loc:'Kec. Cikarang Barat', note:'KRL lintas Cikarang, antara Stasiun Cibitung dan Stasiun Cikarang.' }
+          ],
+          halte: [
+            { name:'BISKITA Trans Wibawa Mukti', badge:'brt', badgeText:'BTS', loc:'Stasiun LRT Jatimulya – Stasiun KRL Cikarang', note:'Layanan feeder yang memudahkan perpindahan dari LRT Jatimulya sampai Stasiun Cikarang.' }
+          ],
+          nonhalte: [
+            { name:'Trayek K.01.A Terminal Bekasi – Cikarang', badge:'angkot', badgeText:'Angkot', loc:'Terminal Bekasi – Cikarang', note:'Trayek dengan armada terbanyak di Terminal Bekasi, sekitar 226 kendaraan (data riset terminal).' }
+          ]
+        },
         highlights:[
           { icon:'🏭', title:'Jababeka Industrial City', body:'Kawasan industri seluas 5.600 ha dengan lebih dari 1.650 perusahaan dari 30 negara — salah satu yang terbesar di ASEAN.' },
           { icon:'🏙️', title:'MM2100 Industrial Town', body:'Kota industri mandiri dengan perumahan, komersial, dan pabrik dalam satu kawasan terencana yang modern.' },
@@ -861,6 +1035,16 @@ const DATA = {
         desc:'Tambun adalah wajah lain Kabupaten Bekasi yang lebih tenang — kawasan pertanian padi yang subur berpadu dengan permukiman perumahan yang terus berkembang pesat.',
         mapKey:'tambun',
         mapTitle:'2 Kecamatan Tambun',
+        transit: {
+          stasiun: [
+            { name:'Stasiun Tambun', badge:'krl', badgeText:'KRL', loc:'Kec. Tambun Selatan', note:'KRL Commuter Line lintas Bekasi–Cikarang, setelah Stasiun Bekasi Timur.' },
+            { name:'Stasiun LRT Jatimulya', badge:'lrt', badgeText:'LRT', loc:'Kel. Jatimulya, Kec. Tambun Selatan', note:'Ujung lintas LRT Jabodebek Bekasi. Kuartal I 2026: 417.662 penumpang (naik 18,2% yoy).' }
+          ],
+          halte: [
+            { name:'BISKITA Trans Wibawa Mukti', badge:'brt', badgeText:'BTS', loc:'Berangkat dari Stasiun LRT Jatimulya', note:'Menyambungkan LRT Jatimulya sampai Stasiun KRL Cikarang.' }
+          ],
+          nonhalte: []
+        },
         highlights:[
           { icon:'🌾', title:'Lumbung Padi Bekasi', body:'Tambun Selatan dan Tambun Utara masih memiliki hamparan sawah luas sebagai sumber ketahanan pangan Bekasi.' },
           { icon:'🏡', title:'Perumahan Grand Wisata', body:'Township premium dengan danau buatan, taman luas, dan fasilitas lengkap pilihan keluarga modern.' },
@@ -888,6 +1072,13 @@ const DATA = {
         desc:'Cibitung merupakan kawasan strategis yang menjadi simpul distribusi dan logistik penting, dengan kehadiran gudang modern dan industri pengolahan pangan skala besar.',
         mapKey:'cibitung',
         mapTitle:'Zona-Zona Cibitung',
+        transit: {
+          stasiun: [
+            { name:'Stasiun Cibitung', badge:'krl', badgeText:'KRL', loc:'Kec. Cibitung', note:'KRL Commuter Line lintas Bekasi–Cikarang, antara Stasiun Tambun dan Stasiun Metland Telaga Murni.' }
+          ],
+          halte: [],
+          nonhalte: []
+        },
         highlights:[
           { icon:'📦', title:'Kawasan Logistik Cibitung', body:'Pusat distribusi nasional dengan banyak gudang modern dan fasilitas cold chain untuk produk pangan.' },
           { icon:'🌿', title:'Pertanian Organik', body:'Beberapa kelompok tani di Cibitung mulai mengembangkan pertanian organik yang memasok sayuran segar ke Jakarta.' },
@@ -915,6 +1106,13 @@ const DATA = {
         desc:'Tarumajaya adalah sisi paling eksotis Kabupaten Bekasi — kawasan pesisir Laut Jawa dengan ekosistem mangrove, nelayan tradisional, dan keindahan alam yang masih terjaga.',
         mapKey:'tarumajaya',
         mapTitle:'Zona-Zona Tarumajaya',
+        transit: {
+          stasiun: [],
+          halte: [],
+          nonhalte: [
+            { name:'Trayek K.15 Terminal Bekasi – Kaliabang Nangka – Tarumajaya', badge:'angkot', badgeText:'Angkot', loc:'Terminal Bekasi – Tarumajaya', note:'Akses angkutan umum utama dari Kota Bekasi, sekitar 99 kendaraan (data riset terminal).' }
+          ]
+        },
         highlights:[
           { icon:'🌊', title:'Pantai Pisangan', body:'Pantai berpasir hitam menghadap Laut Jawa yang menjadi tujuan wisata keluarga dari seluruh penjuru Bekasi.' },
           { icon:'🌿', title:'Hutan Mangrove Muaragembong', body:'Kawasan mangrove terluas di Teluk Jakarta yang menjadi habitat elang bondol dan berbagai spesies langka.' },
@@ -945,6 +1143,8 @@ const DATA = {
 ──────────────────────────────────────────────── */
 let currentMode = 'kota';
 let currentRegion = 'timur';
+let transitScope = 'wilayah';   // 'wilayah' | 'semua'
+let transitTab = 'stasiun';     // 'stasiun' | 'halte' | 'nonhalte'
 
 function switchMode(mode) {
   currentMode = mode;
@@ -1046,6 +1246,74 @@ function selectKec(id, mapKey) {
   }
 }
 
+/* ── TRANSIT: stasiun / halte / non-halte ── */
+const TRANSIT_TABS = [
+  { key:'stasiun',  label:'Stasiun' },
+  { key:'halte',    label:'Halte' },
+  { key:'nonhalte', label:'Non-Halte' }
+];
+const EMPTY_MSG = {
+  stasiun:  'Belum ada stasiun KRL/LRT di wilayah ini. Lihat tab Seluruh Bekasi untuk stasiun terdekat.',
+  halte:    'Belum ada data halte resmi yang terverifikasi untuk wilayah ini.',
+  nonhalte: 'Belum ada data titik non-halte yang terverifikasi untuk wilayah ini.'
+};
+
+function buildTransitInner() {
+  const r = DATA[currentMode].regions[currentRegion];
+  const src = transitScope === 'semua' ? TRANSIT_ALL : (r.transit || { stasiun:[], halte:[], nonhalte:[] });
+  const scopeLabel = transitScope === 'semua' ? 'Seluruh Bekasi (Kota + Kabupaten)' : r.tag;
+
+  const scopeSwitch = `
+    <div class="scope-switch">
+      <button class="scope-btn ${transitScope==='wilayah'?'active':''}" onclick="setTransit('wilayah')">${r.tag}</button>
+      <button class="scope-btn ${transitScope==='semua'?'active':''}" onclick="setTransit('semua')">Seluruh Bekasi</button>
+    </div>`;
+
+  const tabs = TRANSIT_TABS.map(t =>
+    `<button class="t-tab ${t.key===transitTab?'active':''}" onclick="setTransit(null,'${t.key}')">
+      ${t.label}<span class="t-count">${(src[t.key]||[]).length}</span>
+    </button>`
+  ).join('');
+
+  const items = src[transitTab] || [];
+  const list = items.length
+    ? items.map(i => `
+        <div class="t-item">
+          <div class="t-item-top">
+            <div class="t-name">${i.name}</div>
+            <span class="t-badge ${i.badge}">${i.badgeText}</span>
+          </div>
+          <div class="t-loc">${i.loc}</div>
+          <div class="t-note">${i.note}</div>
+        </div>`).join('')
+    : `<div class="t-empty">${EMPTY_MSG[transitTab]}</div>`;
+
+  return `
+    <div class="transit-head">
+      <div>
+        <div class="transit-title">Transportasi Umum · ${scopeLabel}</div>
+        <div class="transit-sub">Stasiun kereta, halte resmi, dan titik non-halte (terminal, angkot, titik henti tanpa bangunan).</div>
+      </div>
+      ${scopeSwitch}
+    </div>
+    <div class="transit-tabs">${tabs}</div>
+    <div class="t-list">${list}</div>
+    <div class="t-foot">
+      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust (BISKITA &amp; LRT Jabodebek, 2024–2026), riset Terminal Induk Bekasi, dan Wikipedia/OSM. Trayek, tarif, dan status koridor bisa berubah — cek Dishub Kota/Kab. Bekasi, KAI Commuter, dan LRT Jabodebek sebelum bepergian. Nama halte per titik belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi.
+    </div>`;
+}
+
+function buildTransit() {
+  return `<div class="transit-section" id="transitBox">${buildTransitInner()}</div>`;
+}
+
+function setTransit(scope, tab) {
+  if (scope) transitScope = scope;
+  if (tab) transitTab = tab;
+  const box = document.getElementById('transitBox');
+  if (box) box.innerHTML = buildTransitInner();
+}
+
 function renderContent() {
   const r = DATA[currentMode].regions[currentRegion];
   document.getElementById('mainContent').innerHTML = `
@@ -1058,12 +1326,13 @@ function renderContent() {
         <div class="banner-desc">${r.desc}</div>
       </div>
 
-      <!-- MAP -->
+      <!-- MAP + TRANSIT -->
       <div class="map-section">
         <div class="section-label">Peta Wilayah</div>
         <div class="section-title">${r.mapTitle}</div>
         <p class="section-desc">Klik area di peta untuk melihat deskripsi singkat tiap kawasan.</p>
         ${buildMap(r.mapKey)}
+        ${buildTransit()}
       </div>
 
       <div class="divider"></div>
