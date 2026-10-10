@@ -222,7 +222,7 @@
   .kel-row-head b { color: var(--white); font-weight: 600; }
   .kel-empty { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
 
-  /* ─── LOKASI CHIP (kecamatan / kelurahan di tiap kartu) ─── */
+  /* ─── LOKASI CHIP ─── */
   .loc-chip {
     display: inline-block; font-size: 0.7rem; font-weight: 600; line-height: 1.4;
     padding: 4px 10px; border-radius: 99px; margin-bottom: 8px;
@@ -309,7 +309,7 @@
     font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 4px;
     display: flex; align-items: center; gap: 10px;
   }
-  .block-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+  .block-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
   .t-count { font-size: 0.68rem; font-weight: 700; background: rgba(255,255,255,0.08); border-radius: 99px; padding: 1px 8px; color: var(--text-body); }
   .transit-tabs { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
   .transit-tabs::-webkit-scrollbar { display: none; }
@@ -321,14 +321,6 @@
   .t-tab:hover { color: var(--white); border-color: rgba(255,255,255,0.18); }
   .t-tab.active { color: var(--gold); border-color: rgba(240,165,0,0.35); background: rgba(240,165,0,0.07); }
   .t-tab.active .t-count { background: rgba(240,165,0,0.18); color: var(--gold); }
-  .edu-filters { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
-  .edu-chip {
-    font-size: 0.72rem; font-weight: 600; padding: 5px 12px; border-radius: 99px; cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--muted);
-    transition: all 0.18s ease;
-  }
-  .edu-chip:hover { color: var(--white); border-color: rgba(255,255,255,0.22); }
-  .edu-chip.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
   .t-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
   .t-item {
     background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06);
@@ -351,8 +343,12 @@
   .t-badge.air      { background: rgba(0,120,220,0.2);   color: #7CC0FF; }
   .t-badge.religi   { background: rgba(150,50,200,0.2);  color: #D29BFF; }
   .t-badge.alam     { background: rgba(0,160,120,0.2);   color: #50FFD0; }
-  .t-badge.edu-negeri { background: rgba(20,180,80,0.16); color: #6AFFAA; }
-  .t-badge.edu-swasta { background: rgba(240,165,0,0.16); color: var(--gold); }
+  .t-badge.ib-islam     { background: rgba(20,180,80,0.16);  color: #6AFFAA; }
+  .t-badge.ib-kristen   { background: rgba(0,120,220,0.2);   color: #7CC0FF; }
+  .t-badge.ib-katolik   { background: rgba(232,51,26,0.18);  color: #FF8A78; }
+  .t-badge.ib-hindu     { background: rgba(245,98,30,0.16);  color: #FF9A66; }
+  .t-badge.ib-buddha    { background: rgba(240,165,0,0.16);  color: var(--gold); }
+  .t-badge.ib-khonghucu { background: rgba(150,50,200,0.2);  color: #D29BFF; }
   .t-loc { font-size: 0.75rem; color: var(--text-body); margin-bottom: 6px; font-weight: 500; }
   .t-note { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
   .t-empty {
@@ -504,8 +500,7 @@ const REGION_COLOR = {
 
 /* ════════════════════════════════════════════════
    KELURAHAN KOTA BEKASI (56)
-   Sumber: daftar BPS Kota Bekasi (dikutip skripsi Undip) +
-   Perda Kota Bekasi No. 04/2004 (Jatiwaringin = Pondokgede).
+   Sumber: daftar BPS Kota Bekasi + Perda Kota Bekasi No. 04/2004.
    Kab. Bekasi (desa/kelurahan) belum dimasukkan.
 ════════════════════════════════════════════════ */
 const KELURAHAN = {
@@ -524,23 +519,22 @@ const KELURAHAN = {
 };
 
 /* ════════════════════════════════════════════════
-   DATA TERVERIFIKASI (stasiun, halte, non-halte, mal, wisata, pendidikan)
+   DATA TERVERIFIKASI (stasiun, halte, non-halte, mal, rumah ibadah, wisata)
    I(type, name, badge, badgeText, loc, note, kecs, kel)
    kecs: id kecamatan terkait (lihat CARTO); [] = kecamatan belum terverifikasi
    kel : nama kelurahan bila sudah tercatat (opsional)
 ════════════════════════════════════════════════ */
 const I = (type, name, badge, badgeText, loc, note, kecs, kel) => ({ type, name, badge, badgeText, loc, note, kecs, kel: kel || null });
 
-/* PENDIDIKAN
-   E(jenjang, name, status, tipe, alamat, kel, note, kecs)
-   jenjang: sd | smp | sma | kuliah
-   status : Negeri | Swasta
-   tipe   : Umum | Islam | Kristen | Katolik | Kejuruan
-   Tambah data baru HANYA kalau alamatnya sudah dicek (mis. referensi.data.kemdikbud.go.id). */
-const E = (jenjang, name, status, tipe, addr, kel, note, kecs) => ({
-  type:'edu', jenjang, name, status, tipe,
-  badge: status === 'Negeri' ? 'edu-negeri' : 'edu-swasta',
-  badgeText: tipe === 'Umum' ? status : `${status} · ${tipe}`,
+/* RUMAH IBADAH
+   B(agama, jenis, name, alamat, kel, note, kecs)
+   agama: islam | kristen | katolik | hindu | buddha | khonghucu
+   jenis: Masjid | Mushala | Gereja | Paroki | Stasi | Pura | Vihara | Klenteng
+   Tambah data baru HANYA kalau alamatnya sudah dicek.
+   Data tambahan juga dibaca dari data/ibadah.json (opsional). */
+const B = (agama, jenis, name, addr, kel, note, kecs) => ({
+  type:'ibadah', agama, jenis, name,
+  badge: 'ib-' + agama, badgeText: jenis,
   loc: addr, note, kecs, kel: kel || null
 });
 
@@ -592,19 +586,45 @@ const ITEMS = [
   I('mall','AEON Mall Deltamas','mal','Mal','Jl. Ganesha Boulevard, Kota Deltamas, Cikarang Pusat','Diresmikan Maret 2024 di kawasan Kota Deltamas; toko AEON ke-8 di Indonesia.',['cikarang-pusat']),
   I('mall','Lippo Mall Cikarang','mal','Mal','Jl. MH Thamrin, Lippo Cikarang, Cikarang Selatan','Pusat belanja di kota mandiri Lippo Cikarang.',['cikarang-selatan']),
 
-  /* ── PENDIDIKAN (hanya entri yang alamatnya sudah dicek) ── */
-  E('kuliah','Universitas Muhammadiyah Indonesia (d/h Universitas Islam 45 Bekasi)','Swasta','Islam',
-    'Jl. Cut Mutia No. 83, Kel. Margahayu, Kec. Bekasi Timur, Kota Bekasi 17113','Margahayu',
-    'Nama dan alamat mengikuti pengumuman Bank Syariah Indonesia (2026). Sebelumnya dikenal sebagai Unisma 45 / Universitas Islam "45" Bekasi, berdiri 1982.',
-    ['bekasi-timur']),
-  E('kuliah','STIE Mulia Pratama','Swasta','Umum',
-    'Jl. H. Mulyadi Joyomartono Kav. 5, Margahayu, Bekasi Timur 17113','Margahayu',
-    'Sekolah tinggi ekonomi. Alamat dari direktori idalamat.com; status swasta berdasarkan jenis lembaganya, cek langsung ke kampus.',
-    ['bekasi-timur']),
-  E('kuliah','BINUS @Bekasi','Swasta','Umum',
-    'Jl. Lingkar Bulevar Blok WA No. 1, Summarecon Bekasi, Kel. Marga Mulya, Bekasi 17142','Marga Mulya',
-    'Situs BINUS menulis kecamatannya Medan Satria, sedangkan daftar kelurahan resmi menempatkan Marga Mulya di Bekasi Utara. Prodi antara lain Akuntansi, Manajemen, Psikologi, Computer Science.',
+  /* ── RUMAH IBADAH (hanya entri yang bisa diverifikasi) ── */
+  B('islam','Masjid','Masjid Agung Al-Barkah','Kel. Margajaya, Kota Bekasi (alamat jalan belum terverifikasi)','Margajaya',
+    'Masjid dengan kapasitas sekitar 1.000 jamaah; dipakai untuk salat Jumat pada masa adaptasi normal baru Mei 2020 (CNBC Indonesia).',
+    ['bekasi-selatan']),
+  B('islam','Masjid','Masjid At-Tijaroh','Mega Bekasi Hypermall, Jl. Jend. Ahmad Yani No. 1, Bekasi Selatan (17141)',null,
+    'Masjid di dalam mal. Dibahas dalam penelitian yang dimuat NU Online (2019) tentang masjid di pusat perbelanjaan Kota Bekasi.',
+    ['bekasi-selatan']),
+  B('islam','Mushala','Mushala Grand Metropolitan','Grand Metropolitan Bekasi, Jl. KH Noer Ali, Bekasi Selatan',null,
+    'Mushala mal; dibahas dalam penelitian yang sama (NU Online, 2019).',
+    ['bekasi-selatan']),
+
+  B('katolik','Paroki','Gereja Santo Albertus Agung (Kota Harapan Indah)','Kota Harapan Indah, Jl. Boulevard Raya Kav. 23, RT 005/RW 010, Kel. Pejuang, Kec. Medan Satria, Kota Bekasi 17131','Pejuang',
+    'Paroki di Dekenat Bekasi. Alamat menurut daftar lokasi Misa Paskah 2025 (Tirto).',
+    ['medan-satria']),
+  B('katolik','Paroki','Gereja Katolik Santa Clara','Bekasi Utara, Kota Bekasi 17123 (alamat jalan belum terverifikasi)',null,
+    'Paroki di Bekasi Utara; peresmian gereja pada Agustus 2019 diberitakan Jakarta Post.',
     ['bekasi-utara']),
+  B('katolik','Paroki','Gereja Santo Mikael (Kranji)','Jl. Bintara Raya No. 38, Gg. Strada, Kranji, Kota Bekasi',null,
+    'Alamat dari penelitian desain interior gereja ini. Kecamatan diperkirakan Bekasi Barat karena Kranji dan Bintara sama-sama kelurahan di Bekasi Barat.',
+    ['bekasi-barat']),
+  B('katolik','Paroki','Gereja Katolik Santo Bartolomeus (Paroki Taman Galaxy)','Kawasan Taman Galaxy, Bekasi Selatan 17147 (alamat jalan belum terverifikasi)',null,
+    'Paroki di Dekenat Bekasi. Lokasi menurut daftar Misa Paskah 2025 (Tirto).',
+    ['bekasi-selatan']),
+  B('katolik','Paroki','Gereja Santo Servatius (Kampung Sawah)','Kampung Sawah, Pondokmelati, Kota Bekasi 17415 (alamat jalan belum terverifikasi)',null,
+    'Paroki di Dekenat Bekasi. Lokasi menurut daftar Misa Paskah 2025 (Tirto).',
+    ['pondokmelati']),
+  B('katolik','Paroki','Gereja Santo Yohanes Paulus II (Rawalumbu)','Rawalumbu, Kota Bekasi 17117 (alamat jalan belum terverifikasi)',null,
+    'Lokasi menurut daftar Misa Paskah 2025 (Tirto).',
+    ['rawalumbu']),
+  B('katolik','Paroki','Gereja Santo Arnoldus Janssen (Paroki Bekasi)','Kota Bekasi (alamat dan kecamatan belum terverifikasi)',null,
+    'Gereja Paroki Bekasi di Dekenat Bekasi. Misa Requiem Paus Fransiskus April 2025 dihadiri sekitar 2.000 umat (Metro TV).',
+    []),
+  B('katolik','Stasi','Gereja Stasi Santo Stanislaus Kostka','Kota Bekasi (alamat dan kecamatan belum terverifikasi)',null,
+    'Disebut sebagai salah satu gereja Katolik di Kota Bekasi oleh Ketua Dekenat Bekasi (Metro TV, 2024).',
+    []),
+
+  B('khonghucu','Klenteng','Klenteng Hok Lay Kiong','Jl. Kenari I, Margahayu, Bekasi Timur','Margahayu',
+    'Tempat ibadah umat Khonghucu, Buddha, dan Taoisme.',
+    ['bekasi-timur']),
 
   /* ── WISATA ── */
   I('wisata','Klenteng Hok Lay Kiong','religi','Religi','Jl. Kenari I, Margahayu, Bekasi Timur','Tempat ibadah umat Khonghucu, Buddha, dan Taoisme yang sarat sejarah, ramai dikunjungi sebagai objek wisata budaya.',['bekasi-timur'],'Margahayu'),
@@ -802,39 +822,40 @@ let currentRegion = 'timur';
 let scope = 'wilayah';     // 'wilayah' | 'semua'
 let tTab = 'stasiun';      // 'stasiun' | 'halte' | 'nonhalte'
 let selKec = null;         // id kecamatan terpilih (filter) atau null
-let eduTab = 'sd';         // 'sd' | 'smp' | 'sma' | 'kuliah'
-let eduFilter = 'semua';   // 'semua' | 'negeri' | 'swasta' | 'islam' | 'kristen'
+let ibTab = 'islam';       // agama aktif di blok rumah ibadah
+const IBADAH_JSON = 'data/ibadah.json';
 
 const TRANSIT_TABS = [
   { key:'stasiun',  label:'Stasiun' },
   { key:'halte',    label:'Halte' },
   { key:'nonhalte', label:'Non-Halte' }
 ];
-const EDU_TABS = [
-  { key:'sd',     label:'SD / MI' },
-  { key:'smp',    label:'SMP / MTs' },
-  { key:'sma',    label:'SMA / SMK / MA' },
-  { key:'kuliah', label:'Kuliah' }
-];
-const EDU_FILTERS = [
-  { key:'semua',   label:'Semua' },
-  { key:'negeri',  label:'Negeri' },
-  { key:'swasta',  label:'Swasta' },
-  { key:'islam',   label:'Berbasis Islam' },
-  { key:'kristen', label:'Kristen / Katolik' }
+const IBADAH_TABS = [
+  { key:'islam',     label:'Islam' },
+  { key:'kristen',   label:'Kristen' },
+  { key:'katolik',   label:'Katolik' },
+  { key:'hindu',     label:'Hindu' },
+  { key:'buddha',    label:'Buddha' },
+  { key:'khonghucu', label:'Khonghucu' }
 ];
 const EMPTY_MSG = {
   stasiun:  'Belum ada stasiun KRL/LRT di cakupan ini. Pilih Seluruh Bekasi untuk melihat stasiun terdekat.',
   halte:    'Belum ada data halte resmi yang terverifikasi di cakupan ini.',
   nonhalte: 'Belum ada data titik non-halte yang terverifikasi di cakupan ini.',
   mall:     'Belum ada mal besar yang terverifikasi di cakupan ini.',
-  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.',
-  edu:      'Belum ada data yang terverifikasi untuk jenjang dan filter ini di cakupan yang dipilih. Data sekolah resmi (NPSN, alamat, kelurahan, status) bisa dicek di referensi.data.kemdikbud.go.id. Belum dimasukkan di sini karena alamatnya harus diverifikasi satu per satu.'
+  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.'
 };
+function ibadahEmptyMsg() {
+  const t = IBADAH_TABS.find(x => x.key === ibTab);
+  return `Belum ada rumah ibadah ${t ? t.label : ''} yang alamatnya sudah terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.`;
+}
 
 /* ════════════════════════════════════════════════
    HELPERS
 ══════════════════════════════════════════════ */
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 function kecName(id) {
   for (const m of Object.keys(CARTO)) {
     const t = CARTO[m].tiles.find(x => x.id === id);
@@ -858,19 +879,14 @@ function scopeMatch(i) {
 function filterItems(type) {
   return ITEMS.filter(i => i.type === type && scopeMatch(i));
 }
-function eduPass(i, f) {
-  if (f === 'semua')   return true;
-  if (f === 'negeri')  return i.status === 'Negeri';
-  if (f === 'swasta')  return i.status === 'Swasta';
-  if (f === 'islam')   return i.tipe === 'Islam';
-  if (f === 'kristen') return i.tipe === 'Kristen' || i.tipe === 'Katolik';
-  return true;
+function ibadahByAgama(a) {
+  return ITEMS.filter(i => i.type === 'ibadah' && i.agama === a && scopeMatch(i));
 }
-function eduByJenjang(j) {
-  return ITEMS.filter(i => i.type === 'edu' && i.jenjang === j && scopeMatch(i));
+function ibadahCurrent() {
+  return ibadahByAgama(ibTab).sort((a, b) => a.name.localeCompare(b.name, 'id'));
 }
 function countsFor(kecId) {
-  const c = { stasiun:0, mall:0, edu:0, wisata:0 };
+  const c = { stasiun:0, mall:0, ibadah:0, wisata:0 };
   ITEMS.forEach(i => { if (i.kecs.includes(kecId) && c[i.type] !== undefined) c[i.type]++; });
   return c;
 }
@@ -879,7 +895,23 @@ function kecLabelHtml(kecs, kel) {
   if (!kecs || !kecs.length) return `<div class="loc-chip unk">📍 Kecamatan belum terverifikasi</div>`;
   if (kecs.length > 1) return `<div class="loc-chip multi">📍 Lintas / dekat batas: ${kecs.map(kecName).join(' · ')}</div>`;
   const id = kecs[0];
-  return `<div class="loc-chip">📍 Kec. ${kecName(id)} · ${modeOfKec(id)}${kel ? ` · Kel./Desa ${kel}` : ' · kelurahan belum tercatat'}</div>`;
+  return `<div class="loc-chip">📍 Kec. ${kecName(id)} · ${modeOfKec(id)}${kel ? ` · Kel./Desa ${esc(kel)}` : ' · kelurahan belum tercatat'}</div>`;
+}
+
+/* ════════════════════════════════════════════════
+   MUAT DATA RUMAH IBADAH TAMBAHAN (data/ibadah.json, opsional)
+   Format: [{"a":"islam","j":"Masjid","nm":"...","al":"...","kl":"...","kc":"bekasi-timur","n":"catatan"}]
+════════════════════════════════════════════════ */
+function loadIbadah() {
+  fetch(IBADAH_JSON, { cache: 'no-cache' })
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(rows => {
+      rows.forEach(r => {
+        ITEMS.push(B(r.a, r.j, r.nm, r.al, r.kl || null, r.n || '', r.kc ? [r.kc] : []));
+      });
+      refreshMapData();
+    })
+    .catch(() => { /* file opsional, abaikan kalau tidak ada */ });
 }
 
 /* ════════════════════════════════════════════════
@@ -915,7 +947,7 @@ function renderHero() {
 }
 
 /* ════════════════════════════════════════════════
-   KELURAHAN BLOCK (di bawah banner)
+   KELURAHAN BLOCK
 ══════════════════════════════════════════════ */
 function buildKelBlock(r) {
   if (currentMode !== 'kota') {
@@ -960,7 +992,7 @@ function buildCartogram() {
           <div class="cg-name">${t.name}</div>
           <div class="cg-sub">${sub}</div>
         </div>
-        <div class="cg-counts">${cell(c.stasiun,'🚆')}${cell(c.mall,'🛍')}${cell(c.edu,'🎓')}${cell(c.wisata,'🌳')}</div>
+        <div class="cg-counts">${cell(c.stasiun,'🚆')}${cell(c.mall,'🛍')}${cell(c.ibadah,'🛐')}${cell(c.wisata,'🌳')}</div>
       </button>`;
   }).join('');
 
@@ -975,7 +1007,7 @@ function buildCartogram() {
         <div class="map-legend">${legend}</div>
       </div>
       <div class="cg" style="--cols:${m.cols};grid-template-rows:repeat(${rows},auto)">${tiles}</div>
-      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: 🚆 stasiun · 🛍 mal · 🎓 pendidikan · 🌳 wisata yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
+      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: 🚆 stasiun · 🛍 mal · 🛐 rumah ibadah · 🌳 wisata yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
     </div>
     <div class="kec-info-panel" id="kecInfoPanel">${buildKecInfo()}</div>`;
 }
@@ -983,14 +1015,14 @@ function buildCartogram() {
 function buildKecInfo() {
   if (!selKec) {
     return `<h4 style="color:var(--muted);font-weight:400">Pilih kecamatan di peta</h4>
-            <p>Klik satu petak untuk memfilter stasiun, halte, mal, pendidikan, dan wisata di kecamatan tersebut.</p>`;
+            <p>Klik satu petak untuk memfilter stasiun, halte, mal, rumah ibadah, dan wisata di kecamatan tersebut.</p>`;
   }
   const c = countsFor(selKec);
   const rk = regionOfKec(selKec);
   const regs = DATA[currentMode].regions;
   const total = ITEMS.filter(i => i.kecs.includes(selKec)).length;
   const tags = [
-    `${c.stasiun} stasiun`, `${c.mall} mal`, `${c.edu} pendidikan`, `${c.wisata} wisata`,
+    `${c.stasiun} stasiun`, `${c.mall} mal`, `${c.ibadah} rumah ibadah`, `${c.wisata} wisata`,
     rk ? `Tab ${regs[rk].tag}` : 'Belum ada tab wilayah'
   ];
   const kel = KELURAHAN[selKec];
@@ -1026,16 +1058,33 @@ function itemCard(i) {
   return `
     <div class="t-item">
       <div class="t-item-top">
-        <div class="t-name">${i.name}</div>
-        <span class="t-badge ${i.badge}">${i.badgeText}</span>
+        <div class="t-name">${esc(i.name)}</div>
+        <span class="t-badge ${i.badge}">${esc(i.badgeText)}</span>
       </div>
       ${kecLabelHtml(i.kecs, i.kel)}
-      <div class="t-loc">${i.loc}</div>
-      <div class="t-note">${i.note}</div>
+      <div class="t-loc">${esc(i.loc)}</div>
+      <div class="t-note">${esc(i.note)}</div>
     </div>`;
 }
 function listHtml(items, emptyKey) {
   return items.length ? items.map(itemCard).join('') : `<div class="t-empty">${EMPTY_MSG[emptyKey]}</div>`;
+}
+
+/* ── Blok rumah ibadah (tab diperbarui terpisah) ── */
+function ibadahTabsHtml() {
+  return IBADAH_TABS.map(t =>
+    `<button class="t-tab ${t.key===ibTab?'active':''}" onclick="setIbTab('${t.key}')">${t.label}<span class="t-count">${ibadahByAgama(t.key).length}</span></button>`
+  ).join('');
+}
+function ibadahListHtml() {
+  const items = ibadahCurrent();
+  return items.length ? items.map(itemCard).join('') : `<div class="t-empty">${ibadahEmptyMsg()}</div>`;
+}
+function setIbTab(a) {
+  ibTab = a;
+  document.getElementById('ibTabs').innerHTML = ibadahTabsHtml();
+  document.getElementById('ibList').innerHTML = ibadahListHtml();
+  document.getElementById('ibTotal').textContent = ibadahCurrent().length;
 }
 
 function buildDataInner() {
@@ -1058,19 +1107,11 @@ function buildDataInner() {
   const malls = filterItems('mall');
   const wisata = filterItems('wisata');
 
-  const eduTabsHtml = EDU_TABS.map(t =>
-    `<button class="t-tab ${t.key===eduTab?'active':''}" onclick="setEduTab('${t.key}')">${t.label}<span class="t-count">${eduByJenjang(t.key).length}</span></button>`
-  ).join('');
-  const eduChips = EDU_FILTERS.map(f =>
-    `<button class="edu-chip ${f.key===eduFilter?'active':''}" onclick="setEduFilter('${f.key}')">${f.label}</button>`
-  ).join('');
-  const eduItems = eduByJenjang(eduTab).filter(i => eduPass(i, eduFilter));
-
   return `
     <div class="data-head">
       <div>
         <div class="data-head-title">Data Wilayah · ${scopeLabel}</div>
-        <div class="data-head-sub">Transportasi umum, pusat belanja, pendidikan, dan tempat wisata untuk cakupan yang dipilih.</div>
+        <div class="data-head-sub">Transportasi umum, pusat belanja, rumah ibadah, dan tempat wisata untuk cakupan yang dipilih.</div>
       </div>
       ${scopeRow}
     </div>
@@ -1089,11 +1130,10 @@ function buildDataInner() {
     </div>
 
     <div class="block">
-      <div class="block-title">🎓 Pendidikan <span class="t-count">${eduItems.length}</span></div>
-      <div class="block-sub">SD, SMP, SMA/SMK, sampai perguruan tinggi, lengkap dengan alamat, kecamatan, dan kelurahan. Hanya entri yang alamatnya sudah dicek yang ditampilkan.</div>
-      <div class="transit-tabs">${eduTabsHtml}</div>
-      <div class="edu-filters">${eduChips}</div>
-      <div class="t-list">${listHtml(eduItems, 'edu')}</div>
+      <div class="block-title">🛐 Rumah Ibadah <span class="t-count" id="ibTotal">${ibadahCurrent().length}</span></div>
+      <div class="block-sub">Masjid dan mushala, gereja Kristen dan Katolik, pura, vihara, serta klenteng. Daftar ini belum lengkap: hanya entri yang bisa diverifikasi yang ditampilkan. Sebagai gambaran, statistik 2022 (dikutip Jakarta Post) mencatat sekitar 2,2 juta Muslim, 106 ribu Protestan, dan 28,8 ribu Katolik di Kota Bekasi, dan data SIMAS Kemenag 2019 mencatat 594 masjid dan 382 mushala, yang menurut peneliti kemungkinan lebih sedikit dari kenyataan.</div>
+      <div class="transit-tabs" id="ibTabs">${ibadahTabsHtml()}</div>
+      <div class="t-list" id="ibList">${ibadahListHtml()}</div>
     </div>
 
     <div class="block">
@@ -1103,14 +1143,12 @@ function buildDataInner() {
     </div>
 
     <div class="t-foot">
-      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Data pendidikan baru mencakup entri yang dicek ke situs resmi kampus, pengumuman BSI, dan direktori alamat; daftar SD/SMP/SMA belum lengkap dan sebaiknya dilengkapi dari referensi.data.kemdikbud.go.id. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi. Label "perlu cek" berarti lokasinya belum diverifikasi ulang.
+      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
     </div>`;
 }
 
 function setScope(s) { scope = s; selKec = null; refreshMapData(); }
 function setTTab(t) { tTab = t; document.getElementById('dataBox').innerHTML = buildDataInner(); }
-function setEduTab(t) { eduTab = t; document.getElementById('dataBox').innerHTML = buildDataInner(); }
-function setEduFilter(f) { eduFilter = f; document.getElementById('dataBox').innerHTML = buildDataInner(); }
 
 function refreshMapData() {
   document.getElementById('mapBox').innerHTML = buildCartogram();
@@ -1143,7 +1181,7 @@ function renderContent() {
       <div class="map-section">
         <div class="section-label">Peta Wilayah</div>
         <div class="section-title">Peta Skematik ${modeLabel}</div>
-        <p class="section-desc">Petak berwarna menandai kecamatan di tab ${r.tag}. Klik kecamatan mana pun untuk melihat stasiun, mal, pendidikan, dan wisatanya.</p>
+        <p class="section-desc">Petak berwarna menandai kecamatan di tab ${r.tag}. Klik kecamatan mana pun untuk melihat stasiun, mal, rumah ibadah, dan wisatanya.</p>
         <div id="mapBox">${buildCartogram()}</div>
         <div class="data-section" id="dataBox">${buildDataInner()}</div>
       </div>
@@ -1185,6 +1223,7 @@ function renderContent() {
 renderTabs();
 renderHero();
 renderContent();
+loadIbadah();
 </script>
 </body>
 </html>
