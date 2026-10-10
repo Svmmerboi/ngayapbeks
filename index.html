@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NgayapBeks! — Eksplorasi Bekasi</title>
 <script>
-  /* Terapkan tema tersimpan sebelum render supaya tidak berkedip */
   (function () {
     var t = 'dark';
     try { t = localStorage.getItem('ngb-theme') || 'dark'; } catch (e) {}
@@ -23,9 +22,9 @@
     --gold: #F0A500;
     --on-gold: #0D1B2A;
 
-    --navy: #0D1B2A;        /* latar utama */
-    --navy-mid: #142033;    /* permukaan 2 */
-    --navy-light: #1E2F45;  /* permukaan 3 */
+    --navy: #0D1B2A;
+    --navy-mid: #142033;
+    --navy-light: #1E2F45;
     --slate: #2A3F58;
     --fg: #FFFFFF;
     --text-body: #C8D8E4;
@@ -49,7 +48,7 @@
 
   /* ─── TEMA TERANG ─── */
   :root[data-theme="light"] {
-    --gold: #B87700;
+    --gold: #8C5A00;
     --on-gold: #FFFFFF;
 
     --navy: #F4F6F9;
@@ -57,9 +56,9 @@
     --navy-light: #EAF0F6;
     --slate: #B4C2D1;
     --fg: #0D1B2A;
-    --text-body: #31475C;
-    --muted: #5B7083;
-    --faint: #7A8CA0;
+    --text-body: #1E3248;        /* lebih gelap dari sebelumnya #31475C */
+    --muted: #3D5268;            /* lebih gelap dari sebelumnya #5B7083 */
+    --faint: #5B7083;            /* lebih gelap dari sebelumnya #7A8CA0 */
 
     --line: rgba(13,27,42,0.10);
     --line-2: rgba(13,27,42,0.16);
@@ -247,7 +246,7 @@
   }
   .section-desc { color: var(--muted); font-size: 0.92rem; max-width: 560px; margin-bottom: 32px; line-height: 1.6; }
 
-  /* ─── REGION BANNER (tetap gelap di kedua tema sebagai kartu aksen) ─── */
+  /* ─── REGION BANNER ─── */
   .region-banner { border-radius: var(--radius-lg); padding: 36px 40px; margin-bottom: 28px; position: relative; overflow: hidden; color: #FFFFFF; }
   .region-banner.timur   { background: linear-gradient(135deg,#1a0d0a 0%,#2e1208 40%,#0D1B2A 100%); border:1px solid rgba(232,51,26,0.2); }
   .region-banner.barat   { background: linear-gradient(135deg,#0a0f1a 0%,#0d1f35 40%,#0D1B2A 100%); border:1px solid rgba(0,120,220,0.2); }
@@ -411,6 +410,7 @@
   .t-badge.air      { background: rgba(0,120,220,0.2);   color: #7CC0FF; }
   .t-badge.religi   { background: rgba(150,50,200,0.2);  color: #D29BFF; }
   .t-badge.alam     { background: rgba(0,160,120,0.2);   color: #50FFD0; }
+  .t-badge.kopi     { background: rgba(139,90,43,0.2);   color: #D4A76A; }
   .t-badge.ib-islam     { background: rgba(20,180,80,0.16);  color: #6AFFAA; }
   .t-badge.ib-kristen   { background: rgba(0,120,220,0.2);   color: #7CC0FF; }
   .t-badge.ib-katolik   { background: rgba(232,51,26,0.18);  color: #FF8A78; }
@@ -446,7 +446,7 @@
   footer { border-top: 1px solid var(--line); padding: 32px; text-align: center; color: var(--faint); font-size: 0.8rem; }
   footer strong { color: var(--red); font-family: 'Syne', sans-serif; }
 
-  /* ─── PENYESUAIAN WARNA UNTUK TEMA TERANG (agar teks pastel tetap terbaca) ─── */
+  /* ─── PENYESUAIAN WARNA TEMA TERANG ─── */
   :root[data-theme="light"] .loc-chip.multi { color: #0A62B8; }
   :root[data-theme="light"] .t-badge.krl      { color: #C4291A; }
   :root[data-theme="light"] .t-badge.lrt      { color: #0A62B8; }
@@ -458,11 +458,23 @@
   :root[data-theme="light"] .t-badge.air      { color: #0A62B8; }
   :root[data-theme="light"] .t-badge.religi   { color: #7A2EA8; }
   :root[data-theme="light"] .t-badge.alam     { color: #0B7F5E; }
+  :root[data-theme="light"] .t-badge.kopi     { color: #6B4215; }
   :root[data-theme="light"] .t-badge.ib-islam     { color: #12803F; }
   :root[data-theme="light"] .t-badge.ib-kristen   { color: #0A62B8; }
   :root[data-theme="light"] .t-badge.ib-katolik   { color: #C4291A; }
   :root[data-theme="light"] .t-badge.ib-hindu     { color: #C2500F; }
   :root[data-theme="light"] .t-badge.ib-khonghucu { color: #7A2EA8; }
+  /* gold override untuk light mode supaya kontras */
+  :root[data-theme="light"] .t-badge.mal  { color: #7A5200; }
+  :root[data-theme="light"] .t-badge.brt  { color: #7A5200; }
+  :root[data-theme="light"] .tab-btn.active { color: #6B4400; }
+  :root[data-theme="light"] .loc-chip { color: #6B4400; }
+  :root[data-theme="light"] .kec-tag  { color: #6B4400; }
+  :root[data-theme="light"] .scope-btn.active { color: #FFFFFF; }
+  :root[data-theme="light"] .hero-eyebrow { color: #6B4400; }
+  :root[data-theme="light"] .section-label { color: var(--red); }
+  :root[data-theme="light"] .compass b { color: #6B4400; }
+  :root[data-theme="light"] .filter-chip { color: #6B4400; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
@@ -532,7 +544,7 @@
 
 <script>
 /* ════════════════════════════════════════════════
-   TEMA GELAP / TERANG
+   TEMA
 ════════════════════════════════════════════════ */
 function currentTheme() {
   return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
@@ -540,7 +552,6 @@ function currentTheme() {
 function updateThemeBtn() {
   const btn = document.getElementById('themeBtn');
   if (!btn) return;
-  // tampilkan ikon tema tujuan
   btn.textContent = currentTheme() === 'dark' ? '☀️' : '🌙';
 }
 function applyTheme(t) {
@@ -553,9 +564,7 @@ function toggleTheme() {
 }
 
 /* ════════════════════════════════════════════════
-   PETA SKEMATIK (CARTOGRAM)
-   Tiap kecamatan = 1 petak. Posisi petak = perkiraan
-   letak relatif (utara di atas), BUKAN skala/batas asli.
+   CARTOGRAM
 ════════════════════════════════════════════════ */
 const CARTO = {
   kota: {
@@ -611,9 +620,7 @@ const REGION_COLOR = {
 };
 
 /* ════════════════════════════════════════════════
-   KELURAHAN KOTA BEKASI (56)
-   Sumber: daftar BPS Kota Bekasi + Perda Kota Bekasi No. 04/2004.
-   Kab. Bekasi (desa/kelurahan) belum dimasukkan.
+   KELURAHAN
 ════════════════════════════════════════════════ */
 const KELURAHAN = {
   'medan-satria':  ['Harapan Mulya','Kali Baru','Medan Satria','Pejuang'],
@@ -631,24 +638,21 @@ const KELURAHAN = {
 };
 
 /* ════════════════════════════════════════════════
-   DATA TERVERIFIKASI (stasiun, halte, non-halte, mal, rumah ibadah, wisata)
-   I(type, name, badge, badgeText, loc, note, kecs, kel)
+   DATA ITEMS
+════════════════════════════════════════════════ */
+/* I(type, name, badge, badgeText, loc, note, kecs, kel)
    kecs: id kecamatan terkait (lihat CARTO); [] = kecamatan belum terverifikasi
    kel : nama kelurahan bila sudah tercatat (opsional)
-════════════════════════════════════════════════ */
+   B(agama, jenis, name, alamat, kel, note, kecs): tambah data HANYA kalau alamatnya sudah dicek.
+   Data tambahan rumah ibadah juga dibaca dari data/ibadah.json (opsional). */
 const I = (type, name, badge, badgeText, loc, note, kecs, kel) => ({ type, name, badge, badgeText, loc, note, kecs, kel: kel || null });
-
-/* RUMAH IBADAH
-   B(agama, jenis, name, alamat, kel, note, kecs)
-   agama: islam | kristen | katolik | hindu | buddha | khonghucu
-   jenis: Masjid | Mushala | Gereja | Paroki | Stasi | Pura | Vihara | Klenteng
-   Tambah data baru HANYA kalau alamatnya sudah dicek.
-   Data tambahan juga dibaca dari data/ibadah.json (opsional). */
 const B = (agama, jenis, name, addr, kel, note, kecs) => ({
   type:'ibadah', agama, jenis, name,
   badge: 'ib-' + agama, badgeText: jenis,
   loc: addr, note, kecs, kel: kel || null
 });
+
+const K = (name, badgeText, loc, note, kecs, kel) => I('kopi', name, 'kopi', badgeText, loc, note, kecs, kel);
 
 const ITEMS = [
   /* ── STASIUN ── */
@@ -698,45 +702,19 @@ const ITEMS = [
   I('mall','AEON Mall Deltamas','mal','Mal','Jl. Ganesha Boulevard, Kota Deltamas, Cikarang Pusat','Diresmikan Maret 2024 di kawasan Kota Deltamas; toko AEON ke-8 di Indonesia.',['cikarang-pusat']),
   I('mall','Lippo Mall Cikarang','mal','Mal','Jl. MH Thamrin, Lippo Cikarang, Cikarang Selatan','Pusat belanja di kota mandiri Lippo Cikarang.',['cikarang-selatan']),
 
-  /* ── RUMAH IBADAH (hanya entri yang bisa diverifikasi) ── */
-  B('islam','Masjid','Masjid Agung Al-Barkah','Kel. Margajaya, Kota Bekasi (alamat jalan belum terverifikasi)','Margajaya',
-    'Masjid dengan kapasitas sekitar 1.000 jamaah; dipakai untuk salat Jumat pada masa adaptasi normal baru Mei 2020 (CNBC Indonesia).',
-    ['bekasi-selatan']),
-  B('islam','Masjid','Masjid At-Tijaroh','Mega Bekasi Hypermall, Jl. Jend. Ahmad Yani No. 1, Bekasi Selatan (17141)',null,
-    'Masjid di dalam mal. Dibahas dalam penelitian yang dimuat NU Online (2019) tentang masjid di pusat perbelanjaan Kota Bekasi.',
-    ['bekasi-selatan']),
-  B('islam','Mushala','Mushala Grand Metropolitan','Grand Metropolitan Bekasi, Jl. KH Noer Ali, Bekasi Selatan',null,
-    'Mushala mal; dibahas dalam penelitian yang sama (NU Online, 2019).',
-    ['bekasi-selatan']),
-
-  B('katolik','Paroki','Gereja Santo Albertus Agung (Kota Harapan Indah)','Kota Harapan Indah, Jl. Boulevard Raya Kav. 23, RT 005/RW 010, Kel. Pejuang, Kec. Medan Satria, Kota Bekasi 17131','Pejuang',
-    'Paroki di Dekenat Bekasi. Alamat menurut daftar lokasi Misa Paskah 2025 (Tirto).',
-    ['medan-satria']),
-  B('katolik','Paroki','Gereja Katolik Santa Clara','Bekasi Utara, Kota Bekasi 17123 (alamat jalan belum terverifikasi)',null,
-    'Paroki di Bekasi Utara; peresmian gereja pada Agustus 2019 diberitakan Jakarta Post.',
-    ['bekasi-utara']),
-  B('katolik','Paroki','Gereja Santo Mikael (Kranji)','Jl. Bintara Raya No. 38, Gg. Strada, Kranji, Kota Bekasi',null,
-    'Alamat dari penelitian desain interior gereja ini. Kecamatan diperkirakan Bekasi Barat karena Kranji dan Bintara sama-sama kelurahan di Bekasi Barat.',
-    ['bekasi-barat']),
-  B('katolik','Paroki','Gereja Katolik Santo Bartolomeus (Paroki Taman Galaxy)','Kawasan Taman Galaxy, Bekasi Selatan 17147 (alamat jalan belum terverifikasi)',null,
-    'Paroki di Dekenat Bekasi. Lokasi menurut daftar Misa Paskah 2025 (Tirto).',
-    ['bekasi-selatan']),
-  B('katolik','Paroki','Gereja Santo Servatius (Kampung Sawah)','Kampung Sawah, Pondokmelati, Kota Bekasi 17415 (alamat jalan belum terverifikasi)',null,
-    'Paroki di Dekenat Bekasi. Lokasi menurut daftar Misa Paskah 2025 (Tirto).',
-    ['pondokmelati']),
-  B('katolik','Paroki','Gereja Santo Yohanes Paulus II (Rawalumbu)','Rawalumbu, Kota Bekasi 17117 (alamat jalan belum terverifikasi)',null,
-    'Lokasi menurut daftar Misa Paskah 2025 (Tirto).',
-    ['rawalumbu']),
-  B('katolik','Paroki','Gereja Santo Arnoldus Janssen (Paroki Bekasi)','Kota Bekasi (alamat dan kecamatan belum terverifikasi)',null,
-    'Gereja Paroki Bekasi di Dekenat Bekasi. Misa Requiem Paus Fransiskus April 2025 dihadiri sekitar 2.000 umat (Metro TV).',
-    []),
-  B('katolik','Stasi','Gereja Stasi Santo Stanislaus Kostka','Kota Bekasi (alamat dan kecamatan belum terverifikasi)',null,
-    'Disebut sebagai salah satu gereja Katolik di Kota Bekasi oleh Ketua Dekenat Bekasi (Metro TV, 2024).',
-    []),
-
-  B('khonghucu','Klenteng','Klenteng Hok Lay Kiong','Jl. Kenari I, Margahayu, Bekasi Timur','Margahayu',
-    'Tempat ibadah umat Khonghucu, Buddha, dan Taoisme.',
-    ['bekasi-timur']),
+  /* ── RUMAH IBADAH ── */
+  B('islam','Masjid','Masjid Agung Al-Barkah','Kel. Margajaya, Kota Bekasi (alamat jalan belum terverifikasi)','Margajaya','Masjid dengan kapasitas sekitar 1.000 jamaah; dipakai untuk salat Jumat pada masa adaptasi normal baru Mei 2020 (CNBC Indonesia).',['bekasi-selatan']),
+  B('islam','Masjid','Masjid At-Tijaroh','Mega Bekasi Hypermall, Jl. Jend. Ahmad Yani No. 1, Bekasi Selatan',null,'Masjid di dalam mal. Dibahas dalam penelitian yang dimuat NU Online (2019) tentang masjid di pusat perbelanjaan Kota Bekasi.',['bekasi-selatan']),
+  B('islam','Mushala','Mushala Grand Metropolitan','Grand Metropolitan Bekasi, Jl. KH Noer Ali, Bekasi Selatan',null,'Mushala mal; dibahas dalam penelitian yang sama (NU Online, 2019).',['bekasi-selatan']),
+  B('katolik','Paroki','Gereja Santo Albertus Agung (Kota Harapan Indah)','Kota Harapan Indah, Jl. Boulevard Raya Kav. 23, RT 005/RW 010, Kel. Pejuang, Kec. Medan Satria, Kota Bekasi 17131','Pejuang','Paroki di Dekenat Bekasi. Alamat menurut daftar lokasi Misa Paskah 2025 (Tirto).',['medan-satria']),
+  B('katolik','Paroki','Gereja Katolik Santa Clara','Bekasi Utara, Kota Bekasi 17123 (alamat jalan belum terverifikasi)',null,'Paroki di Bekasi Utara; peresmian gereja pada Agustus 2019 diberitakan Jakarta Post.',['bekasi-utara']),
+  B('katolik','Paroki','Gereja Santo Mikael (Kranji)','Jl. Bintara Raya No. 38, Gg. Strada, Kranji, Kota Bekasi',null,'Alamat dari penelitian desain interior gereja ini. Kecamatan diperkirakan Bekasi Barat karena Kranji dan Bintara sama-sama kelurahan di Bekasi Barat.',['bekasi-barat']),
+  B('katolik','Paroki','Gereja Katolik Santo Bartolomeus (Paroki Taman Galaxy)','Kawasan Taman Galaxy, Bekasi Selatan 17147 (alamat jalan belum terverifikasi)',null,'Paroki di Dekenat Bekasi. Lokasi menurut daftar Misa Paskah 2025 (Tirto).',['bekasi-selatan']),
+  B('katolik','Paroki','Gereja Santo Servatius (Kampung Sawah)','Kampung Sawah, Pondokmelati, Kota Bekasi 17415 (alamat jalan belum terverifikasi)',null,'Paroki di Dekenat Bekasi. Lokasi menurut daftar Misa Paskah 2025 (Tirto).',['pondokmelati']),
+  B('katolik','Paroki','Gereja Santo Yohanes Paulus II (Rawalumbu)','Rawalumbu, Kota Bekasi 17117 (alamat jalan belum terverifikasi)',null,'Lokasi menurut daftar Misa Paskah 2025 (Tirto).',['rawalumbu']),
+  B('katolik','Paroki','Gereja Santo Arnoldus Janssen (Paroki Bekasi)','Kota Bekasi (alamat dan kecamatan belum terverifikasi)',null,'Gereja Paroki Bekasi di Dekenat Bekasi. Misa Requiem Paus Fransiskus April 2025 dihadiri sekitar 2.000 umat (Metro TV).',[]),
+  B('katolik','Stasi','Gereja Stasi Santo Stanislaus Kostka','Kota Bekasi (alamat dan kecamatan belum terverifikasi)',null,'Disebut sebagai salah satu gereja Katolik di Kota Bekasi oleh Ketua Dekenat Bekasi (Metro TV, 2024).',[]),
+  B('khonghucu','Klenteng','Klenteng Hok Lay Kiong','Jl. Kenari I, Margahayu, Bekasi Timur','Margahayu','Tempat ibadah umat Khonghucu, Buddha, dan Taoisme.',['bekasi-timur']),
 
   /* ── WISATA ── */
   I('wisata','Klenteng Hok Lay Kiong','religi','Religi','Jl. Kenari I, Margahayu, Bekasi Timur','Tempat ibadah umat Khonghucu, Buddha, dan Taoisme yang sarat sejarah, ramai dikunjungi sebagai objek wisata budaya.',['bekasi-timur'],'Margahayu'),
@@ -748,13 +726,72 @@ const ITEMS = [
   I('wisata','Danau Marakas','air','Danau','Rawalumbu (menurut Liputan6)','Danau dengan panorama air luas dan udara sejuk; masuk daftar wisata murah di Bekasi.',['rawalumbu']),
   I('wisata','Go! Wet Waterpark','air','Waterpark','Jl. Southern Boulevard Kav. 1, Grand Wisata, Tambun Selatan','Disebut taman air terbesar di Bekasi, berlokasi di kawasan Grand Wisata.',['tambun-selatan']),
   I('wisata','WaterBoom Lippo Cikarang','air','Waterpark','Lippo Cikarang, Cikarang Selatan','Waterpark dengan taman, area duduk teduh, dan jajanan.',['cikarang-selatan']),
-  I('wisata','Hutan Mangrove Muara Gembong','alam','Alam','Desa Pantai Bahagia, Kec. Muaragembong','Wisata mangrove di pesisir utara Kab. Bekasi. Muaragembong disebut lebih cepat dijangkau naik kapal daripada motor.',['muaragembong'])
+  I('wisata','Hutan Mangrove Muara Gembong','alam','Alam','Desa Pantai Bahagia, Kec. Muaragembong','Wisata mangrove di pesisir utara Kab. Bekasi. Muaragembong disebut lebih cepat dijangkau naik kapal daripada sepeda motor.',['muaragembong']),
+
+  /* ── COFFEESHOP & NONGKRONG ──
+     Sumber: Dealls (Des 2024), JawaPos, Shopee, Popmama, Orami, Tripadvisor, daftar outlet Bank Mega.
+     Alamat/jam disalin dari sumber, belum dicek langsung ke lokasi. Kecamatan [] = sumber tidak menyebut. */
+
+  /* Bekasi Selatan */
+  K('Kopi Tuku (Pekayon)','Coffee shop','Jl. Pulo Ribung, RT 002/RW 017, Pekayon Jaya, Bekasi Selatan','Menu andalan es kopi susu tetangga. Jam 08.00–22.00 (Dealls).',['bekasi-selatan'],'Pekayon Jaya'),
+  K('Sudo Brew Galaxy','Coffee shop','Jl. Pulo Sirih Boulevard, Blok FE 374, Pekayon, Bekasi Selatan','Dua lantai dengan area indoor ber-AC dan area outdoor; Wi-Fi dan stopkontak di tiap meja, menu kopi Rp40.000–45.000. Jam 07.30–21.00 (Dealls).',['bekasi-selatan']),
+  K('Kopi Kedubes','Coffee shop','Grand Galaxy Park, Bekasi Selatan','Di dalam Grand Galaxy Park, nuansa industrial-vintage dengan Wi-Fi dan stopkontak. Jam Sen–Jum 10.00–24.00, Sab–Min 08.00–24.00 (Dealls).',['bekasi-selatan'],'Jakasetia'),
+  K('Moeda Coffee & Space','Coffee shop','Jl. Raya Pekayon No. 27, Bekasi Selatan','Lantai 1 bebas rokok ber-AC, lantai 2 area merokok semi-outdoor. Jam 08.00–23.00 (Dealls).',['bekasi-selatan']),
+  K('Eight Coffee','Coffee shop','Grand Galaxy City, Jl. Pulo Siri Barat Raya Blok FE No. 425B (17147)','Coffee shop minimalis untuk WFC; menu kopi klasik dan smoothie bowl. Jam 09.00–21.00 (Dealls).',['bekasi-selatan']),
+  K('Dyamond Caffe and Resto','Kafe','Jl. Boulevard Raya Barat Blok RGA No. 28, Ruko Grand Galaxy, Jaka Setia (17147)','Kafe dan resto dengan area indoor dan outdoor. Jam 10.00–22.00 (Dealls).',['bekasi-selatan'],'Jakasetia'),
+  K('Janjian Coffee House Point','Coffee shop','Jl. Pondok Timur Mas Blok A/4, RT 001/RW 014, Jaka Setia','Area outdoor asri. Jam 08.00–23.00 (Dealls).',['bekasi-selatan'],'Jakasetia'),
+  K('Kedai Maniac','Kafe','Jl. Pulo Sirih Utama, RT 001/RW 019, Jaka Setia (17147)','Ada live music. Jam 10.30–22.30 (Dealls).',['bekasi-selatan'],'Jakasetia'),
+  K('Kopi Tala Galaxy','Coffee shop','Jl. Gardenia Utara Kav. 21–24, RT 005/RW 019, Jaka Setia (17148)','Dua lantai dengan rooftop dan ruang sunyi; menu Rp20.000–30.000. Jam 09.00–23.00 (Dealls).',['bekasi-selatan'],'Jakasetia'),
+  K('Sunyi Coffee','Coffee shop','Ruko Sentra Niaga 1 No. 57, RT 001/RW 018, Jaka Setia','Masuk daftar cafe untuk work from cafe (Popmama).',['bekasi-selatan'],'Jakasetia'),
+  K('Saya Kopi Nuansa','Coffee shop','Jl. Irigasi No. 9A, Pekayon Jaya (17148)','Interior kayu dan tanaman; menu dari kopi sampai makanan berat. Jam 07.00–23.00 (Dealls).',['bekasi-selatan'],'Pekayon Jaya'),
+  K('Dusty Coffee','Coffee shop','Jl. Raya Pekayon, RT 004/RW 001, Pekayon Jaya','Awalnya sudah ada di Bogor, lalu buka di Bekasi; menu pastry, snack, kopi, dan non-kopi (Popmama).',['bekasi-selatan'],'Pekayon Jaya'),
+  K('Namdua House','Coffee shop','Pekayon Jaya (alamat jalan belum terverifikasi)','Area indoor dan outdoor luas dengan taman. Jam 12.00–21.00, akhir pekan mulai 07.00 (Dealls).',['bekasi-selatan'],'Pekayon Jaya'),
+  K('Loopline Coffee','Coffee shop','Kawasan Grand Galaxy (alamat detail belum terverifikasi)','Konsep kereta ala Jepang, ada colokan, bisa bayar QRIS atau debit (JawaPos). Kecamatan mengikuti lokasi Grand Galaxy di data NgayapBeks.',['bekasi-selatan']),
+
+  /* Bekasi Utara */
+  K('Kopi Nako (Summarecon)','Coffee shop','Jl. Boulevard BCBD Blok KB/008/10E Kav. D–E, Summarecon Bekasi','Interior modern dan area outdoor luas. Jam Sen–Jum 08.00–24.00, Sab–Min 07.00–24.00 (Dealls).',['bekasi-utara'],'Marga Mulya'),
+  K('Simetri Coffee Roasters','Coffee shop','Bekasi CBD, La Spezia, Summarecon Bekasi, Bekasi Utara (No. 56A–B)','Pemandangan Danau Summarecon (Shopee).',['bekasi-utara']),
+  K('Peleton Bike & Cafe','Kafe','Bekasi CBD, La Spezia, Summarecon Bekasi','Berada di kawasan Summarecon Bekasi (Popmama, Shopee).',['bekasi-utara']),
+
+  /* Bekasi Timur */
+  K('Temu Kamu Coffee & Eatery','Kafe','Bekasi Timur (alamat jalan belum terverifikasi)','Indoor dan outdoor, Wi-Fi, parkir lega, ruang VIP untuk meeting kecil, kadang ada live music (JawaPos).',['bekasi-timur']),
+  K('Koma Junkyard Cafe','Kafe','Jl. Baru Patal Bekasi, RT 006/RW 007, Selama Jaya, Bekasi Timur','Konsep retro-industrial; buka sore sampai malam, 17.00–24.00 (Dealls).',['bekasi-timur']),
+
+  /* Medan Satria */
+  K('Kedai Kopi Tjan','Coffee shop','Ruko Emerald, Jl. Harapan Indah Raya No. 7 Blok EB 1 (17132)','Buka sejak 07.00, colokan di tiap meja, lantai dua untuk pertemuan. Jam 07.00–22.00 (Dealls).',['medan-satria']),
+  K('Cafe Titik Beku','Kafe','Ruko Regency Blok BF No. 20, Jl. Harapan Indah, Pejuang (17131)','Pemandangan senja dari lantai atas dan banyak spot foto. Jam 10.00–22.00 (Dealls).',['medan-satria'],'Pejuang'),
+
+  /* Rawalumbu */
+  K('Keppo Coffee','Coffee shop','Ruko Gardenia 11, Jl. Gardenia Raya, Rawalumbu (17116)','Area merokok dan non-merokok terpisah, Wi-Fi dan colokan. Jam 15.00–21.00 (Dealls).',['rawalumbu']),
+  K('Cafe Tutur','Kafe','Sepanjang Jaya, Rawalumbu (alamat jalan belum terverifikasi)','Kesan estetik dan tenang. Buka tiap hari 10.00–21.00 (JawaPos).',['rawalumbu'],'Sepanjang Jaya'),
+
+  /* Pondokgede */
+  K('Dailio Specialty Coffee','Coffee shop','Jl. Jati Makmur No. 5, RT 9/RW 9, Jatimakmur (17413)','Interior putih-cokelat; kopi mulai Rp15.000, sering ada event. Jam 10.00–22.30 (Dealls).',['pondokgede'],'Jatimakmur'),
+  K('Nara Coffee','Coffee shop','Easton, Jl. Jati Bening No. 225, Jatibening (17412)','Ruang coworking di lantai 2 dan 3, bisa disewa per dua jam dengan minimal order. Jam 08.00–21.00 (Dealls).',['pondokgede'],'Jatibening'),
+  K('Cotta Coffee','Coffee shop','Jl. Kemang Raya No. 19B, Jaticempaka (17416)','Punya area taman. Jam 07.00–23.45 (Dealls).',['pondokgede'],'Jaticempaka'),
+
+  /* Pondokmelati, Jatisampurna, Mustikajaya, Bantargebang */
+  K('MHTM Coffee','Coffee shop','Jl. Pajajaran X No. 5 Blok T, RT 008/RW 007, Jatimurni (17431)','Konsep ala Jogja, ada tempat duduk perorangan. Jam 13.00–22.00 (Dealls).',['pondokmelati'],'Jatimurni'),
+  K('Jiwan Coffee & Things','Coffee shop','Jatisampurna (alamat jalan belum terverifikasi)','Dibahas sebagai cafe unik di Jatisampurna (Shopee).',['jatisampurna']),
+  K('Kopi Tuku (Vida Bekasi)','Coffee shop','Vida Bekasi, RT 002/RW 001, Padurenan','Cabang kedua Kopi Tuku di Bekasi. Jam 08.00–22.00 (Dealls).',['mustikajaya'],'Padurenan'),
+  K('Little Talk Coffee','Coffee shop','Insitu, Bumiwedari, Vida Bekasi, RT 001/RW 008, Bantargebang (17151)','Indoor dan outdoor, ada ruang rapat yang bisa direservasi. Jam 07.00–22.00 (Dealls).',['bantargebang'],'Bantargebang'),
+
+  /* Kecamatan belum disebut sumber */
+  K('Higround Coffee','Coffee shop','Ruko Cemara U7 No. 25 (kecamatan tidak disebut sumber)','Menu burger dan kopi, sering ada event. Jam 09.00–22.00, akhir pekan mulai 07.00 (Dealls).',[]),
+  K('Sir Coffee House','Coffee shop','Jl. Cut Meutia No. 140 (kecamatan tidak disebut sumber)','Vibes ala Bali dengan area indoor dan outdoor. Jam 10.00–23.00 (Dealls).',[]),
+
+  /* Kabupaten Bekasi */
+  K('The Raffa Cafe And Coffee','Kafe','Grand Wisata, Ruko Celebration, Blok AA12','Tercatat di daftar cafe Bekasi (Shopee).',['tambun-selatan']),
+  K('Old Town White Coffee','Coffee shop','Jl. MH Thamrin, Cikarang Selatan','Menu bervariasi dengan harga terjangkau (Orami, 2024).',['cikarang-selatan']),
+  K('Mokka Coffee Cabana (Lippo Mall Cikarang)','Coffee shop','Lippo Mall Cikarang, GF Lobi Utama, Jl. MH Thamrin, Cibatu, Cikarang Selatan','Salah satu outlet Mokka Coffee Cabana (daftar outlet Bank Mega).',['cikarang-selatan']),
+  K('Throwback Coffee + Kitchen','Coffee shop','Jl. Cilemah Abang Raya, Cikarang (kecamatan belum terverifikasi)','Variasi menu dinilai kurang banyak untuk ukuran coffee shop (Orami, 2024).',[]),
+  K('Kawan Senja Coffee','Coffee shop','Jl. Gardenia Raya No. 4, Cikarang 17530 (kecamatan belum terverifikasi)','Tercatat sebagai kafe di Cikarang (Tripadvisor).',[]),
+  K('Yellowhammer Coffee','Coffee shop','Cikarang (alamat jalan belum terverifikasi)','Masuk daftar tempat nongkrong Cikarang (Orami, Tripadvisor).',[])
 ];
 
 /* ════════════════════════════════════════════════
-   WILAYAH
-   highlights[].loc = teks lokasi di kartu (null = belum terverifikasi)
-══════════════════════════════════════════════ */
+   REGION & HERO DATA
+════════════════════════════════════════════════ */
 const DATA = {
   kota: {
     tabs: ['timur','barat','selatan','utara'],
@@ -928,13 +965,13 @@ const DATA = {
 
 /* ════════════════════════════════════════════════
    STATE
-══════════════════════════════════════════════ */
+════════════════════════════════════════════════ */
 let currentMode = 'kota';
 let currentRegion = 'timur';
-let scope = 'wilayah';     // 'wilayah' | 'semua'
-let tTab = 'stasiun';      // 'stasiun' | 'halte' | 'nonhalte'
-let selKec = null;         // id kecamatan terpilih (filter) atau null
-let ibTab = 'islam';       // agama aktif di blok rumah ibadah
+let scope = 'wilayah';
+let tTab = 'stasiun';
+let selKec = null;
+let ibTab = 'islam';
 const IBADAH_JSON = 'data/ibadah.json';
 
 const TRANSIT_TABS = [
@@ -955,7 +992,8 @@ const EMPTY_MSG = {
   halte:    'Belum ada data halte resmi yang terverifikasi di cakupan ini.',
   nonhalte: 'Belum ada data titik non-halte yang terverifikasi di cakupan ini.',
   mall:     'Belum ada mal besar yang terverifikasi di cakupan ini.',
-  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.'
+  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.',
+  kopi:     'Belum ada coffee shop atau spot nongkrong yang tercatat di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.'
 };
 function ibadahEmptyMsg() {
   const t = IBADAH_TABS.find(x => x.key === ibTab);
@@ -964,7 +1002,7 @@ function ibadahEmptyMsg() {
 
 /* ════════════════════════════════════════════════
    HELPERS
-══════════════════════════════════════════════ */
+════════════════════════════════════════════════ */
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -1002,7 +1040,6 @@ function countsFor(kecId) {
   ITEMS.forEach(i => { if (i.kecs.includes(kecId) && c[i.type] !== undefined) c[i.type]++; });
   return c;
 }
-/* Label lokasi jelas di tiap kartu */
 function kecLabelHtml(kecs, kel) {
   if (!kecs || !kecs.length) return `<div class="loc-chip unk">📍 Kecamatan belum terverifikasi</div>`;
   if (kecs.length > 1) return `<div class="loc-chip multi">📍 Lintas / dekat batas: ${kecs.map(kecName).join(' · ')}</div>`;
@@ -1011,8 +1048,7 @@ function kecLabelHtml(kecs, kel) {
 }
 
 /* ════════════════════════════════════════════════
-   MUAT DATA RUMAH IBADAH TAMBAHAN (data/ibadah.json, opsional)
-   Format: [{"a":"islam","j":"Masjid","nm":"...","al":"...","kl":"...","kc":"bekasi-timur","n":"catatan"}]
+   IBADAH JSON LOADER
 ════════════════════════════════════════════════ */
 function loadIbadah() {
   fetch(IBADAH_JSON, { cache: 'no-cache' })
@@ -1023,12 +1059,12 @@ function loadIbadah() {
       });
       refreshMapData();
     })
-    .catch(() => { /* file opsional, abaikan kalau tidak ada */ });
+    .catch(() => {});
 }
 
 /* ════════════════════════════════════════════════
    NAV / HERO
-══════════════════════════════════════════════ */
+════════════════════════════════════════════════ */
 function switchMode(mode) {
   currentMode = mode;
   currentRegion = DATA[mode].tabs[0];
@@ -1060,7 +1096,7 @@ function renderHero() {
 
 /* ════════════════════════════════════════════════
    KELURAHAN BLOCK
-══════════════════════════════════════════════ */
+════════════════════════════════════════════════ */
 function buildKelBlock(r) {
   if (currentMode !== 'kota') {
     return `<div class="kel-block">
@@ -1083,8 +1119,8 @@ function buildKelBlock(r) {
 }
 
 /* ════════════════════════════════════════════════
-   CARTOGRAM MAP
-══════════════════════════════════════════════ */
+   CARTOGRAM
+════════════════════════════════════════════════ */
 function buildCartogram() {
   const m = CARTO[currentMode];
   const regs = DATA[currentMode].regions;
@@ -1165,7 +1201,7 @@ function clearKec() { selKec = null; refreshMapData(); }
 
 /* ════════════════════════════════════════════════
    DATA BLOCKS
-══════════════════════════════════════════════ */
+════════════════════════════════════════════════ */
 function itemCard(i) {
   return `
     <div class="t-item">
@@ -1182,7 +1218,6 @@ function listHtml(items, emptyKey) {
   return items.length ? items.map(itemCard).join('') : `<div class="t-empty">${EMPTY_MSG[emptyKey]}</div>`;
 }
 
-/* ── Blok rumah ibadah (tab diperbarui terpisah) ── */
 function ibadahTabsHtml() {
   return IBADAH_TABS.map(t =>
     `<button class="t-tab ${t.key===ibTab?'active':''}" onclick="setIbTab('${t.key}')">${t.label}<span class="t-count">${ibadahByAgama(t.key).length}</span></button>`
@@ -1216,14 +1251,15 @@ function buildDataInner() {
     `<button class="t-tab ${t.key===tTab?'active':''}" onclick="setTTab('${t.key}')">${t.label}<span class="t-count">${filterItems(t.key).length}</span></button>`
   ).join('');
 
-  const malls = filterItems('mall');
+  const malls  = filterItems('mall');
   const wisata = filterItems('wisata');
+  const kopi   = filterItems('kopi');
 
   return `
     <div class="data-head">
       <div>
         <div class="data-head-title">Data Wilayah · ${scopeLabel}</div>
-        <div class="data-head-sub">Transportasi umum, pusat belanja, rumah ibadah, dan tempat wisata untuk cakupan yang dipilih.</div>
+        <div class="data-head-sub">Transportasi umum, pusat belanja, rumah ibadah, tempat wisata, dan spot nongkrong untuk cakupan yang dipilih.</div>
       </div>
       ${scopeRow}
     </div>
@@ -1254,8 +1290,14 @@ function buildDataInner() {
       <div class="t-list">${listHtml(wisata, 'wisata')}</div>
     </div>
 
+    <div class="block">
+      <div class="block-title">☕ Coffeeshop &amp; Spot Nongkrong <span class="t-count">${kopi.length}</span></div>
+      <div class="block-sub">Coffee shop dan kafe yang tercatat di artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor). Alamat dan jam disalin dari sumber, belum dicek langsung ke lokasi, dan sebagian sumber berumur lebih dari setahun, jadi tempat bisa sudah pindah atau tutup. Warkop pinggir jalan belum dimasukkan. Cek Instagram atau Google Maps sebelum berangkat.</div>
+      <div class="t-list">${listHtml(kopi, 'kopi')}</div>
+    </div>
+
     <div class="t-foot">
-      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
+      <b>Catatan data:</b> disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Coffee shop dan kafe disalin dari artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor) dan belum dicek langsung ke lokasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
     </div>`;
 }
 
@@ -1269,7 +1311,7 @@ function refreshMapData() {
 
 /* ════════════════════════════════════════════════
    MAIN RENDER
-══════════════════════════════════════════════ */
+════════════════════════════════════════════════ */
 function highlightLoc(h) {
   return h.loc
     ? `<div class="loc-chip">📍 ${h.loc}</div>`
