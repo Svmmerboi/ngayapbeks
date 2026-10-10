@@ -608,6 +608,11 @@
   :root:not([data-theme="light"]) .t-badge.alam { background: rgba(52,211,153,0.16); color: #74E8BC; }
   :root:not([data-theme="light"]) .loc-chip.multi { background: rgba(96,165,250,0.16); color: #9CCBFF; border-color: rgba(96,165,250,0.3); }
 
+
+  /* ─── KESEHATAN (keluarga warna mawar) ─── */
+  .t-badge.rs, .t-badge.klinik { background: rgba(244,114,182,0.18); color: #F9A8D4; }
+  :root[data-theme="light"] .t-badge.rs, :root[data-theme="light"] .t-badge.klinik { background: rgba(190,24,93,0.10); color: #A3124F; }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     nav { padding: 0 16px; }
@@ -719,6 +724,7 @@ const ICONS = {
   flame: '<path d="M12 3c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-10z"/>',
   rice: '<path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M6 13a6 6 0 0 1 12 0"/>',
   seafood: '<path d="M3 15c0-6 4-10 9-10s9 4 9 10zM3 15c0 3 4 5 9 5s9-2 9-5M12 5v15M7.5 7l1.5 13M16.5 7L15 20"/>',
+  hospital: '<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M12 8v8M8 12h8"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   arrowup: '<path d="M12 19V5M6 11l6-6 6 6"/>',
   heart: '<path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.3 12 20 12 20z"/>'
@@ -998,7 +1004,20 @@ const ITEMS = [
   I('wisata','Venetian Water Carnaval','air','Wahana air','Villa Mutiara Gading 2, Jl. Agus Salim, Karangsatria, Tambun Utara','Wisata air bertema Venesia (Mamikos, Liputan6).',['tambun-utara'],'Karangsatria'),
   I('wisata','Taman Alamanda Regency','taman','Taman','Jl. Alamanda Regency Raya, Karangsatria','Taman kota di kompleks perumahan. Kecamatan mengikuti Karangsatria di Tambun Utara (perkiraan, belum terverifikasi).',['tambun-utara'],'Karangsatria'),
   I('wisata','Danau Elysium','air','Danau','Cluster Ellysium, Lippo Cikarang, Desa Cibatu, Cikarang Selatan','Danau buatan di kawasan Lippo Cikarang untuk nongkrong dan jalan santai (Orami, Auto2000).',['cikarang-selatan'],'Cibatu'),
-  I('wisata','Hutan Pinus Edukasi Cikarang','alam','Alam','Kec. Sukakarya, sekitar 20 km dari pusat Cikarang','Wisata edukasi di area hutan pinus (Auto2000). Alamat jalan belum terverifikasi.',['sukakarya'])
+  I('wisata','Hutan Pinus Edukasi Cikarang','alam','Alam','Kec. Sukakarya, sekitar 20 km dari pusat Cikarang','Wisata edukasi di area hutan pinus (Auto2000). Alamat jalan belum terverifikasi.',['sukakarya']),
+
+  /* ── RUMAH SAKIT KOTA BEKASI (okt 2026) ── */
+  I('rs','RSUD dr. Chasbullah Abdulmadjid','rs','RSUD','Jl. Pramuka No. 55, Marga Jaya, Bekasi Selatan (17112)','RS umum daerah milik Pemkot Bekasi dan rujukan utama kota; berdiri 1956 sebagai RSUD Kabupaten Bekasi, diserahkan ke Kota Bekasi 1999. Ada layanan gawat darurat (Perwali, HelloSehat, Kumparan).',['bekasi-selatan'],'Margajaya'),
+  I('rs','Siloam Hospitals Bekasi Timur','rs','RS swasta','Jl. Chairil Anwar, Margahayu, Bekasi Timur','Rumah sakit swasta jaringan Siloam (HelloSehat, daftar rekanan Prudential).',['bekasi-timur'],'Margahayu'),
+  I('rs','RS Mitra Keluarga Bekasi Timur','rs','RS swasta','Jl. Pengasinan, Rawa Semut, Margahayu, Bekasi Timur (17113)','Beroperasi sejak 2004; layanan unggulan laparoskopi, artroskopi, angiografi, MRI, dan klinik diabetes (Halodoc, Kumparan).',['bekasi-timur'],'Margahayu'),
+  I('rs','RS Sentosa Bekasi (Siloam)','rs','RS swasta','Jl. Pahlawan No. 60, Duren Jaya, Bekasi Timur (17111)','Tercatat sebagai Rumah Sakit Sentosa Siloam Bekasi (Kumparan; daftar rekanan Prudential).',['bekasi-timur'],'Duren Jaya'),
+  I('rs','RS Mitra Keluarga Bekasi','rs','RS swasta','Kayuringin Jaya, Bekasi Selatan (17144); alamat jalan lengkap belum terverifikasi','Terakreditasi paripurna KARS dengan kapasitas hampir 200 tempat tidur (HelloSehat, Alodokter).',['bekasi-selatan'],'Kayuringin Jaya'),
+  I('rs','Primaya Hospital Bekasi Barat','rs','RS swasta','Jl. KH. Noer Ali, Kayuringin Jaya, Bekasi Selatan (17144)','Meski bernama Bekasi Barat, alamatnya di Bekasi Selatan. Sebelumnya bernama RS Awal Bros (nama Primaya dipakai sejak April 2020) (HelloSehat, Kumparan).',['bekasi-selatan'],'Kayuringin Jaya'),
+  I('rs','RS Hermina Bekasi','rs','RS swasta','Jl. Kemakmuran No. 39, Marga Jaya, Bekasi Selatan (17141)','Rumah sakit jaringan Hermina; memiliki fasilitas NICU (Kumparan).',['bekasi-selatan'],'Margajaya'),
+  I('rs','RS EMC Pekayon','rs','RS swasta','Jl. Pulo Ribung, Pekayon Jaya, Bekasi Selatan (17148)','Rumah sakit jaringan EMC di Pekayon (HelloSehat, Kumparan).',['bekasi-selatan'],'Pekayon Jaya'),
+  I('rs','RS Karunia Kasih','rs','RS swasta','Pondok Gede, Kota Bekasi (alamat jalan belum terverifikasi)','Dulu bernama RS Karunia Bunda (2008), jadi Karunia Kasih sejak 2013 setelah bergabung dengan Kasih Group (HelloSehat).',['pondokgede']),
+  I('rs','RSUD Tipe D Bekasi Utara','rs','RSUD','Kelurahan Teluk Pucung, Bekasi Utara (nama resmi belum terverifikasi)','Disebut Wali Kota Bekasi sebagai RSUD tipe D ketiga milik Kota Bekasi (BPK Jabar, 2021).',['bekasi-utara'],'Teluk Pucung'),
+  I('rs','RSUD Tipe D Jatisampurna','rs','RSUD','Kec. Jatisampurna (nama, alamat, dan kelurahan belum terverifikasi)','Disebut sebagai RSUD tipe D yang lebih dulu beroperasi di Jatisampurna (BPK Jabar, 2021).',['jatisampurna'])
 ];
 
 /* ════════════════════════════════════════════════
@@ -1184,6 +1203,7 @@ let scope = 'wilayah';
 let tTab = 'stasiun';
 let selKec = null;
 let ibTab = 'islam';
+let hsTab = 'rs';
 const IBADAH_JSON = 'data/ibadah.json';
 
 const TRANSIT_TABS = [
@@ -1205,6 +1225,8 @@ const EMPTY_MSG = {
   nonhalte: 'Belum ada data titik non-halte yang terverifikasi di cakupan ini.',
   mall:     'Belum ada mal besar yang terverifikasi di cakupan ini.',
   wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.',
+  rs:       'Belum ada rumah sakit yang terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.',
+  klinik:   'Klinik dan puskesmas belum dimasukkan karena belum ada data yang alamat dan kecamatannya terverifikasi.',
   kopi:     'Belum ada coffee shop atau spot nongkrong yang tercatat di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.'
 };
 function ibadahEmptyMsg() {
@@ -1248,8 +1270,12 @@ function ibadahCurrent() {
   return ibadahByAgama(ibTab).sort((a, b) => a.name.localeCompare(b.name, 'id'));
 }
 function countsFor(kecId) {
-  const c = { stasiun:0, mall:0, ibadah:0, wisata:0 };
-  ITEMS.forEach(i => { if (i.kecs.includes(kecId) && c[i.type] !== undefined) c[i.type]++; });
+  const c = { stasiun:0, mall:0, ibadah:0, wisata:0, kesehatan:0 };
+  ITEMS.forEach(i => {
+    if (!i.kecs.includes(kecId)) return;
+    const k = (i.type === 'rs' || i.type === 'klinik') ? 'kesehatan' : i.type;
+    if (c[k] !== undefined) c[k]++;
+  });
   return c;
 }
 function kecLabelHtml(kecs, kel) {
@@ -1352,7 +1378,7 @@ function buildCartogram() {
           <div class="cg-name">${t.name}</div>
           <div class="cg-sub">${sub}</div>
         </div>
-        <div class="cg-counts">${cell(c.stasiun,ic('train',12))}${cell(c.mall,ic('bag',12))}${cell(c.ibadah,ic('worship',12))}${cell(c.wisata,ic('tree',12))}</div>
+        <div class="cg-counts">${cell(c.stasiun,ic('train',12))}${cell(c.mall,ic('bag',12))}${cell(c.ibadah,ic('worship',12))}${cell(c.wisata,ic('tree',12))}${cell(c.kesehatan,ic('hospital',12))}</div>
       </button>`;
   }).join('');
 
@@ -1367,7 +1393,7 @@ function buildCartogram() {
         <div class="map-legend">${legend}</div>
       </div>
       <div class="cg" style="--cols:${m.cols};grid-template-rows:repeat(${rows},auto)">${tiles}</div>
-      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: ${ic('train',12)} stasiun · ${ic('bag',12)} mal · ${ic('worship',12)} rumah ibadah · ${ic('tree',12)} wisata yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
+      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: ${ic('train',12)} stasiun · ${ic('bag',12)} mal · ${ic('worship',12)} rumah ibadah · ${ic('tree',12)} wisata · ${ic('hospital',12)} rumah sakit yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
     </div>
     <div class="kec-info-panel" id="kecInfoPanel">${buildKecInfo()}</div>`;
 }
@@ -1382,7 +1408,7 @@ function buildKecInfo() {
   const regs = DATA[currentMode].regions;
   const total = ITEMS.filter(i => i.kecs.includes(selKec)).length;
   const tags = [
-    `${c.stasiun} stasiun`, `${c.mall} mal`, `${c.ibadah} rumah ibadah`, `${c.wisata} wisata`,
+    `${c.stasiun} stasiun`, `${c.mall} mal`, `${c.ibadah} rumah ibadah`, `${c.wisata} wisata`, `${c.kesehatan} rumah sakit`,
     rk ? `Tab ${regs[rk].tag}` : 'Belum ada tab wilayah'
   ];
   const kel = KELURAHAN[selKec];
@@ -1446,6 +1472,18 @@ function setIbTab(a) {
   document.getElementById('ibTotal').textContent = ibadahCurrent().length;
 }
 
+const HS_TABS = [ { key:'rs', label:'Rumah Sakit' }, { key:'klinik', label:'Klinik & Puskesmas' } ];
+function hsTabsHtml() {
+  return HS_TABS.map(t =>
+    `<button class="t-tab ${t.key===hsTab?'active':''}" onclick="setHsTab('${t.key}')">${t.label}<span class="t-count">${filterItems(t.key).length}</span></button>`
+  ).join('');
+}
+function setHsTab(k) {
+  hsTab = k;
+  document.getElementById('hsTabs').innerHTML = hsTabsHtml();
+  document.getElementById('hsList').innerHTML = listHtml(filterItems(hsTab), hsTab);
+}
+
 function buildDataInner() {
   const r = DATA[currentMode].regions[currentRegion];
   const scopeLabel = selKec ? kecName(selKec) : (scope === 'semua' ? 'Seluruh Bekasi (Kota + Kabupaten)' : r.tag);
@@ -1497,6 +1535,13 @@ function buildDataInner() {
     </div>
 
     <div class="block">
+      <div class="block-title">${ic('hospital',19)} Rumah Sakit &amp; Klinik</div>
+      <div class="block-sub">Rumah sakit umum, RSUD, dan RS swasta yang alamat serta kecamatannya bisa dipastikan dari sumber. Klinik dan puskesmas belum dimasukkan karena belum ada data terverifikasi. Cek langsung ke rumah sakit untuk layanan IGD, jam, dan kepesertaan BPJS.</div>
+      <div class="transit-tabs" id="hsTabs">${hsTabsHtml()}</div>
+      <div class="t-list" id="hsList">${listHtml(filterItems(hsTab), hsTab)}</div>
+    </div>
+
+    <div class="block">
       <div class="block-title">${ic('tree',19)} Tempat Wisata <span class="t-count">${wisata.length}</span></div>
       <div class="block-sub">Taman, waterpark, danau, wisata religi, dan alam yang tercatat di sumber terverifikasi.</div>
       <div class="t-list">${listHtml(wisata, 'wisata')}</div>
@@ -1509,7 +1554,7 @@ function buildDataInner() {
     </div>
 
     <div class="t-foot">
-      <b>Catatan data:</b> tambahan Kab. Bekasi (Okt 2026) dari Industry.co.id, Popbela, Antara, Liputan6, Untar, Tirto, GNFI, Mamikos, Moladin, Popmama, Orami, Auto2000, dan Tripadvisor. Disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Coffee shop dan kafe disalin dari artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor) dan belum dicek langsung ke lokasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
+      <b>Catatan data:</b> rumah sakit Kota Bekasi dari Perwali/JDIH Bekasi, BPK Jabar, HelloSehat, Halodoc, Alodokter, Kumparan, dan daftar rekanan Prudential. Tambahan Kab. Bekasi (Okt 2026) dari Industry.co.id, Popbela, Antara, Liputan6, Untar, Tirto, GNFI, Mamikos, Moladin, Popmama, Orami, Auto2000, dan Tripadvisor. Disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Coffee shop dan kafe disalin dari artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor) dan belum dicek langsung ke lokasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
     </div>`;
 }
 
