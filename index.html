@@ -188,11 +188,11 @@
   /* ─── HERO ─── */
   .hero {
     position: relative;
-    min-height: 82vh;
+    min-height: 54vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 32px 64px;
+    padding: 0 32px 44px;
     overflow: hidden;
   }
   .hero-bg {
@@ -221,7 +221,7 @@
   .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); flex-shrink: 0; }
   .hero-title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
     font-weight: 800; line-height: 0.95; letter-spacing: -2px;
     color: var(--fg); margin-bottom: 24px;
   }
@@ -656,6 +656,80 @@
   :root[data-theme="light"] .more-btn { color: #5C3B00; border-color: rgba(122,78,0,0.55); }
   @media (max-width: 768px) { .q-box { flex: 1 1 100%; } .cat-chips { flex-basis: 100%; } }
 
+
+  /* ─── KARTU RINGKAS ─── */
+  .t-item { padding: 14px 16px; display: flex; flex-direction: column; }
+  .t-item-top { margin-bottom: 4px; }
+  .t-item .loc-chip { background: none; border: 0; border-radius: 0; padding: 0; margin: 0 0 2px; font-size: 0.74rem; }
+  .t-item .t-loc { font-size: 0.78rem; font-weight: 500; color: var(--muted); margin-bottom: 6px; }
+  .t-note.clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .t-more { align-self: flex-start; margin-top: 4px; background: none; border: 0; padding: 0; cursor: pointer; font-size: 0.76rem; font-weight: 600; color: var(--gold); }
+  .t-actions { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); }
+  .t-note + .t-actions, .t-more + .t-actions { margin-top: 12px; }
+  .maps-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--gold); text-decoration: none; }
+  .maps-link:hover { text-decoration: underline; }
+  .fav-btn { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); background: transparent; border: 1px solid var(--line-2); transition: all 0.18s ease; }
+  .fav-btn:hover { color: var(--gold); border-color: var(--gold); }
+  .fav-btn.on { color: var(--gold); border-color: var(--gold); background: rgba(240,165,0,0.12); }
+  .fav-btn.on .ico { fill: currentColor; }
+
+  /* ─── FILTER TERVERIFIKASI ─── */
+  .ver-toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; height: 40px; padding: 0 14px; border-radius: 99px; font-size: 0.82rem; font-weight: 600; color: var(--muted); background: var(--navy-mid); border: 1px solid var(--line-2); white-space: nowrap; }
+  .ver-toggle.on { color: #0F2033; background: var(--gold); border-color: var(--gold); }
+
+  /* ─── DAFTAR NGAYAP ─── */
+  .fav-fab { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 200; display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 16px; border-radius: 99px; cursor: pointer; font-size: 0.86rem; font-weight: 700; color: #0F2033; background: var(--gold); border: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .fav-count { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 99px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.74rem; background: #0F2033; color: var(--gold); }
+  .fav-panel[hidden] { display: none; }
+  .fav-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(5,12,20,0.55); }
+  .fav-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 310; width: min(420px, 100%); display: flex; flex-direction: column; background: var(--navy-mid); border-left: 1px solid var(--line-2); box-shadow: -12px 0 32px rgba(0,0,0,0.3); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .fav-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+  .fav-title { display: inline-flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--fg); }
+  .fav-title .ico { color: var(--gold); }
+  .fav-close { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--fg); background: var(--navy-light); border: 1px solid var(--line-2); }
+  .fav-body { flex: 1; overflow-y: auto; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .fav-row { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; padding: 12px 14px; border-radius: var(--radius-lg); background: var(--navy-light); border: 1px solid var(--line); }
+  .fav-row-name { font-weight: 600; font-size: 0.9rem; color: var(--fg); }
+  .fav-row-loc { font-size: 0.78rem; color: var(--muted); margin: 2px 0 6px; }
+  .fav-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--line); }
+  .fav-actions .more-btn { text-decoration: none; }
+  .fav-clear { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--muted); background: none; border: 0; }
+  :root[data-theme="light"] .fav-btn.on, :root[data-theme="light"] .t-more, :root[data-theme="light"] .maps-link { color: #5C3B00; }
+  :root[data-theme="light"] .fav-btn.on { border-color: rgba(122,78,0,0.55); background: rgba(122,78,0,0.10); }
+  :root[data-theme="light"] .ver-toggle.on, :root[data-theme="light"] .fav-fab { background: #7A4E00; color: #FFFFFF; border-color: #7A4E00; }
+  :root[data-theme="light"] .fav-count { background: #FFFFFF; color: #7A4E00; }
+  :root[data-theme="light"] .fav-row-loc { color: var(--text-body); }
+
+  /* ─── KELURAHAN LIPAT ─── */
+  .kel-block { padding: 0; }
+  .kel-block > summary { list-style: none; cursor: pointer; padding: 14px 20px; margin: 0; display: flex; align-items: center; justify-content: space-between; }
+  .kel-block > summary::-webkit-details-marker { display: none; }
+  .kel-block > summary::after { content: ''; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.2s ease; margin-right: 4px; }
+  .kel-block[open] > summary::after { transform: rotate(-135deg); }
+  .kel-block > :not(summary) { margin-left: 20px; margin-right: 20px; }
+  .kel-block[open] { padding-bottom: 18px; }
+  .kel-block { margin-bottom: 28px; }
+
+  /* ─── PETA KIRI, DATA KANAN (desktop) ─── */
+  @media (min-width: 1100px) {
+    .split { display: grid; gap: 28px; align-items: start; grid-template-columns: minmax(360px, 0.8fr) 1.5fr; }
+    .split-kabupaten { grid-template-columns: minmax(420px, 1fr) 1.3fr; }
+    .split-map { position: sticky; top: calc(84px + env(safe-area-inset-top, 0px)); max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; }
+    .split-data { margin-top: 0; }
+    .split-data .data-head { margin-top: 0; }
+    .split-kabupaten .cg-name { font-size: 0.66rem; overflow-wrap: anywhere; }
+    .split-kabupaten .cg-sub { display: none; }
+    .split-kabupaten .cg-counts { font-size: 0.62rem; gap: 4px; }
+    .split-kabupaten .cg-tile { padding: 7px 7px; min-height: 70px; }
+    .split .t-list { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  }
+
+  /* ─── BARIS GESER: KENALI & KULINER ─── */
+  .cards-grid, .culinary-grid { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; margin-bottom: 8px; scrollbar-width: thin; }
+  .cards-grid .card { flex: 0 0 min(300px, 82%); scroll-snap-align: start; }
+  .culinary-grid .food-card { flex: 0 0 min(240px, 70%); scroll-snap-align: start; }
+  .divider { margin: 36px 0; }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     nav { padding: 0 16px; }
@@ -665,7 +739,7 @@
     .nav-tabs { order: 3; flex: 1 1 100%; }
     .mode-btn { font-size: 0.72rem; padding: 5px 12px; }
     .tab-btn { font-size: 0.75rem; padding: 6px 10px; }
-    .hero { padding: 0 16px 48px; min-height: 70vh; }
+    .hero { padding: 0 16px 48px; min-height: 46vh; }
     .content-area { padding: 40px 16px 60px; }
     .hero-stats { gap: 28px; }
     .region-banner { padding: 24px 20px; }
@@ -769,6 +843,11 @@ const ICONS = {
   seafood: '<path d="M3 15c0-6 4-10 9-10s9 4 9 10zM3 15c0 3 4 5 9 5s9-2 9-5M12 5v15M7.5 7l1.5 13M16.5 7L15 20"/>',
   search: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
   chev: '<path d="M6 9l6 6 6-6"/>',
+  map: '<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  bookmark: '<path d="M6 3h12v18l-6-4.5L6 21z"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7"/>',
+  share: '<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
   hospital: '<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M12 8v8M8 12h8"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   arrowup: '<path d="M12 19V5M6 11l6-6 6 6"/>',
@@ -1250,7 +1329,8 @@ let selKec = null;
 let ibTab = 'islam';
 let hsTab = 'rs';
 const LIMIT = 6;
-let cat = 'transit', q = '', expanded = {};
+let cat = 'transit', q = '', expanded = {}, onlyVer = false;
+let favs = [];
 const IBADAH_JSON = 'data/ibadah.json';
 
 const TRANSIT_TABS = [
@@ -1384,10 +1464,10 @@ function renderHero() {
 ════════════════════════════════════════════════ */
 function buildKelBlock(r) {
   if (currentMode !== 'kota') {
-    return `<div class="kel-block">
-      <div class="kel-block-title">Desa / Kelurahan</div>
+    return `<details class="kel-block">
+      <summary class="kel-block-title">Desa / Kelurahan</summary>
       <div class="kel-empty">Daftar desa dan kelurahan Kabupaten Bekasi belum dimasukkan karena belum diverifikasi.</div>
-    </div>`;
+    </details>`;
   }
   const total = r.kecs.reduce((n, k) => n + (KELURAHAN[k] ? KELURAHAN[k].length : 0), 0);
   const rows = r.kecs.map(k => {
@@ -1397,10 +1477,10 @@ function buildKelBlock(r) {
       <div class="kec-tags">${list.map(x => `<span class="kec-tag kel">${x}</span>`).join('')}</div>
     </div>`;
   }).join('');
-  return `<div class="kel-block">
-    <div class="kel-block-title">Kelurahan di ${r.tag} (${total})</div>
+  return `<details class="kel-block">
+    <summary class="kel-block-title">Kelurahan di ${r.tag} (${total})</summary>
     ${rows}
-  </div>`;
+  </details>`;
 }
 
 /* ════════════════════════════════════════════════
@@ -1487,7 +1567,15 @@ function clearKec() { selKec = null; refreshMapData(); }
 /* ════════════════════════════════════════════════
    DATA BLOCKS
 ════════════════════════════════════════════════ */
+function itemKey(i) { return i.type + '|' + i.name; }
+function encKey(k) { return encodeURIComponent(k).replace(/'/g, '%27'); }
+function mapsUrl(i) {
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(i.name + ' ' + (i.loc || '') + ' Bekasi');
+}
 function itemCard(i) {
+  const k = encKey(itemKey(i));
+  const on = favs.indexOf(itemKey(i)) > -1;
+  const long = (i.note || '').length > 95;
   return `
     <div class="t-item">
       <div class="t-item-top">
@@ -1496,10 +1584,90 @@ function itemCard(i) {
       </div>
       ${kecLabelHtml(i.kecs, i.kel)}
       <div class="t-loc">${esc(i.loc)}</div>
-      <div class="t-note">${esc(i.note)}</div>
+      <div class="t-note ${long ? 'clamp' : ''}">${esc(i.note)}</div>
+      ${long ? `<button class="t-more" onclick="toggleNote(this)">Selengkapnya</button>` : ''}
+      <div class="t-actions">
+        <a class="maps-link" href="${mapsUrl(i)}" target="_blank" rel="noopener">${ic('map', 15)} Buka di Maps</a>
+        <button class="fav-btn ${on ? 'on' : ''}" data-fav="${k}" onclick="toggleFav('${k}')" aria-pressed="${on}" aria-label="Simpan ke Daftar Ngayap" title="Simpan ke Daftar Ngayap">${ic('bookmark', 17)}</button>
+      </div>
     </div>`;
 }
+function toggleNote(btn) {
+  const n = btn.previousElementSibling;
+  const open = !n.classList.toggle('clamp');
+  btn.textContent = open ? 'Ringkas' : 'Selengkapnya';
+}
+
+/* ════════════════════════════════════════════════
+   DAFTAR NGAYAP (favorit, disimpan di browser)
+════════════════════════════════════════════════ */
+function loadFavs() {
+  try { const v = JSON.parse(localStorage.getItem('ngb-favs') || '[]'); favs = Array.isArray(v) ? v : []; } catch (e) { favs = []; }
+}
+function saveFavs() { try { localStorage.setItem('ngb-favs', JSON.stringify(favs)); } catch (e) {} }
+function favItems() { return favs.map(k => ITEMS.find(i => itemKey(i) === k)).filter(Boolean); }
+function toggleFav(enc) {
+  const k = decodeURIComponent(enc);
+  const at = favs.indexOf(k);
+  if (at > -1) favs.splice(at, 1); else favs.push(k);
+  saveFavs();
+  document.querySelectorAll('[data-fav="' + enc + '"]').forEach(b => {
+    const on = favs.indexOf(k) > -1;
+    b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+  });
+  renderFav();
+}
+function shareText() {
+  const rows = favItems().map((i, n) => `${n + 1}. ${i.name} - ${i.loc}\n${mapsUrl(i)}`);
+  return 'Daftar Ngayap-ku (NgayapBeks!):\n\n' + rows.join('\n\n');
+}
+function renderFav() {
+  const list = favItems();
+  const fab = document.getElementById('favFab');
+  if (!fab) return;
+  fab.querySelector('.fav-count').textContent = favs.length;
+  const body = document.getElementById('favBody');
+  body.innerHTML = list.length ? list.map(i => `
+    <div class="fav-row">
+      <div class="fav-row-main">
+        <div class="fav-row-name">${esc(i.name)}</div>
+        <div class="fav-row-loc">${esc(i.loc)}</div>
+        <a class="maps-link" href="${mapsUrl(i)}" target="_blank" rel="noopener">${ic('map', 14)} Buka di Maps</a>
+      </div>
+      <button class="fav-btn on" onclick="toggleFav('${encKey(itemKey(i))}')" aria-label="Hapus dari daftar">${ic('trash', 16)}</button>
+    </div>`).join('')
+    : `<div class="t-empty">Belum ada tempat tersimpan. Tekan ikon bookmark di kartu mana pun untuk menyimpannya di sini.</div>`;
+  document.getElementById('favShare').href = 'https://wa.me/?text=' + encodeURIComponent(shareText());
+  document.getElementById('favActions').style.display = list.length ? 'flex' : 'none';
+}
+function clearFavs() { favs = []; saveFavs(); document.querySelectorAll('.fav-btn.on[data-fav]').forEach(b => { b.classList.remove('on'); b.setAttribute('aria-pressed', false); }); renderFav(); }
+function openFav() { renderFav(); document.getElementById('favPanel').hidden = false; }
+function closeFav() { document.getElementById('favPanel').hidden = true; }
+function initFav() {
+  loadFavs();
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <button class="fav-fab" id="favFab" onclick="openFav()" aria-label="Buka Daftar Ngayap">${ic('bookmark', 18)}<span>Daftar Ngayap</span><span class="fav-count">0</span></button>
+    <div class="fav-panel" id="favPanel" hidden>
+      <div class="fav-overlay" onclick="closeFav()"></div>
+      <aside class="fav-drawer" role="dialog" aria-label="Daftar Ngayap">
+        <div class="fav-head"><div class="fav-title">${ic('bookmark', 18)} Daftar Ngayap</div><button class="fav-close" onclick="closeFav()" aria-label="Tutup">${ic('x', 18)}</button></div>
+        <div class="fav-body" id="favBody"></div>
+        <div class="fav-actions" id="favActions">
+          <a class="more-btn" id="favShare" href="#" target="_blank" rel="noopener">${ic('share', 15)} Bagikan ke WhatsApp</a>
+          <button class="fav-clear" onclick="clearFavs()">${ic('trash', 14)} Kosongkan</button>
+        </div>
+      </aside>
+    </div>`;
+  document.body.appendChild(wrap);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFav(); });
+  renderFav();
+}
+function isVerified(i) {
+  return !!(i.kecs && i.kecs.length) && !/belum terverifikasi|belum diverifikasi|perkiraan|perlu cek/i.test(i.loc + ' ' + i.note);
+}
 function matchQ(i) {
+  if (onlyVer && !isVerified(i)) return false;
   if (!q) return true;
   const t = (i.name + ' ' + i.loc + ' ' + i.note + ' ' + (i.kel || '') + ' ' + i.badgeText).toLowerCase();
   return q.toLowerCase().split(/\s+/).filter(Boolean).every(w => t.includes(w));
@@ -1540,15 +1708,18 @@ function catChipsHtml() {
 function catBarHtml() {
   return `<div class="cat-bar">
     <div class="cat-chips" id="catChips">${catChipsHtml()}</div>
+    <button class="ver-toggle ${onlyVer?'on':''}" onclick="setVer(!onlyVer)" aria-pressed="${onlyVer}" title="Sembunyikan entri yang alamat atau kecamatannya belum terverifikasi">${ic('check', 15)}<span>Hanya terverifikasi</span></button>
     <label class="q-box">${ic('search', 16)}<input type="search" class="q-input" placeholder="Cari nama atau lokasi" value="${esc(q)}" oninput="setQ(this.value)" aria-label="Cari nama atau lokasi"></label>
   </div>`;
 }
 function setCat(k) { cat = k; redrawData(); }
-function setQ(v) {
-  q = v.trim(); expanded = {};
+function refreshCat() {
+  expanded = {};
   document.getElementById('catChips').innerHTML = catChipsHtml();
   document.getElementById('catWrap').innerHTML = buildBlocks();
 }
+function setQ(v) { q = v.trim(); refreshCat(); }
+function setVer(v) { onlyVer = v; redrawData(); }
 
 function ibadahTabsHtml() {
   return IBADAH_TABS.map(t =>
@@ -1695,8 +1866,10 @@ function renderContent() {
         <div class="section-label">Peta Wilayah</div>
         <div class="section-title">Peta Skematik ${modeLabel}</div>
         <p class="section-desc">Petak berwarna menandai kecamatan di tab ${r.tag}. Klik kecamatan mana pun untuk melihat stasiun, mal, rumah ibadah, dan wisatanya.</p>
-        <div id="mapBox">${buildCartogram()}</div>
-        <div class="data-section" id="dataBox">${buildDataInner()}</div>
+        <div class="split split-${currentMode}">
+          <div id="mapBox" class="split-map">${buildCartogram()}</div>
+          <div class="data-section split-data" id="dataBox">${buildDataInner()}</div>
+        </div>
       </div>
 
       <div class="divider"></div>
@@ -1737,6 +1910,7 @@ updateThemeBtn();
 renderTabs();
 renderHero();
 renderContent();
+initFav();
 loadIbadah();
 </script>
 </body>
