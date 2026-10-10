@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NgayapBeks! — Eksplorasi Bekasi</title>
+<meta name="theme-color" content="#14202E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NgayapBeks!">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314202E'/%3E%3Cpath d='M32 50s-14-11-14-24a14 14 0 0 1 28 0c0 13-14 24-14 24z' fill='none' stroke='%23F5B21A' stroke-width='4'/%3E%3Ccircle cx='32' cy='26' r='5' fill='%23F5B21A'/%3E%3C/svg%3E">
 <script>
   (function () {
     var t = 'dark';
@@ -568,7 +572,7 @@
     --chip-bg: rgba(255,255,255,0.11);
     --tile-bg: rgba(255,255,255,0.04);
     --grid: rgba(255,255,255,0.035);
-    --nav-bg: rgba(15,32,51,0.96);
+    --nav-bg: rgba(20,32,46,0.96);
   }
   /* Merah = brand saja */
   :root:not([data-theme="light"]) .nav-logo span,
@@ -640,6 +644,7 @@
   .cat-wrap[data-active="mall"] > .block[data-cat="mall"],
   .cat-wrap[data-active="ibadah"] > .block[data-cat="ibadah"],
   .cat-wrap[data-active="kesehatan"] > .block[data-cat="kesehatan"],
+  .cat-wrap[data-active="pendidikan"] > .block[data-cat="pendidikan"],
   .cat-wrap[data-active="wisata"] > .block[data-cat="wisata"],
   .cat-wrap[data-active="kopi"] > .block[data-cat="kopi"] { display: block; }
   .more-row { grid-column: 1 / -1; display: flex; justify-content: center; padding-top: 4px; }
@@ -729,6 +734,64 @@
   .cards-grid .card { flex: 0 0 min(300px, 82%); scroll-snap-align: start; }
   .culinary-grid .food-card { flex: 0 0 min(240px, 70%); scroll-snap-align: start; }
   .divider { margin: 36px 0; }
+
+
+  /* ─── PALET GELAP: hangat, banner seragam, emas satu-satunya aksen ─── */
+  :root:not([data-theme="light"]) {
+    --navy: #14202E; --navy-mid: #1C2A3B; --navy-light: #263647; --slate: #3A5069;
+    --fg: #F7F3EA; --nav-bg: rgba(20,32,46,0.96);
+  }
+  :root:not([data-theme="light"]) .hero-title .accent,
+  :root:not([data-theme="light"]) .stat-val span { color: var(--gold); }
+  :root:not([data-theme="light"]) .mode-btn.active { background: var(--gold); color: #14202E; box-shadow: 0 2px 8px rgba(245,178,26,0.35); }
+  :root:not([data-theme="light"]) .hero-bg {
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 30%, rgba(245,178,26,0.10) 0%, transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+  }
+  .region-banner.timur, .region-banner.barat, .region-banner.selatan, .region-banner.utara,
+  .region-banner.cikarang, .region-banner.tambun, .region-banner.cibitung, .region-banner.tarumajaya {
+    background: linear-gradient(135deg, #1C2A3B 0%, #14202E 100%);
+    border: 1px solid rgba(255,255,255,0.12); border-top: 3px solid var(--rc, #F5B21A);
+  }
+  .region-banner.timur { --rc:#E8331A; } .region-banner.barat { --rc:#0078DC; } .region-banner.selatan { --rc:#14B450; } .region-banner.utara { --rc:#9632C8; }
+  .region-banner.cikarang { --rc:#00B4A0; } .region-banner.tambun { --rc:#6450C8; } .region-banner.cibitung { --rc:#C8641E; } .region-banner.tarumajaya { --rc:#00A078; }
+  .banner-accent { opacity: 0.12; }
+  .banner-tag { background: rgba(255,255,255,0.08) !important; color: #F7F3EA !important; border: 1px solid var(--rc, #F5B21A); }
+
+  /* ─── RAPI: ritme jarak, catatan lipat, pill baru, toast, rute ─── */
+  .block { margin-top: 24px; }
+  .block-title { font-size: 1.1rem; }
+  .data-head-title { font-size: 1.2rem; }
+  .t-foot { font-size: 0.78rem; line-height: 1.7; color: var(--muted); }
+  .t-foot > summary { cursor: pointer; list-style: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+  .t-foot > summary::-webkit-details-marker { display: none; }
+  .t-foot > summary::after { content: ''; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform 0.2s ease; }
+  .t-foot[open] > summary::after { transform: rotate(-135deg); }
+  .t-foot > p { margin-top: 10px; }
+  .new-pill { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 99px; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; vertical-align: 2px; background: var(--gold); color: #14202E; }
+  .act-r { display: inline-flex; gap: 6px; }
+  .t-badge.edu { background: rgba(34,211,238,0.15); color: #7DE3F2; }
+  :root[data-theme="light"] .t-badge.edu { background: rgba(11,111,130,0.10); color: #0B6F82; }
+  :root[data-theme="light"] .new-pill { background: #7A4E00; color: #FFFFFF; }
+  .toast { position: fixed; left: 50%; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 12px); z-index: 400; opacity: 0; pointer-events: none; padding: 10px 18px; border-radius: 99px; font-size: 0.84rem; font-weight: 600; color: #14202E; background: var(--gold); box-shadow: 0 8px 24px rgba(0,0,0,0.3); transition: opacity 0.2s ease, transform 0.2s ease; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .routes-grid { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: thin; }
+  .route-card { flex: 0 0 min(340px, 86%); scroll-snap-align: start; display: flex; flex-direction: column; padding: 20px; border-radius: var(--radius-lg); background: var(--navy-mid); border: 1px solid var(--line-2); }
+  .route-area { display: inline-flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: var(--gold); margin-bottom: 6px; }
+  .route-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--fg); }
+  .route-desc { font-size: 0.84rem; color: var(--muted); margin: 4px 0 12px; }
+  .route-stops { list-style: none; counter-reset: s; margin: 0 0 16px; display: flex; flex-direction: column; gap: 8px; }
+  .route-stops li { counter-increment: s; display: flex; align-items: baseline; gap: 10px; font-size: 0.86rem; color: var(--text-body); }
+  .route-stops li::before { content: counter(s); flex: 0 0 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--gold); border: 1px solid var(--gold); }
+  .route-stops li em { margin-left: auto; font-style: normal; font-size: 0.72rem; color: var(--faint); white-space: nowrap; }
+  .route-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; flex-wrap: wrap; }
+  .route-card .more-btn { padding: 8px 16px; font-size: 0.82rem; }
+  :root[data-theme="light"] .route-card { background: #FFFFFF; box-shadow: 0 1px 2px rgba(13,27,42,0.06); }
+  :root[data-theme="light"] .route-area, :root[data-theme="light"] .route-stops li::before { color: #5C3B00; border-color: rgba(122,78,0,0.55); }
+  :root[data-theme="light"] .route-desc { color: var(--text-body); }
+  :root[data-theme="light"] .route-stops li em { color: var(--muted); }
+  :root[data-theme="light"] .toast { background: #7A4E00; color: #FFFFFF; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
@@ -848,6 +911,7 @@ const ICONS = {
   check: '<path d="M5 12.5l4.5 4.5L19 7"/>',
   share: '<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>',
   trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
   hospital: '<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M12 8v8M8 12h8"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   arrowup: '<path d="M12 19V5M6 11l6-6 6 6"/>',
@@ -1141,8 +1205,17 @@ const ITEMS = [
   I('rs','RS EMC Pekayon','rs','RS swasta','Jl. Pulo Ribung, Pekayon Jaya, Bekasi Selatan (17148)','Rumah sakit jaringan EMC di Pekayon (HelloSehat, Kumparan).',['bekasi-selatan'],'Pekayon Jaya'),
   I('rs','RS Karunia Kasih','rs','RS swasta','Pondok Gede, Kota Bekasi (alamat jalan belum terverifikasi)','Dulu bernama RS Karunia Bunda (2008), jadi Karunia Kasih sejak 2013 setelah bergabung dengan Kasih Group (HelloSehat).',['pondokgede']),
   I('rs','RSUD Tipe D Bekasi Utara','rs','RSUD','Kelurahan Teluk Pucung, Bekasi Utara (nama resmi belum terverifikasi)','Disebut Wali Kota Bekasi sebagai RSUD tipe D ketiga milik Kota Bekasi (BPK Jabar, 2021).',['bekasi-utara'],'Teluk Pucung'),
-  I('rs','RSUD Tipe D Jatisampurna','rs','RSUD','Kec. Jatisampurna (nama, alamat, dan kelurahan belum terverifikasi)','Disebut sebagai RSUD tipe D yang lebih dulu beroperasi di Jatisampurna (BPK Jabar, 2021).',['jatisampurna'])
+  I('rs','RSUD Tipe D Jatisampurna','rs','RSUD','Kec. Jatisampurna (nama, alamat, dan kelurahan belum terverifikasi)','Disebut sebagai RSUD tipe D yang lebih dulu beroperasi di Jatisampurna (BPK Jabar, 2021).',['jatisampurna']),
+
+  /* ── PENDIDIKAN KAB. BEKASI (okt 2026) ── */
+  I('pendidikan','President University','edu','Kampus','Jl. Ki Hajar Dewantara, Kota Jababeka, Cikarang Baru (17550), Cikarang Utara','Kampus swasta berbahasa pengantar Inggris di Jababeka Education Park; berstatus universitas resmi sejak 16 April 2004 (situs President University, Masterstudies).',['cikarang-utara']),
+  I('pendidikan','Universitas Pelita Bangsa','edu','Kampus','Jl. Inspeksi Kalimalang No. 9, Cibatu, Cikarang Selatan','Tercatat di daftar universitas di Cikarang (Rumah123).',['cikarang-selatan'],'Cibatu'),
+  I('pendidikan','Universitas Medika Suherman','edu','Kampus','Jl. Raya Industri Pasir Gombong, Jababeka, Pasirgombong, Cikarang Utara','Awalnya STIKES Medika Cikarang, berkembang menjadi Universitas Medika Suherman pada 2021 (Rumah123).',['cikarang-utara'],'Pasirgombong'),
+  I('pendidikan','Institut STIAMI Cikarang','edu','Kampus','Jl. Raya Industri 69, Mekarmukti, Cikarang Utara','Tercatat di daftar universitas di Cikarang (Rumah123).',['cikarang-utara'],'Mekarmukti'),
+  I('pendidikan','STMIK MIC Cikarang','edu','Kampus','Jl. Bugelsalam, Desa Sertajaya, Cikarang Timur','Tercatat di daftar universitas di Cikarang (Rumah123).',['cikarang-timur'],'Sertajaya'),
+  I('pendidikan','Universitas Paramadina Kampus Cikarang','edu','Kampus','Cibatu, Cikarang Selatan (alamat jalan belum terverifikasi)','Kampus Cikarang dari Universitas Paramadina (Rumah123).',['cikarang-selatan'],'Cibatu')
 ];
+const NEW_SET = new Set(ITEMS.slice(ITEMS.findIndex(i => i.name === 'Charcoal Coffee and Eatery')).map(i => i.type + '|' + i.name));
 
 /* ════════════════════════════════════════════════
    REGION & HERO DATA
@@ -1347,18 +1420,19 @@ const IBADAH_TABS = [
   { key:'khonghucu', label:'Khonghucu' }
 ];
 const EMPTY_MSG = {
-  stasiun:  'Belum ada stasiun KRL/LRT di cakupan ini. Pilih Seluruh Bekasi untuk melihat stasiun terdekat.',
-  halte:    'Belum ada data halte resmi yang terverifikasi di cakupan ini.',
-  nonhalte: 'Belum ada data titik non-halte yang terverifikasi di cakupan ini.',
-  mall:     'Belum ada mal besar yang terverifikasi di cakupan ini.',
-  wisata:   'Belum ada tempat wisata yang terverifikasi di cakupan ini.',
-  rs:       'Belum ada rumah sakit yang terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.',
-  klinik:   'Klinik dan puskesmas belum dimasukkan karena belum ada data yang alamat dan kecamatannya terverifikasi.',
-  kopi:     'Belum ada coffee shop atau spot nongkrong yang tercatat di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.'
+  stasiun:   'Belum ada stasiun di cakupan ini. Pilih Seluruh Bekasi untuk melihat yang terdekat.',
+  halte:     'Belum ada halte terverifikasi di cakupan ini.',
+  nonhalte:  'Belum ada titik non-halte terverifikasi di cakupan ini.',
+  mall:      'Belum ada mal terverifikasi di cakupan ini.',
+  wisata:    'Belum ada wisata terverifikasi di cakupan ini.',
+  kopi:      'Belum ada kafe tercatat di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat.',
+  rs:        'Belum ada rumah sakit terverifikasi di cakupan ini.',
+  klinik:    'Klinik dan puskesmas belum dimasukkan karena belum ada data yang terverifikasi.',
+  pendidikan:'Belum ada kampus terverifikasi di cakupan ini. Data Kota Bekasi belum dikumpulkan.'
 };
 function ibadahEmptyMsg() {
   const t = IBADAH_TABS.find(x => x.key === ibTab);
-  return `Belum ada rumah ibadah ${t ? t.label : ''} yang alamatnya sudah terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat di NgayapBeks.`;
+  return `Belum ada rumah ibadah ${t ? t.label : ''} terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat.`;
 }
 
 /* ════════════════════════════════════════════════
@@ -1579,7 +1653,7 @@ function itemCard(i) {
   return `
     <div class="t-item">
       <div class="t-item-top">
-        <div class="t-name">${esc(i.name)}</div>
+        <div class="t-name">${esc(i.name)}${NEW_SET.has(itemKey(i)) ? '<span class="new-pill">Baru</span>' : ''}</div>
         <span class="t-badge ${i.badge}">${esc(i.badgeText)}</span>
       </div>
       ${kecLabelHtml(i.kecs, i.kel)}
@@ -1588,10 +1662,89 @@ function itemCard(i) {
       ${long ? `<button class="t-more" onclick="toggleNote(this)">Selengkapnya</button>` : ''}
       <div class="t-actions">
         <a class="maps-link" href="${mapsUrl(i)}" target="_blank" rel="noopener">${ic('map', 15)} Buka di Maps</a>
+        <span class="act-r">
+        <button class="fav-btn" onclick="shareItem('${k}')" aria-label="Bagikan tempat ini" title="Bagikan">${ic('share', 15)}</button>
+        <button class="fav-btn" onclick="reportItem('${k}')" aria-label="Lapor data salah" title="Lapor data salah">${ic('flag', 15)}</button>
         <button class="fav-btn ${on ? 'on' : ''}" data-fav="${k}" onclick="toggleFav('${k}')" aria-pressed="${on}" aria-label="Simpan ke Daftar Ngayap" title="Simpan ke Daftar Ngayap">${ic('bookmark', 17)}</button>
+        </span>
       </div>
     </div>`;
 }
+
+/* ════════════════════════════════════════════════
+   BAGIKAN, LAPOR, RUTE, TOAST
+════════════════════════════════════════════════ */
+const REPORT_WA = ''; // isi nomor WhatsApp admin format 62812xxxx supaya tombol "Lapor" langsung membuka chat
+function itemByKey(enc) { const k = decodeURIComponent(enc); return ITEMS.find(i => itemKey(i) === k); }
+let toastTimer = null;
+function toast(msg) {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+function copyText(txt) {
+  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(txt).then(() => true).catch(() => false);
+  try {
+    const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand && document.execCommand('copy'); document.body.removeChild(ta);
+    return Promise.resolve(!!ok);
+  } catch (e) { return Promise.resolve(false); }
+}
+function shareItem(enc) {
+  const i = itemByKey(enc); if (!i) return;
+  const text = i.name + '\n' + i.loc + '\n' + mapsUrl(i);
+  if (navigator.share) { navigator.share({ title: i.name, text: text }).catch(() => {}); return; }
+  copyText(text).then(ok => toast(ok ? 'Info tempat disalin' : 'Gagal menyalin'));
+}
+function reportItem(enc) {
+  const i = itemByKey(enc); if (!i) return;
+  const text = 'Lapor data NgayapBeks!\nTempat: ' + i.name + '\nAlamat tercatat: ' + i.loc + '\nKoreksi: ';
+  if (REPORT_WA) { window.open('https://wa.me/' + REPORT_WA + '?text=' + encodeURIComponent(text), '_blank'); return; }
+  copyText(text).then(ok => toast(ok ? 'Teks laporan disalin. Tempel ke WhatsApp admin.' : 'Gagal menyalin teks laporan'));
+}
+
+const ROUTES = [
+  { mode:'kota', title:'Bekasi Selatan sehari', area:'Pekayon & sekitarnya', desc:'Pagi di taman, ngopi, lanjut mal, lalu naik LRT.', stops:['Hutan Kota Patriot Bina Bangsa','Kopi Tuku (Pekayon)','Pakuwon Mall Bekasi','Revo Town Bekasi'] },
+  { mode:'kota', title:'Summarecon Bekasi sehari', area:'Bekasi Utara', desc:'Jalan sore di danau, ngopi, lalu makan di mal.', stops:['Danau Summarecon','Kopi Nako (Summarecon)','Summarecon Mal Bekasi'] },
+  { mode:'kabupaten', title:'Lippo Cikarang sehari', area:'Cikarang Selatan', desc:'Main air, ngopi, belanja, lalu sore di danau.', stops:['WaterBoom Lippo Cikarang','Mokka Coffee Cabana (Lippo Mall Cikarang)','Lippo Mall Cikarang','Danau Elysium'] },
+  { mode:'kabupaten', title:'Tambun sehari', area:'Tambun Selatan', desc:'Museum dekat stasiun, waterpark, lalu ngopi di Grand Wisata.', stops:['Museum Bekasi','Go! Wet Waterpark','The Raffa Cafe And Coffee'] }
+];
+function routeItems(r) { return r.stops.map(n => ITEMS.find(i => i.name === n)).filter(Boolean); }
+function routeMapsUrl(list) {
+  const q = x => encodeURIComponent(x.name + ' Bekasi');
+  let u = 'https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=' + q(list[0]) + '&destination=' + q(list[list.length - 1]);
+  if (list.length > 2) u += '&waypoints=' + list.slice(1, -1).map(x => encodeURIComponent(x.name + ' Bekasi')).join('%7C');
+  return u;
+}
+function saveRoute(idx) {
+  const list = routeItems(ROUTES[idx]);
+  list.forEach(i => { const k = itemKey(i); if (favs.indexOf(k) < 0) favs.push(k); });
+  saveFavs(); renderFav();
+  document.querySelectorAll('.fav-btn[data-fav]').forEach(b => { const on = favs.indexOf(decodeURIComponent(b.getAttribute('data-fav'))) > -1; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  toast(list.length + ' tempat masuk Daftar Ngayap');
+}
+function routesHtml() {
+  const cards = ROUTES.map((r, idx) => ({ r, idx, list: routeItems(r) })).filter(x => x.r.mode === currentMode && x.list.length === x.r.stops.length).map(({ r, idx, list }) => `
+    <div class="route-card">
+      <div class="route-area">${ic('pin', 13)} ${r.area}</div>
+      <div class="route-title">${r.title}</div>
+      <div class="route-desc">${r.desc}</div>
+      <ol class="route-stops">${list.map(i => `<li><span>${esc(i.name)}</span><em>${i.kecs && i.kecs[0] ? kecName(i.kecs[0]) : ''}</em></li>`).join('')}</ol>
+      <div class="route-actions">
+        <button class="more-btn" onclick="saveRoute(${idx})">${ic('bookmark', 15)} Simpan semua</button>
+        <a class="maps-link" href="${routeMapsUrl(list)}" target="_blank" rel="noopener">${ic('map', 15)} Rute di Maps</a>
+      </div>
+    </div>`).join('');
+  if (!cards) return '';
+  return `
+      <div class="divider"></div>
+      <div class="section-label">Rute 1 Hari</div>
+      <div class="section-title">Ngayap Tanpa Mikir</div>
+      <p class="section-desc">Urutan tempat yang berdekatan, diambil dari data di atas. Simpan semuanya ke Daftar Ngayap dalam satu klik.</p>
+      <div class="routes-grid">${cards}</div>`;
+}
+
 function toggleNote(btn) {
   const n = btn.previousElementSibling;
   const open = !n.classList.toggle('clamp');
@@ -1692,12 +1845,13 @@ const CATS = [
   { key:'mall',      label:'Mal',              icon:'bag' },
   { key:'ibadah',    label:'Rumah Ibadah',     icon:'worship' },
   { key:'kesehatan', label:'Kesehatan',        icon:'hospital' },
+  { key:'pendidikan',label:'Pendidikan',       icon:'cap' },
   { key:'wisata',    label:'Wisata',           icon:'tree' },
   { key:'kopi',      label:'Kopi & Nongkrong', icon:'coffee' }
 ];
 function catCount(k) {
   if (k === 'ibadah') return ITEMS.filter(i => i.type === 'ibadah' && scopeMatch(i) && matchQ(i)).length;
-  const m = { transit:['stasiun','halte','nonhalte'], mall:['mall'], kesehatan:['rs','klinik'], wisata:['wisata'], kopi:['kopi'] };
+  const m = { transit:['stasiun','halte','nonhalte'], mall:['mall'], kesehatan:['rs','klinik'], pendidikan:['pendidikan'], wisata:['wisata'], kopi:['kopi'] };
   return m[k].reduce((n, t) => n + filterItems(t).length, 0);
 }
 function catChipsHtml() {
@@ -1755,6 +1909,7 @@ function buildBlocks() {
   const malls  = filterItems('mall');
   const wisata = filterItems('wisata');
   const kopi   = filterItems('kopi');
+  const edu    = filterItems('pendidikan');
   return `<div class="cat-wrap" data-active="${cat}">
     <div class="block" data-cat="transit">
       <div class="block-title">${ic('train',19)} Transportasi Umum</div>
@@ -1771,16 +1926,22 @@ function buildBlocks() {
 
     <div class="block" data-cat="ibadah">
       <div class="block-title">${ic('worship',19)} Rumah Ibadah <span class="t-count" id="ibTotal">${ibadahCurrent().length}</span></div>
-      <div class="block-sub">Masjid dan mushala, gereja Kristen dan Katolik, pura, vihara, serta klenteng. Daftar ini belum lengkap: hanya entri yang bisa diverifikasi yang ditampilkan. Sebagai gambaran, statistik 2022 (dikutip Jakarta Post) mencatat sekitar 2,2 juta Muslim, 106 ribu Protestan, dan 28,8 ribu Katolik di Kota Bekasi, dan data SIMAS Kemenag 2019 mencatat 594 masjid dan 382 mushala, yang menurut peneliti kemungkinan lebih sedikit dari kenyataan. Untuk Kab. Bekasi: liputan Tirto (2019) menyebut belum ada pura di kabupaten ini (sekitar 7.000 umat Hindu beribadah ke Kota Bekasi), jadi tab Hindu di Kab. Bekasi kosong sampai ada data yang terverifikasi.</div>
+      <div class="block-sub">Masjid, gereja, pura, vihara, dan klenteng yang alamatnya bisa diverifikasi. Daftar belum lengkap.</div>
       <div class="transit-tabs" id="ibTabs">${ibadahTabsHtml()}</div>
       <div class="t-list" id="ibList">${ibadahListHtml()}</div>
     </div>
 
     <div class="block" data-cat="kesehatan">
       <div class="block-title">${ic('hospital',19)} Rumah Sakit &amp; Klinik</div>
-      <div class="block-sub">Rumah sakit umum, RSUD, dan RS swasta yang alamat serta kecamatannya bisa dipastikan dari sumber. Klinik dan puskesmas belum dimasukkan karena belum ada data terverifikasi. Cek langsung ke rumah sakit untuk layanan IGD, jam, dan kepesertaan BPJS.</div>
+      <div class="block-sub">Hanya yang alamat dan kecamatannya bisa dipastikan. Klinik dan puskesmas belum dimasukkan. Cek langsung untuk IGD, jam, dan BPJS.</div>
       <div class="transit-tabs" id="hsTabs">${hsTabsHtml()}</div>
       <div class="t-list" id="hsList">${listHtml(filterItems(hsTab), hsTab)}</div>
+    </div>
+
+    <div class="block" data-cat="pendidikan">
+      <div class="block-title">${ic('cap',19)} Pendidikan <span class="t-count">${edu.length}</span></div>
+      <div class="block-sub">Kampus dan perguruan tinggi yang alamatnya bisa diverifikasi. Baru mencakup Kab. Bekasi.</div>
+      <div class="t-list">${listHtml(edu, 'pendidikan')}</div>
     </div>
 
     <div class="block" data-cat="wisata">
@@ -1791,7 +1952,7 @@ function buildBlocks() {
 
     <div class="block" data-cat="kopi">
       <div class="block-title">${ic('coffee',19)} Coffeeshop &amp; Spot Nongkrong <span class="t-count">${kopi.length}</span></div>
-      <div class="block-sub">Coffee shop dan kafe yang tercatat di artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor). Alamat dan jam disalin dari sumber, belum dicek langsung ke lokasi, dan sebagian sumber berumur lebih dari setahun, jadi tempat bisa sudah pindah atau tutup. Warkop pinggir jalan belum dimasukkan. Cek Instagram atau Google Maps sebelum berangkat.</div>
+      <div class="block-sub">Dari artikel rekomendasi; alamat dan jam disalin dari sumber dan bisa sudah berubah. Cek Instagram atau Maps sebelum berangkat.</div>
       <div class="t-list">${listHtml(kopi, 'kopi')}</div>
     </div>
     </div>`;
@@ -1816,7 +1977,7 @@ function buildDataInner() {
     <div class="data-head">
       <div>
         <div class="data-head-title">Data Wilayah · ${scopeLabel}</div>
-        <div class="data-head-sub">Transportasi umum, pusat belanja, rumah ibadah, tempat wisata, dan spot nongkrong untuk cakupan yang dipilih.</div>
+        <div class="data-head-sub">Pilih kategori, lalu cari atau simpan tempat favorit.</div>
       </div>
       ${scopeRow}
     </div>
@@ -1824,9 +1985,7 @@ function buildDataInner() {
     ${catBarHtml()}
     <div id="catWrap">${buildBlocks()}</div>
 
-    <div class="t-foot">
-      <b>Catatan data:</b> rumah sakit Kota Bekasi dari Perwali/JDIH Bekasi, BPK Jabar, HelloSehat, Halodoc, Alodokter, Kumparan, dan daftar rekanan Prudential. Tambahan Kab. Bekasi (Okt 2026) dari Industry.co.id, Popbela, Antara, Liputan6, Untar, Tirto, GNFI, Mamikos, Moladin, Popmama, Orami, Auto2000, dan Tripadvisor. Disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Coffee shop dan kafe disalin dari artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor) dan belum dicek langsung ke lokasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.
-    </div>`;
+    <details class="t-foot"><summary>Sumber &amp; catatan data</summary><p><b>Catatan data:</b> rumah sakit Kota Bekasi dari Perwali/JDIH Bekasi, BPK Jabar, HelloSehat, Halodoc, Alodokter, Kumparan, dan daftar rekanan Prudential. Tambahan Kab. Bekasi (Okt 2026) dari Industry.co.id, Popbela, Antara, Liputan6, Untar, Tirto, GNFI, Mamikos, Moladin, Popmama, Orami, Auto2000, dan Tripadvisor. Disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Coffee shop dan kafe disalin dari artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor) dan belum dicek langsung ke lokasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.</p><p><b>Rumah ibadah:</b> Masjid dan mushala, gereja Kristen dan Katolik, pura, vihara, serta klenteng. Daftar ini belum lengkap: hanya entri yang bisa diverifikasi yang ditampilkan. Sebagai gambaran, statistik 2022 (dikutip Jakarta Post) mencatat sekitar 2,2 juta Muslim, 106 ribu Protestan, dan 28,8 ribu Katolik di Kota Bekasi, dan data SIMAS Kemenag 2019 mencatat 594 masjid dan 382 mushala, yang menurut peneliti kemungkinan lebih sedikit dari kenyataan. Untuk Kab. Bekasi: liputan Tirto (2019) menyebut belum ada pura di kabupaten ini (sekitar 7.000 umat Hindu beribadah ke Kota Bekasi), jadi tab Hindu di Kab. Bekasi kosong sampai ada data yang terverifikasi.</p></details>`;
 }
 
 function setScope(s) { scope = s; selKec = null; refreshMapData(); }
@@ -1863,9 +2022,9 @@ function renderContent() {
       ${buildKelBlock(r)}
 
       <div class="map-section">
-        <div class="section-label">Peta Wilayah</div>
-        <div class="section-title">Peta Skematik ${modeLabel}</div>
-        <p class="section-desc">Petak berwarna menandai kecamatan di tab ${r.tag}. Klik kecamatan mana pun untuk melihat stasiun, mal, rumah ibadah, dan wisatanya.</p>
+        <div class="section-label">Jelajahi</div>
+        <div class="section-title">Jelajahi ${r.tag}</div>
+        <p class="section-desc">Klik kecamatan di peta untuk memfilter, lalu pilih kategori di sampingnya.</p>
         <div class="split split-${currentMode}">
           <div id="mapBox" class="split-map">${buildCartogram()}</div>
           <div class="data-section split-data" id="dataBox">${buildDataInner()}</div>
@@ -1886,6 +2045,8 @@ function renderContent() {
             <div class="card-body">${h.body||''}</div>
           </div>`).join('')}
       </div>
+
+      ${routesHtml()}
 
       <div class="divider"></div>
 
