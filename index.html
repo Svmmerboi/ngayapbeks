@@ -640,6 +640,7 @@
   .q-input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--fg); font: inherit; font-size: 0.86rem; }
   .q-input::placeholder { color: var(--faint); }
   .cat-wrap > .block { display: none; margin-top: 22px; }
+  .cat-wrap[data-active="semua"] > .block:not(.is-empty),
   .cat-wrap[data-active="transit"] > .block[data-cat="transit"],
   .cat-wrap[data-active="mall"] > .block[data-cat="mall"],
   .cat-wrap[data-active="ibadah"] > .block[data-cat="ibadah"],
@@ -793,6 +794,59 @@
   :root[data-theme="light"] .route-stops li em { color: var(--muted); }
   :root[data-theme="light"] .toast { background: #7A4E00; color: #FFFFFF; }
 
+
+  /* ─── SEDERHANA: wilayah, peta, hero ─── */
+  .nav-tabs { display: none; }
+  .region-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 4px 0 18px; }
+  .region-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .region-chip { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 8px 16px; border-radius: 99px; font-size: 0.86rem; font-weight: 600; color: var(--muted); background: var(--navy-mid); border: 1px solid var(--line-2); transition: all 0.18s ease; }
+  .region-chip:hover { color: var(--fg); border-color: var(--line-3); }
+  .region-chip.active { color: var(--gold); border-color: var(--gold); background: rgba(240,165,0,0.10); }
+  .link-btn { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 4px; font-size: 0.8rem; font-weight: 600; color: var(--gold); background: none; border: 0; }
+  .link-btn:hover { text-decoration: underline; }
+  .region-banner { padding: 24px 26px; margin-bottom: 14px; }
+  .banner-heading { font-size: 1.5rem; }
+  .hero { min-height: 40vh; }
+  .hero-subtitle { margin-bottom: 22px; }
+  .hero-stats { gap: 8px 22px; }
+  .stat-chip { font-size: 0.86rem; color: var(--text-body); }
+  .stat-chip b { font-family: 'Syne', sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--fg); }
+  .stat-chip b span { color: var(--gold); }
+  .about-sub { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--fg); margin: 22px 0 12px; }
+  .transit-tabs:empty { display: none; }
+
+  /* peta: intensitas warna mengikuti jumlah */
+  .cg-tile { background: color-mix(in srgb, var(--gold) calc(var(--lvl, 0) * 30%), var(--tile-bg)) !important; }
+  .cg-tile.in-region { background: color-mix(in srgb, var(--gold) calc(var(--lvl, 0) * 30%), color-mix(in srgb, var(--c) 16%, var(--navy-mid))) !important; border-color: color-mix(in srgb, var(--c) 75%, transparent); }
+  .cg.has-region .cg-tile:not(.in-region) { opacity: 0.55; }
+  .cg-tile.sel { outline: 2px solid var(--gold); outline-offset: 1px; opacity: 1 !important; }
+  .cg-counts span { font-size: 0.8rem; font-weight: 700; color: var(--fg); }
+  .map-legend2 { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 0.72rem; color: var(--muted); flex-wrap: wrap; }
+  .map-legend2 em { font-style: normal; margin-left: 4px; color: var(--faint); }
+  .lg-bar { width: 72px; height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--tile-bg), var(--gold)); border: 1px solid var(--line-2); }
+  :root[data-theme="light"] .region-chip { background: #FFFFFF; color: var(--text-body); }
+  :root[data-theme="light"] .region-chip.active { color: #5C3B00; border-color: rgba(122,78,0,0.55); background: rgba(122,78,0,0.10); }
+  :root[data-theme="light"] .link-btn, :root[data-theme="light"] .stat-chip b span { color: #5C3B00; }
+  :root[data-theme="light"] .stat-chip { color: var(--text-body); }
+  :root[data-theme="light"] .map-legend2 em { color: var(--muted); }
+
+  /* kartu: menu aksi, perlu cek, tag kopi */
+  .menu-wrap { position: relative; display: inline-block; }
+  .mini-menu { position: absolute; right: 0; bottom: calc(100% + 6px); z-index: 20; min-width: 180px; padding: 6px; border-radius: 12px; display: flex; flex-direction: column; background: var(--navy-light); border: 1px solid var(--line-3); box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+  .mini-menu[hidden] { display: none; }
+  .mini-menu button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; cursor: pointer; padding: 9px 10px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; color: var(--fg); background: none; border: 0; }
+  .mini-menu button:hover { background: var(--chip-bg); }
+  .check-pill { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 99px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.03em; vertical-align: 2px; cursor: help; color: var(--muted); border: 1px dashed var(--line-3); }
+  .tag-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tag-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-right: 2px; }
+  .tag-chip { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; color: var(--text-body); background: transparent; border: 1px solid var(--line-2); }
+  .tag-chip span { font-size: 0.68rem; opacity: 0.7; }
+  .tag-chip.on { color: #14202E; background: var(--gold); border-color: var(--gold); }
+  :root[data-theme="light"] .tag-chip.on { color: #FFFFFF; background: #7A4E00; border-color: #7A4E00; }
+  :root[data-theme="light"] .mini-menu { background: #FFFFFF; }
+  :root[data-theme="light"] .mini-menu button { color: var(--fg); }
+  @media (max-width: 768px) { .region-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: 100%; } .region-chip { white-space: nowrap; } }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     nav { padding: 0 16px; }
@@ -912,6 +966,7 @@ const ICONS = {
   share: '<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>',
   trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
   flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  more: '<circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
   hospital: '<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M12 8v8M8 12h8"/>',
   x: '<path d="M6 6l12 12M18 6L6 18"/>',
   arrowup: '<path d="M12 19V5M6 11l6-6 6 6"/>',
@@ -1395,23 +1450,26 @@ const DATA = {
    STATE
 ════════════════════════════════════════════════ */
 let currentMode = 'kota';
-let currentRegion = 'timur';
+let currentRegion = 'semua';
 let scope = 'wilayah';
-let tTab = 'stasiun';
+let tTab = 'semua';
 let selKec = null;
-let ibTab = 'islam';
+let ibTab = 'semua';
 let hsTab = 'rs';
 const LIMIT = 6;
-let cat = 'transit', q = '', expanded = {}, onlyVer = false;
+let cat = 'semua', q = '', expanded = {}, onlyVer = false;
+const kopiTags = new Set();
 let favs = [];
 const IBADAH_JSON = 'data/ibadah.json';
 
 const TRANSIT_TABS = [
+  { key:'semua',    label:'Semua' },
   { key:'stasiun',  label:'Stasiun' },
   { key:'halte',    label:'Halte' },
   { key:'nonhalte', label:'Non-Halte' }
 ];
 const IBADAH_TABS = [
+  { key:'semua',     label:'Semua' },
   { key:'islam',     label:'Islam' },
   { key:'kristen',   label:'Kristen' },
   { key:'katolik',   label:'Katolik' },
@@ -1420,7 +1478,8 @@ const IBADAH_TABS = [
   { key:'khonghucu', label:'Khonghucu' }
 ];
 const EMPTY_MSG = {
-  stasiun:   'Belum ada stasiun di cakupan ini. Pilih Seluruh Bekasi untuk melihat yang terdekat.',
+  transit:   'Belum ada data transportasi terverifikasi di cakupan ini.',
+  stasiun:   'Belum ada stasiun di cakupan ini. Pilih wilayah Semua untuk melihat yang terdekat.',
   halte:     'Belum ada halte terverifikasi di cakupan ini.',
   nonhalte:  'Belum ada titik non-halte terverifikasi di cakupan ini.',
   mall:      'Belum ada mal terverifikasi di cakupan ini.',
@@ -1432,7 +1491,7 @@ const EMPTY_MSG = {
 };
 function ibadahEmptyMsg() {
   const t = IBADAH_TABS.find(x => x.key === ibTab);
-  return `Belum ada rumah ibadah ${t ? t.label : ''} terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat.`;
+  return `Belum ada rumah ibadah ${t && t.key !== 'semua' ? t.label + ' ' : ''}terverifikasi di cakupan ini. Bukan berarti tidak ada, hanya belum tercatat.`;
 }
 
 /* ════════════════════════════════════════════════
@@ -1455,17 +1514,22 @@ function regionOfKec(id) {
   const regs = DATA[currentMode].regions;
   return Object.keys(regs).find(k => regs[k].kecs.includes(id)) || null;
 }
+const MODE_RE = /cikarang|jababeka|kab\.? bekasi|tambun|cibitung|deltamas|babelan|muaragembong/i;
+function itemInMode(i) {
+  if (i.kecs && i.kecs.length) return i.kecs.some(k => CARTO[currentMode].tiles.some(t => t.id === k));
+  return (MODE_RE.test(i.name + ' ' + i.loc + ' ' + i.note) ? 'kabupaten' : 'kota') === currentMode;
+}
 function scopeMatch(i) {
-  const r = DATA[currentMode].regions[currentRegion];
   if (selKec) return i.kecs.includes(selKec);
-  if (scope === 'semua') return true;
-  return i.kecs.some(k => r.kecs.includes(k));
+  if (currentRegion === 'semua') return itemInMode(i);
+  const r = DATA[currentMode].regions[currentRegion];
+  return !!r && i.kecs.some(k => r.kecs.includes(k));
 }
 function filterItems(type) {
   return ITEMS.filter(i => i.type === type && scopeMatch(i) && matchQ(i));
 }
 function ibadahByAgama(a) {
-  return ITEMS.filter(i => i.type === 'ibadah' && i.agama === a && scopeMatch(i) && matchQ(i));
+  return ITEMS.filter(i => i.type === 'ibadah' && (a === 'semua' || i.agama === a) && scopeMatch(i) && matchQ(i));
 }
 function ibadahCurrent() {
   return ibadahByAgama(ibTab).sort((a, b) => a.name.localeCompare(b.name, 'id'));
@@ -1480,10 +1544,10 @@ function countsFor(kecId) {
   return c;
 }
 function kecLabelHtml(kecs, kel) {
-  if (!kecs || !kecs.length) return `<div class="loc-chip unk">${ic('pin', 13)}Kecamatan belum terverifikasi</div>`;
+  if (!kecs || !kecs.length) return `<div class="loc-chip unk">${ic('pin', 13)}Kecamatan belum diketahui</div>`;
   if (kecs.length > 1) return `<div class="loc-chip multi">${ic('pin', 13)}Lintas / dekat batas: ${kecs.map(kecName).join(' · ')}</div>`;
   const id = kecs[0];
-  return `<div class="loc-chip">${ic('pin', 13)}Kec. ${kecName(id)} · ${modeOfKec(id)}${kel ? ` · Kel./Desa ${esc(kel)}` : ' · kelurahan belum tercatat'}</div>`;
+  return `<div class="loc-chip">${ic('pin', 13)}Kec. ${kecName(id)} · ${modeOfKec(id)}${kel ? ` · Kel./Desa ${esc(kel)}` : ''}</div>`;
 }
 
 /* ════════════════════════════════════════════════
@@ -1505,31 +1569,24 @@ function loadIbadah() {
    NAV / HERO
 ════════════════════════════════════════════════ */
 function switchMode(mode) {
-  currentMode = mode;
-  currentRegion = DATA[mode].tabs[0];
-  selKec = null; scope = 'wilayah';
+  currentMode = mode; currentRegion = 'semua'; selKec = null;
   document.getElementById('btnKota').classList.toggle('active', mode === 'kota');
   document.getElementById('btnKab').classList.toggle('active', mode === 'kabupaten');
-  renderTabs(); renderHero(); renderContent();
+  renderHero(); renderContent(); writeHash();
 }
 function switchRegion(region) {
   currentRegion = region;
   selKec = null;
   renderTabs(); renderContent();
 }
-function renderTabs() {
-  const { tabs, labels } = DATA[currentMode];
-  document.getElementById('navTabs').innerHTML = tabs.map(t =>
-    `<button class="tab-btn ${t===currentRegion?'active':''}" onclick="switchRegion('${t}')">${labels[t]}</button>`
-  ).join('');
-}
+function renderTabs() { /* navigasi wilayah dipindah ke chip di bagian Jelajahi */ }
 function renderHero() {
   const h = DATA[currentMode].hero;
   document.getElementById('heroEyebrow').textContent = h.eyebrow;
   document.getElementById('heroTitle').innerHTML = h.title;
   document.getElementById('heroSubtitle').textContent = h.subtitle;
   document.getElementById('heroStats').innerHTML = h.stats.map(s =>
-    `<div class="stat-item"><div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div></div>`
+    `<span class="stat-chip"><b>${s.val}</b> ${s.label}</span>`
   ).join('');
 }
 
@@ -1560,41 +1617,48 @@ function buildKelBlock(r) {
 /* ════════════════════════════════════════════════
    CARTOGRAM
 ════════════════════════════════════════════════ */
+function catTypes(k) {
+  return { transit:['stasiun','halte','nonhalte'], mall:['mall'], ibadah:['ibadah'], kesehatan:['rs','klinik'], pendidikan:['pendidikan'], wisata:['wisata'], kopi:['kopi'] }[k] || null;
+}
+function countFor(id, k) {
+  const ts = catTypes(k);
+  return ITEMS.filter(i => i.kecs.includes(id) && (!ts || ts.indexOf(i.type) > -1)).length;
+}
 function buildCartogram() {
   const m = CARTO[currentMode];
   const regs = DATA[currentMode].regions;
   const rows = Math.max(...m.tiles.map(t => t.y)) + 1;
+  const cdef = CATS.find(c => c.key === cat) || CATS[0];
+  const counts = {}; m.tiles.forEach(t => counts[t.id] = countFor(t.id, cat));
+  const mx = Math.max(1, ...Object.values(counts));
+  const hasReg = currentRegion !== 'semua';
   const tiles = m.tiles.map(t => {
     const rk = regionOfKec(t.id);
-    const inRegion = rk === currentRegion;
-    const color = rk ? REGION_COLOR[rk] : '#2A3F58';
-    const c = countsFor(t.id);
-    const cell = (n, ico) => `<span class="${n ? '' : 'zero'}"><i>${ico}</i> ${n}</span>`;
+    const inRegion = hasReg && rk === currentRegion;
+    const color = rk ? REGION_COLOR[rk] : '#3A5069';
+    const n = counts[t.id];
     const sub = rk ? regs[rk].tag : 'Belum ada tab wilayah';
     return `
       <button class="cg-tile ${inRegion?'in-region':''} ${selKec===t.id?'sel':''}"
-        style="grid-column:${t.x+1};grid-row:${t.y+1};--c:${color}"
-        onclick="selectKec('${t.id}')" aria-pressed="${selKec===t.id}">
+        style="grid-column:${t.x+1};grid-row:${t.y+1};--c:${color};--lvl:${(n/mx).toFixed(2)}"
+        onclick="selectKec('${t.id}')" aria-pressed="${selKec===t.id}" aria-label="${t.name}, ${n} tempat">
         <div>
           <div class="cg-name">${t.name}</div>
           <div class="cg-sub">${sub}</div>
         </div>
-        <div class="cg-counts">${cell(c.stasiun,ic('train',12))}${cell(c.mall,ic('bag',12))}${cell(c.ibadah,ic('worship',12))}${cell(c.wisata,ic('tree',12))}${cell(c.kesehatan,ic('hospital',12))}</div>
+        <div class="cg-counts"><span class="${n ? '' : 'zero'}">${ic(cdef.icon, 12)} ${n}</span></div>
       </button>`;
   }).join('');
-
-  const legend = Object.keys(regs).map(k =>
-    `<span><i class="lg-dot" style="background:${REGION_COLOR[k]}"></i>${regs[k].tag}</span>`
-  ).join('');
-
+  const reset = (selKec || hasReg) ? `<button class="link-btn" onclick="resetSel()">${ic('x', 13)} Reset pilihan</button>` : '';
   return `
     <div class="map-shell">
       <div class="map-top">
-        <div class="compass"><b>${ic('arrowup',14)}</b> Utara · ${m.title}</div>
-        <div class="map-legend">${legend}</div>
+        <div class="compass"><b>${ic('arrowup', 14)}</b> Utara · ${m.title}</div>
+        ${reset}
       </div>
-      <div class="cg" style="--cols:${m.cols};grid-template-rows:repeat(${rows},auto)">${tiles}</div>
-      <div class="map-note">Peta skematik: 1 petak = 1 kecamatan, posisi hanya perkiraan letak relatif (bukan skala dan bukan batas resmi). Angka di petak: ${ic('train',12)} stasiun · ${ic('bag',12)} mal · ${ic('worship',12)} rumah ibadah · ${ic('tree',12)} wisata · ${ic('hospital',12)} rumah sakit yang tercatat di NgayapBeks. Klik petak untuk memfilter data di bawah.</div>
+      <div class="cg ${hasReg ? 'has-region' : ''}" style="--cols:${m.cols};grid-template-rows:repeat(${rows},auto)">${tiles}</div>
+      <div class="map-legend2"><span>Sedikit</span><i class="lg-bar"></i><span>Banyak</span><em>${cat === 'semua' ? 'semua kategori' : cdef.label}</em></div>
+      <div class="map-note">Peta skematik, bukan skala. Klik petak untuk memfilter data.</div>
     </div>
     <div class="kec-info-panel" id="kecInfoPanel">${buildKecInfo()}</div>`;
 }
@@ -1625,51 +1689,74 @@ function buildKecInfo() {
 }
 
 function selectKec(id) {
-  if (selKec === id) { selKec = null; refreshMapData(); return; }
+  if (selKec === id) { selKec = null; refreshMapData(); writeHash(); return; }
   selKec = id;
   const rk = regionOfKec(id);
-  if (rk && rk !== currentRegion) {
-    currentRegion = rk;
-    renderTabs();
-    renderContent();
-  } else {
-    refreshMapData();
-  }
+  if (rk && rk !== currentRegion) { currentRegion = rk; renderContent(); }
+  else if (!rk && currentRegion !== 'semua') { currentRegion = 'semua'; renderContent(); }
+  else refreshMapData();
+  writeHash();
 }
-function clearKec() { selKec = null; refreshMapData(); }
+function setRegion(k) { currentRegion = k; selKec = null; renderContent(); writeHash(); }
+function resetSel() { currentRegion = 'semua'; selKec = null; renderContent(); writeHash(); }
+function clearKec() { selKec = null; refreshMapData(); writeHash(); }
 
 /* ════════════════════════════════════════════════
    DATA BLOCKS
 ════════════════════════════════════════════════ */
 function itemKey(i) { return i.type + '|' + i.name; }
 function encKey(k) { return encodeURIComponent(k).replace(/'/g, '%27'); }
+function displayLoc(i) {
+  return (i.loc || '').replace(/\s*\([^)]*belum (?:terverifikasi|diverifikasi)[^)]*\)/gi, '').trim();
+}
+function checkHint(i) {
+  const parts = [];
+  if (!i.kecs || !i.kecs.length) parts.push('Kecamatan belum terverifikasi');
+  const m = (i.loc || '').match(/\(([^)]*belum (?:terverifikasi|diverifikasi)[^)]*)\)/i);
+  if (m) parts.push(m[1].charAt(0).toUpperCase() + m[1].slice(1));
+  if (/perkiraan|perlu cek/i.test((i.loc || '') + ' ' + (i.note || ''))) parts.push('Sebagian data berupa perkiraan');
+  return parts.join('; ') || 'Data belum sepenuhnya terverifikasi';
+}
 function mapsUrl(i) {
-  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(i.name + ' ' + (i.loc || '') + ' Bekasi');
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(i.name + ' ' + displayLoc(i) + ' Bekasi');
 }
 function itemCard(i) {
   const k = encKey(itemKey(i));
   const on = favs.indexOf(itemKey(i)) > -1;
   const long = (i.note || '').length > 95;
+  const need = !isVerified(i);
   return `
     <div class="t-item">
       <div class="t-item-top">
-        <div class="t-name">${esc(i.name)}${NEW_SET.has(itemKey(i)) ? '<span class="new-pill">Baru</span>' : ''}</div>
+        <div class="t-name">${esc(i.name)}${NEW_SET.has(itemKey(i)) ? '<span class="new-pill">Baru</span>' : ''}${need ? `<span class="check-pill" title="${esc(checkHint(i))}" tabindex="0">Perlu cek</span>` : ''}</div>
         <span class="t-badge ${i.badge}">${esc(i.badgeText)}</span>
       </div>
       ${kecLabelHtml(i.kecs, i.kel)}
-      <div class="t-loc">${esc(i.loc)}</div>
+      <div class="t-loc">${esc(displayLoc(i))}</div>
       <div class="t-note ${long ? 'clamp' : ''}">${esc(i.note)}</div>
       ${long ? `<button class="t-more" onclick="toggleNote(this)">Selengkapnya</button>` : ''}
       <div class="t-actions">
         <a class="maps-link" href="${mapsUrl(i)}" target="_blank" rel="noopener">${ic('map', 15)} Buka di Maps</a>
         <span class="act-r">
-        <button class="fav-btn" onclick="shareItem('${k}')" aria-label="Bagikan tempat ini" title="Bagikan">${ic('share', 15)}</button>
-        <button class="fav-btn" onclick="reportItem('${k}')" aria-label="Lapor data salah" title="Lapor data salah">${ic('flag', 15)}</button>
-        <button class="fav-btn ${on ? 'on' : ''}" data-fav="${k}" onclick="toggleFav('${k}')" aria-pressed="${on}" aria-label="Simpan ke Daftar Ngayap" title="Simpan ke Daftar Ngayap">${ic('bookmark', 17)}</button>
+          <span class="menu-wrap">
+            <button class="fav-btn" onclick="toggleMenu(event, this)" aria-label="Aksi lain" aria-haspopup="true" title="Aksi lain">${ic('more', 16)}</button>
+            <span class="mini-menu" hidden>
+              <button onclick="shareItem('${k}')">${ic('share', 14)} Bagikan</button>
+              <button onclick="reportItem('${k}')">${ic('flag', 14)} Lapor data salah</button>
+            </span>
+          </span>
+          <button class="fav-btn ${on ? 'on' : ''}" data-fav="${k}" onclick="toggleFav('${k}')" aria-pressed="${on}" aria-label="Simpan ke Daftar Ngayap" title="Simpan ke Daftar Ngayap">${ic('bookmark', 17)}</button>
         </span>
       </div>
     </div>`;
 }
+function closeMenus() { document.querySelectorAll('.mini-menu').forEach(m => m.hidden = true); }
+function toggleMenu(e, btn) {
+  e.stopPropagation();
+  const m = btn.nextElementSibling, wasHidden = m.hidden;
+  closeMenus(); m.hidden = !wasHidden;
+}
+document.addEventListener('click', closeMenus);
 
 /* ════════════════════════════════════════════════
    BAGIKAN, LAPOR, RUTE, TOAST
@@ -1693,13 +1780,13 @@ function copyText(txt) {
 }
 function shareItem(enc) {
   const i = itemByKey(enc); if (!i) return;
-  const text = i.name + '\n' + i.loc + '\n' + mapsUrl(i);
+  const text = i.name + '\n' + displayLoc(i) + '\n' + mapsUrl(i);
   if (navigator.share) { navigator.share({ title: i.name, text: text }).catch(() => {}); return; }
   copyText(text).then(ok => toast(ok ? 'Info tempat disalin' : 'Gagal menyalin'));
 }
 function reportItem(enc) {
   const i = itemByKey(enc); if (!i) return;
-  const text = 'Lapor data NgayapBeks!\nTempat: ' + i.name + '\nAlamat tercatat: ' + i.loc + '\nKoreksi: ';
+  const text = 'Lapor data NgayapBeks!\nTempat: ' + i.name + '\nAlamat tercatat: ' + displayLoc(i) + '\nKoreksi: ';
   if (REPORT_WA) { window.open('https://wa.me/' + REPORT_WA + '?text=' + encodeURIComponent(text), '_blank'); return; }
   copyText(text).then(ok => toast(ok ? 'Teks laporan disalin. Tempel ke WhatsApp admin.' : 'Gagal menyalin teks laporan'));
 }
@@ -1771,7 +1858,7 @@ function toggleFav(enc) {
   renderFav();
 }
 function shareText() {
-  const rows = favItems().map((i, n) => `${n + 1}. ${i.name} - ${i.loc}\n${mapsUrl(i)}`);
+  const rows = favItems().map((i, n) => `${n + 1}. ${i.name} - ${displayLoc(i)}\n${mapsUrl(i)}`);
   return 'Daftar Ngayap-ku (NgayapBeks!):\n\n' + rows.join('\n\n');
 }
 function renderFav() {
@@ -1816,31 +1903,66 @@ function initFav() {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFav(); });
   renderFav();
 }
+const KOPI_TAGS = [
+  { k:'wifi',    label:'Wi-Fi',             re:/wi-?fi/i },
+  { k:'colokan', label:'Colokan',           re:/colokan|stopkontak/i },
+  { k:'wfc',     label:'Cocok WFC',         re:/wfc|work from|coworking|ruang rapat|ruang meeting|meeting/i },
+  { k:'outdoor', label:'Area outdoor',      re:/outdoor|taman|rooftop/i },
+  { k:'live',    label:'Live music',        re:/live music/i },
+  { k:'malam',   label:'Buka sampai malam', fn: i => endHour(i) >= 23 }
+];
+function endHour(i) {
+  let mx = 0, m; const re = /(\d{1,2})\.(\d{2})\s*[–-]\s*(\d{1,2})\.(\d{2})/g;
+  while ((m = re.exec(i.note || ''))) { const e = +m[3]; if (e > mx) mx = e; }
+  return mx;
+}
+function tagsOf(i) {
+  if (i.type !== 'kopi') return [];
+  if (!i._t) i._t = KOPI_TAGS.filter(t => t.fn ? t.fn(i) : t.re.test((i.note || '') + ' ' + (i.loc || ''))).map(t => t.k);
+  return i._t;
+}
+function toggleTag(k) { if (kopiTags.has(k)) kopiTags.delete(k); else kopiTags.add(k); refreshCat(); writeHash(); }
+function kopiTagsHtml() {
+  const base = ITEMS.filter(i => i.type === 'kopi' && scopeMatch(i) && (!onlyVer || isVerified(i)));
+  const btns = KOPI_TAGS.map(t => {
+    const n = base.filter(i => tagsOf(i).indexOf(t.k) > -1).length;
+    if (!n && !kopiTags.has(t.k)) return '';
+    return `<button class="tag-chip ${kopiTags.has(t.k) ? 'on' : ''}" onclick="toggleTag('${t.k}')" aria-pressed="${kopiTags.has(t.k)}">${t.label}<span>${n}</span></button>`;
+  }).join('');
+  return btns ? `<div class="tag-row"><span class="tag-label">Cocok untuk</span>${btns}</div>` : '';
+}
 function isVerified(i) {
   return !!(i.kecs && i.kecs.length) && !/belum terverifikasi|belum diverifikasi|perkiraan|perlu cek/i.test(i.loc + ' ' + i.note);
 }
 function matchQ(i) {
   if (onlyVer && !isVerified(i)) return false;
+  if (i.type === 'kopi' && kopiTags.size) { const tg = tagsOf(i); for (const t of kopiTags) if (tg.indexOf(t) < 0) return false; }
   if (!q) return true;
   const t = (i.name + ' ' + i.loc + ' ' + i.note + ' ' + (i.kel || '') + ' ' + i.badgeText).toLowerCase();
   return q.toLowerCase().split(/\s+/).filter(Boolean).every(w => t.includes(w));
 }
 function emptyHtml(key) {
-  if (q) return `<div class="t-empty">Tidak ada hasil untuk &ldquo;${esc(q)}&rdquo; di cakupan ini. Coba kata lain atau pilih cakupan Seluruh Bekasi.</div>`;
+  if (q) return `<div class="t-empty">Tidak ada hasil untuk &ldquo;${esc(q)}&rdquo; di cakupan ini. Coba kata lain atau pilih wilayah Semua.</div>`;
   return `<div class="t-empty">${key.indexOf('ib-') === 0 ? ibadahEmptyMsg() : EMPTY_MSG[key]}</div>`;
 }
 function cardsHtml(items, key) {
   if (!items.length) return emptyHtml(key);
-  const lim = (expanded[key] || q) ? items.length : LIMIT;
+  const lim = (expanded[key] || q) ? items.length : (cat === 'semua' ? 3 : LIMIT);
   let h = items.slice(0, lim).map(itemCard).join('');
-  if (items.length > lim) h += `<div class="more-row"><button class="more-btn" onclick="expand('${key}')">Lihat semua (${items.length}) ${ic('chev', 14)}</button></div>`;
+  if (items.length > lim) h += `<div class="more-row"><button class="more-btn" onclick="${cat === 'semua' ? `goCat('${catOfKey(key)}')` : `expand('${key}')`}">Lihat semua (${items.length}) ${ic('chev', 14)}</button></div>`;
   return h;
 }
 function listHtml(items, emptyKey) { return cardsHtml(items, emptyKey); }
+function catOfKey(k) {
+  if (k.indexOf('ib-') === 0) return 'ibadah';
+  return { transit:'transit', stasiun:'transit', halte:'transit', nonhalte:'transit', mall:'mall', rs:'kesehatan', klinik:'kesehatan', pendidikan:'pendidikan', wisata:'wisata', kopi:'kopi' }[k] || 'semua';
+}
+function goCat(k) { setCat(k); const el = document.getElementById('catChips'); if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest' }); }
 function expand(key) { expanded[key] = true; redrawData(); }
 function redrawData() { document.getElementById('dataBox').innerHTML = buildDataInner(); }
 
 const CATS = [
+  { key:'semua',     label:'Semua',            icon:'sparkle' },
   { key:'transit',   label:'Transportasi',     icon:'train' },
   { key:'mall',      label:'Mal',              icon:'bag' },
   { key:'ibadah',    label:'Rumah Ibadah',     icon:'worship' },
@@ -1850,6 +1972,7 @@ const CATS = [
   { key:'kopi',      label:'Kopi & Nongkrong', icon:'coffee' }
 ];
 function catCount(k) {
+  if (k === 'semua') return CATS.filter(c => c.key !== 'semua').reduce((n, c) => n + catCount(c.key), 0);
   if (k === 'ibadah') return ITEMS.filter(i => i.type === 'ibadah' && scopeMatch(i) && matchQ(i)).length;
   const m = { transit:['stasiun','halte','nonhalte'], mall:['mall'], kesehatan:['rs','klinik'], pendidikan:['pendidikan'], wisata:['wisata'], kopi:['kopi'] };
   return m[k].reduce((n, t) => n + filterItems(t).length, 0);
@@ -1866,20 +1989,20 @@ function catBarHtml() {
     <label class="q-box">${ic('search', 16)}<input type="search" class="q-input" placeholder="Cari nama atau lokasi" value="${esc(q)}" oninput="setQ(this.value)" aria-label="Cari nama atau lokasi"></label>
   </div>`;
 }
-function setCat(k) { cat = k; redrawData(); }
+function setCat(k) {
+  cat = k; redrawData();
+  const mb = document.getElementById('mapBox'); if (mb) mb.innerHTML = buildCartogram();
+  writeHash();
+}
 function refreshCat() {
   expanded = {};
   document.getElementById('catChips').innerHTML = catChipsHtml();
   document.getElementById('catWrap').innerHTML = buildBlocks();
 }
-function setQ(v) { q = v.trim(); refreshCat(); }
-function setVer(v) { onlyVer = v; redrawData(); }
+function setQ(v) { q = v.trim(); refreshCat(); writeHash(); }
+function setVer(v) { onlyVer = v; redrawData(); writeHash(); }
 
-function ibadahTabsHtml() {
-  return IBADAH_TABS.map(t =>
-    `<button class="t-tab ${t.key===ibTab?'active':''}" onclick="setIbTab('${t.key}')">${t.label}<span class="t-count">${ibadahByAgama(t.key).length}</span></button>`
-  ).join('');
-}
+function ibadahTabsHtml() { return subTabsHtml(IBADAH_TABS, ibTab, k => ibadahByAgama(k).length, 'setIbTab'); }
 function ibadahListHtml() {
   return cardsHtml(ibadahCurrent(), 'ib-' + ibTab);
 }
@@ -1891,10 +2014,16 @@ function setIbTab(a) {
 }
 
 const HS_TABS = [ { key:'rs', label:'Rumah Sakit' }, { key:'klinik', label:'Klinik & Puskesmas' } ];
-function hsTabsHtml() {
-  return HS_TABS.map(t =>
-    `<button class="t-tab ${t.key===hsTab?'active':''}" onclick="setHsTab('${t.key}')">${t.label}<span class="t-count">${filterItems(t.key).length}</span></button>`
-  ).join('');
+function hsTabsHtml() { return subTabsHtml(HS_TABS, hsTab, k => filterItems(k).length, 'setHsTab'); }
+function transitItems(t) { return t === 'semua' ? ['stasiun','halte','nonhalte'].flatMap(x => filterItems(x)) : filterItems(t); }
+function ensureTab(cur, defs, count) {
+  const vis = defs.filter(d => d.key === 'semua' || count(d.key) > 0);
+  return vis.some(d => d.key === cur) ? cur : (vis[0] ? vis[0].key : cur);
+}
+function subTabsHtml(defs, cur, count, fn) {
+  const vis = defs.filter(d => d.key === 'semua' || count(d.key) > 0);
+  if (vis.length < (defs[0].key === 'semua' ? 3 : 2)) return '';
+  return vis.map(t => `<button class="t-tab ${t.key===cur?'active':''}" onclick="${fn}('${t.key}')">${t.label}<span class="t-count">${count(t.key)}</span></button>`).join('');
 }
 function setHsTab(k) {
   hsTab = k;
@@ -1903,56 +2032,58 @@ function setHsTab(k) {
 }
 
 function buildBlocks() {
-  const tabs = TRANSIT_TABS.map(t =>
-    `<button class="t-tab ${t.key===tTab?'active':''}" onclick="setTTab('${t.key}')">${t.label}<span class="t-count">${filterItems(t.key).length}</span></button>`
-  ).join('');
+  tTab = ensureTab(tTab, TRANSIT_TABS, k => transitItems(k).length);
+  ibTab = ensureTab(ibTab, IBADAH_TABS, k => ibadahByAgama(k).length);
+  hsTab = ensureTab(hsTab, HS_TABS, k => filterItems(k).length);
+  const tabs = subTabsHtml(TRANSIT_TABS, tTab, k => transitItems(k).length, 'setTTab');
   const malls  = filterItems('mall');
   const wisata = filterItems('wisata');
   const kopi   = filterItems('kopi');
   const edu    = filterItems('pendidikan');
   return `<div class="cat-wrap" data-active="${cat}">
-    <div class="block" data-cat="transit">
+    <div class="block${catCount('transit')===0?' is-empty':''}" data-cat="transit">
       <div class="block-title">${ic('train',19)} Transportasi Umum</div>
       <div class="block-sub">Stasiun kereta, halte resmi, dan titik non-halte (terminal, angkot, titik henti tanpa bangunan).</div>
       <div class="transit-tabs">${tabs}</div>
-      <div class="t-list">${listHtml(filterItems(tTab), tTab)}</div>
+      <div class="t-list">${listHtml(transitItems(tTab), tTab === 'semua' ? 'transit' : tTab)}</div>
     </div>
 
-    <div class="block" data-cat="mall">
+    <div class="block${catCount('mall')===0?' is-empty':''}" data-cat="mall">
       <div class="block-title">${ic('bag',19)} Mal &amp; Pusat Belanja <span class="t-count">${malls.length}</span></div>
       <div class="block-sub">Alamat dan kecamatan mengikuti sumber yang tersedia; beberapa mal berada dekat batas kecamatan.</div>
       <div class="t-list">${listHtml(malls, 'mall')}</div>
     </div>
 
-    <div class="block" data-cat="ibadah">
+    <div class="block${catCount('ibadah')===0?' is-empty':''}" data-cat="ibadah">
       <div class="block-title">${ic('worship',19)} Rumah Ibadah <span class="t-count" id="ibTotal">${ibadahCurrent().length}</span></div>
       <div class="block-sub">Masjid, gereja, pura, vihara, dan klenteng yang alamatnya bisa diverifikasi. Daftar belum lengkap.</div>
       <div class="transit-tabs" id="ibTabs">${ibadahTabsHtml()}</div>
       <div class="t-list" id="ibList">${ibadahListHtml()}</div>
     </div>
 
-    <div class="block" data-cat="kesehatan">
+    <div class="block${catCount('kesehatan')===0?' is-empty':''}" data-cat="kesehatan">
       <div class="block-title">${ic('hospital',19)} Rumah Sakit &amp; Klinik</div>
       <div class="block-sub">Hanya yang alamat dan kecamatannya bisa dipastikan. Klinik dan puskesmas belum dimasukkan. Cek langsung untuk IGD, jam, dan BPJS.</div>
       <div class="transit-tabs" id="hsTabs">${hsTabsHtml()}</div>
       <div class="t-list" id="hsList">${listHtml(filterItems(hsTab), hsTab)}</div>
     </div>
 
-    <div class="block" data-cat="pendidikan">
+    <div class="block${catCount('pendidikan')===0?' is-empty':''}" data-cat="pendidikan">
       <div class="block-title">${ic('cap',19)} Pendidikan <span class="t-count">${edu.length}</span></div>
       <div class="block-sub">Kampus dan perguruan tinggi yang alamatnya bisa diverifikasi. Baru mencakup Kab. Bekasi.</div>
       <div class="t-list">${listHtml(edu, 'pendidikan')}</div>
     </div>
 
-    <div class="block" data-cat="wisata">
+    <div class="block${catCount('wisata')===0?' is-empty':''}" data-cat="wisata">
       <div class="block-title">${ic('tree',19)} Tempat Wisata <span class="t-count">${wisata.length}</span></div>
       <div class="block-sub">Taman, waterpark, danau, wisata religi, dan alam yang tercatat di sumber terverifikasi.</div>
       <div class="t-list">${listHtml(wisata, 'wisata')}</div>
     </div>
 
-    <div class="block" data-cat="kopi">
+    <div class="block${catCount('kopi')===0?' is-empty':''}" data-cat="kopi">
       <div class="block-title">${ic('coffee',19)} Coffeeshop &amp; Spot Nongkrong <span class="t-count">${kopi.length}</span></div>
       <div class="block-sub">Dari artikel rekomendasi; alamat dan jam disalin dari sumber dan bisa sudah berubah. Cek Instagram atau Maps sebelum berangkat.</div>
+      ${(cat === 'kopi' || kopiTags.size) ? kopiTagsHtml() : ''}
       <div class="t-list">${listHtml(kopi, 'kopi')}</div>
     </div>
     </div>`;
@@ -1960,16 +2091,9 @@ function buildBlocks() {
 
 function buildDataInner() {
   const r = DATA[currentMode].regions[currentRegion];
-  const scopeLabel = selKec ? kecName(selKec) : (scope === 'semua' ? 'Seluruh Bekasi (Kota + Kabupaten)' : r.tag);
+  const scopeLabel = selKec ? kecName(selKec) : (currentRegion !== 'semua' && r ? r.tag : (currentMode === 'kota' ? 'Kota Bekasi' : 'Kabupaten Bekasi'));
 
-  const scopeRow = `
-    <div class="scope-row">
-      ${selKec ? `<button class="filter-chip" onclick="clearKec()">Kecamatan: ${kecName(selKec)} ${ic('x',12)}</button>` : ''}
-      <div class="scope-switch">
-        <button class="scope-btn ${scope==='wilayah' && !selKec?'active':''}" onclick="setScope('wilayah')">${r.tag}</button>
-        <button class="scope-btn ${scope==='semua' && !selKec?'active':''}" onclick="setScope('semua')">Seluruh Bekasi</button>
-      </div>
-    </div>`;
+  const scopeRow = `<div class="scope-row">${selKec ? `<button class="filter-chip" onclick="clearKec()">Kecamatan: ${kecName(selKec)} ${ic('x', 12)}</button>` : ''}</div>`;
 
 
 
@@ -1988,8 +2112,7 @@ function buildDataInner() {
     <details class="t-foot"><summary>Sumber &amp; catatan data</summary><p><b>Catatan data:</b> rumah sakit Kota Bekasi dari Perwali/JDIH Bekasi, BPK Jabar, HelloSehat, Halodoc, Alodokter, Kumparan, dan daftar rekanan Prudential. Tambahan Kab. Bekasi (Okt 2026) dari Industry.co.id, Popbela, Antara, Liputan6, Untar, Tirto, GNFI, Mamikos, Moladin, Popmama, Orami, Auto2000, dan Tripadvisor. Disusun dari liputan Republika, Bisnis.com, Kontan, Investortrust, Antara, Liputan6, Popmama, NU Online, CNBC Indonesia, Tirto, Metro TV, Jakarta Post, riset Terminal Induk Bekasi, serta Wikipedia/OSM. Daftar 56 kelurahan dari data BPS Kota Bekasi dan Perda Kota Bekasi No. 04/2004. Rumah ibadah baru mencakup entri yang bisa diverifikasi; kecamatan yang diberi label "belum terverifikasi" atau "perlu cek" belum dikonfirmasi. Coffee shop dan kafe disalin dari artikel rekomendasi (Dealls, JawaPos, Shopee, Popmama, Orami, Tripadvisor) dan belum dicek langsung ke lokasi. Jam buka, tarif, trayek, dan status koridor bisa berubah, jadi cek Dishub, KAI Commuter, LRT Jabodebek, atau pengelola tempat sebelum berangkat. Nama tiap halte Trans Patriot (34) dan BISKITA (47) belum dicantumkan lengkap karena belum ada daftar resmi yang terverifikasi. Bekasi Cyber Park, Bekasi Junction, dan beberapa mal kecil belum dimasukkan karena kecamatannya belum terverifikasi.</p><p><b>Rumah ibadah:</b> Masjid dan mushala, gereja Kristen dan Katolik, pura, vihara, serta klenteng. Daftar ini belum lengkap: hanya entri yang bisa diverifikasi yang ditampilkan. Sebagai gambaran, statistik 2022 (dikutip Jakarta Post) mencatat sekitar 2,2 juta Muslim, 106 ribu Protestan, dan 28,8 ribu Katolik di Kota Bekasi, dan data SIMAS Kemenag 2019 mencatat 594 masjid dan 382 mushala, yang menurut peneliti kemungkinan lebih sedikit dari kenyataan. Untuk Kab. Bekasi: liputan Tirto (2019) menyebut belum ada pura di kabupaten ini (sekitar 7.000 umat Hindu beribadah ke Kota Bekasi), jadi tab Hindu di Kab. Bekasi kosong sampai ada data yang terverifikasi.</p></details>`;
 }
 
-function setScope(s) { scope = s; selKec = null; refreshMapData(); }
-function setTTab(t) { tTab = t; document.getElementById('dataBox').innerHTML = buildDataInner(); }
+function setTTab(t) { tTab = t; redrawData(); }
 
 function refreshMapData() {
   expanded = {};
@@ -2006,69 +2129,106 @@ function highlightLoc(h) {
     : `<div class="loc-chip unk">${ic('pin', 13)}Kecamatan belum terverifikasi</div>`;
 }
 
+function regionBarHtml() {
+  const d = DATA[currentMode];
+  const chips = ['semua'].concat(d.tabs).map(k => {
+    const lab = k === 'semua' ? 'Semua' : d.labels[k];
+    const dot = k === 'semua' ? '' : `<i class="lg-dot" style="background:${REGION_COLOR[k]}"></i>`;
+    return `<button class="region-chip ${k === currentRegion ? 'active' : ''}" onclick="setRegion('${k}')" aria-pressed="${k === currentRegion}">${dot}${lab}</button>`;
+  }).join('');
+  return `<div class="region-bar"><div class="region-chips">${chips}</div><button class="link-btn" onclick="copyLink()">${ic('share', 14)} Salin tautan tampilan</button></div>`;
+}
+function aboutHtml(r) {
+  return `
+      <div class="divider"></div>
+      <div class="section-label">Tentang wilayah</div>
+      <div class="section-title">Tentang ${r.tag}</div>
+      <p class="section-desc">Profil singkat dan makanan khasnya. Tiap kartu mencantumkan kecamatan dan kelurahannya.</p>
+      <div class="about-sub">Yang membuatnya khas</div>
+      <div class="cards-grid">
+        ${r.highlights.map(h => `
+          <div class="card">
+            <span class="card-icon">${ic(h.icon, 24)}</span>
+            <div class="card-title">${h.title}</div>
+            ${highlightLoc(h)}
+            <div class="card-body">${h.body || ''}</div>
+          </div>`).join('')}
+      </div>
+      <div class="about-sub">Kuliner khas</div>
+      <div class="culinary-grid">
+        ${r.food.map(f => `
+          <div class="food-card">
+            <span class="food-emoji">${ic(f.emoji, 26)}</span>
+            <div class="food-name">${f.name}</div>
+            <div class="food-desc">${f.desc}</div>
+          </div>`).join('')}
+      </div>`;
+}
 function renderContent() {
   expanded = {};
-  const r = DATA[currentMode].regions[currentRegion];
+  const r = currentRegion !== 'semua' ? DATA[currentMode].regions[currentRegion] : null;
   const modeLabel = currentMode === 'kota' ? 'Kota Bekasi' : 'Kabupaten Bekasi';
   document.getElementById('mainContent').innerHTML = `
     <div>
-      <div class="region-banner ${r.colorClass}">
-        <div class="banner-accent"></div>
-        <div class="banner-tag">${r.tag}</div>
-        <div class="banner-heading">${r.heading}</div>
-        <div class="banner-desc">${r.desc}</div>
-      </div>
-
-      ${buildKelBlock(r)}
-
       <div class="map-section">
         <div class="section-label">Jelajahi</div>
-        <div class="section-title">Jelajahi ${r.tag}</div>
-        <p class="section-desc">Klik kecamatan di peta untuk memfilter, lalu pilih kategori di sampingnya.</p>
+        <div class="section-title">Jelajahi ${r ? r.tag : modeLabel}</div>
+        ${regionBarHtml()}
+        ${r ? `<div class="region-banner ${r.colorClass}">
+          <div class="banner-accent"></div>
+          <div class="banner-tag">${r.tag}</div>
+          <div class="banner-heading">${r.heading}</div>
+          <div class="banner-desc">${r.desc}</div>
+        </div>${buildKelBlock(r)}` : `<p class="section-desc">Pilih wilayah atau klik kecamatan di peta untuk memfilter, lalu pilih kategori. Pilih satu wilayah untuk melihat profil dan kuliner khasnya.</p>`}
         <div class="split split-${currentMode}">
           <div id="mapBox" class="split-map">${buildCartogram()}</div>
           <div class="data-section split-data" id="dataBox">${buildDataInner()}</div>
         </div>
       </div>
-
-      <div class="divider"></div>
-
-      <div class="section-label">Kenali Wilayahnya</div>
-      <div class="section-title">Yang Membuat ${r.tag} Khas</div>
-      <p class="section-desc">Hal-hal yang paling mendefinisikan karakter dan kehidupan di wilayah ini. Tiap kartu mencantumkan kecamatan dan kelurahannya.</p>
-      <div class="cards-grid">
-        ${r.highlights.map(h=>`
-          <div class="card">
-            <span class="card-icon">${ic(h.icon, 24)}</span>
-            <div class="card-title">${h.title}</div>
-            ${highlightLoc(h)}
-            <div class="card-body">${h.body||''}</div>
-          </div>`).join('')}
-      </div>
-
       ${routesHtml()}
-
-      <div class="divider"></div>
-
-      <div>
-        <div class="section-label">Kuliner</div>
-        <div class="section-title">Makanan yang Bikin Kangen</div>
-        <p class="section-desc">Rasa-rasa yang paling mewakili lidah dan jiwa warga ${r.tag}.</p>
-        <div class="culinary-grid">
-          ${r.food.map(f=>`
-            <div class="food-card">
-              <span class="food-emoji">${ic(f.emoji, 26)}</span>
-              <div class="food-name">${f.name}</div>
-              <div class="food-desc">${f.desc}</div>
-            </div>`).join('')}
-        </div>
-      </div>
+      ${r ? aboutHtml(r) : ''}
     </div>`;
+}
+
+/* ════════════════════════════════════════════════
+   TAUTAN TAMPILAN (hash di URL)
+════════════════════════════════════════════════ */
+function writeHash() {
+  try {
+    const p = new URLSearchParams();
+    if (currentMode !== 'kota') p.set('m', currentMode);
+    if (currentRegion !== 'semua') p.set('r', currentRegion);
+    if (selKec) p.set('k', selKec);
+    if (cat !== 'semua') p.set('c', cat);
+    if (q) p.set('q', q);
+    if (onlyVer) p.set('v', '1');
+    if (kopiTags.size) p.set('t', Array.from(kopiTags).join(','));
+    const h = p.toString();
+    history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+  } catch (e) {}
+}
+function readHash() {
+  try {
+    const p = new URLSearchParams(location.hash.slice(1));
+    const m = p.get('m'); if (m && DATA[m]) currentMode = m;
+    const r = p.get('r'); if (r && DATA[currentMode].tabs.indexOf(r) > -1) currentRegion = r;
+    const k = p.get('k'); if (k && CARTO[currentMode].tiles.some(t => t.id === k)) selKec = k;
+    const c = p.get('c'); if (c && CATS.some(x => x.key === c)) cat = c;
+    q = (p.get('q') || '').slice(0, 80);
+    onlyVer = p.get('v') === '1';
+    (p.get('t') || '').split(',').forEach(t => { if (KOPI_TAGS.some(x => x.k === t)) kopiTags.add(t); });
+    document.getElementById('btnKota').classList.toggle('active', currentMode === 'kota');
+    document.getElementById('btnKab').classList.toggle('active', currentMode === 'kabupaten');
+  } catch (e) {}
+}
+function copyLink() {
+  writeHash();
+  copyText(location.href).then(ok => toast(ok ? 'Tautan tampilan disalin' : 'Gagal menyalin tautan'));
 }
 
 // Init
 updateThemeBtn();
-renderTabs();
+readHash();
 renderHero();
 renderContent();
 initFav();
