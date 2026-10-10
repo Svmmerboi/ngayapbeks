@@ -536,6 +536,78 @@
   :root[data-theme="light"] .cg-tile.in-region { background: linear-gradient(135deg, color-mix(in srgb, var(--c) 22%, #FFFFFF) 0%, #FFFFFF 100%); }
   :root[data-theme="light"] footer { color: var(--muted); }
 
+
+  /* ─── SKALA TEKS (sedikit lebih besar, semua tema) ─── */
+  html { font-size: 106.25%; }
+  .t-badge { font-size: 0.68rem; }
+  .cg-sub { font-size: 0.66rem; }
+  .cg-counts { font-size: 0.72rem; }
+  .map-note, .t-foot { font-size: 0.76rem; }
+  .kec-tag, .loc-chip { font-size: 0.74rem; }
+  .t-loc { font-size: 0.8rem; }
+  .t-note, .food-desc { font-size: 0.84rem; }
+  .card-body { font-size: 0.9rem; }
+  .cg-name { font-size: 0.82rem; }
+  .cg-tile { min-height: 84px; }
+  .t-item { padding: 18px 20px; }
+
+  /* ─── GELAP: PALET LEBIH TERANG & BERPERAN JELAS ─── */
+  :root:not([data-theme="light"]) {
+    --navy: #0F2033;
+    --navy-mid: #17293F;
+    --navy-light: #203650;
+    --slate: #34506E;
+    --text-body: #DCE7F0;
+    --muted: #B0C1CE;
+    --faint: #8FA3B6;
+    --gold: #F5B21A;
+    --red-text: #FF6B4F;
+    --line: rgba(255,255,255,0.10);
+    --line-2: rgba(255,255,255,0.16);
+    --line-3: rgba(255,255,255,0.28);
+    --chip-bg: rgba(255,255,255,0.11);
+    --tile-bg: rgba(255,255,255,0.04);
+    --grid: rgba(255,255,255,0.035);
+    --nav-bg: rgba(15,32,51,0.96);
+  }
+  /* Merah = brand saja */
+  :root:not([data-theme="light"]) .nav-logo span,
+  :root:not([data-theme="light"]) .hero-title .accent,
+  :root:not([data-theme="light"]) .stat-val span,
+  :root:not([data-theme="light"]) footer strong { color: var(--red-text); }
+  /* Emas = penanda & interaksi */
+  :root:not([data-theme="light"]) .section-label { color: var(--gold); }
+  :root:not([data-theme="light"]) .banner-desc { color: #DCE7F0; }
+  :root:not([data-theme="light"]) .cg-tile.in-region {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--c) 38%, var(--navy-mid)) 0%, var(--navy-mid) 100%);
+  }
+  :root:not([data-theme="light"]) .t-item,
+  :root:not([data-theme="light"]) .card,
+  :root:not([data-theme="light"]) .food-card { box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.18); }
+
+  /* Badge dikelompokkan: biru = transportasi, amber = belanja & kopi, ungu = religi, hijau = alam */
+  :root:not([data-theme="light"]) .t-badge.krl,
+  :root:not([data-theme="light"]) .t-badge.lrt,
+  :root:not([data-theme="light"]) .t-badge.brt,
+  :root:not([data-theme="light"]) .t-badge.halte,
+  :root:not([data-theme="light"]) .t-badge.terminal,
+  :root:not([data-theme="light"]) .t-badge.nonhalte,
+  :root:not([data-theme="light"]) .t-badge.angkot { background: rgba(96,165,250,0.18); color: #9CCBFF; }
+  :root:not([data-theme="light"]) .t-badge.plan { background: rgba(176,193,206,0.16); color: #B0C1CE; }
+  :root:not([data-theme="light"]) .t-badge.mal,
+  :root:not([data-theme="light"]) .t-badge.kopi { background: rgba(245,178,26,0.18); color: #F8C650; }
+  :root:not([data-theme="light"]) .t-badge.religi,
+  :root:not([data-theme="light"]) .t-badge.ib-islam,
+  :root:not([data-theme="light"]) .t-badge.ib-kristen,
+  :root:not([data-theme="light"]) .t-badge.ib-katolik,
+  :root:not([data-theme="light"]) .t-badge.ib-hindu,
+  :root:not([data-theme="light"]) .t-badge.ib-buddha,
+  :root:not([data-theme="light"]) .t-badge.ib-khonghucu { background: rgba(176,140,255,0.18); color: #CDB8FF; }
+  :root:not([data-theme="light"]) .t-badge.taman,
+  :root:not([data-theme="light"]) .t-badge.air,
+  :root:not([data-theme="light"]) .t-badge.alam { background: rgba(52,211,153,0.16); color: #74E8BC; }
+  :root:not([data-theme="light"]) .loc-chip.multi { background: rgba(96,165,250,0.16); color: #9CCBFF; border-color: rgba(96,165,250,0.3); }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     nav { padding: 0 16px; }
