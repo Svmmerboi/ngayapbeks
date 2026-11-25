@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NgayapBeks! — Eksplorasi Bekasi</title>
+<meta name="theme-color" content="#14202E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NgayapBeks!">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314202E'/%3E%3Cpath d='M32 50s-14-11-14-24a14 14 0 0 1 28 0c0 13-14 24-14 24z' fill='none' stroke='%23F5B21A' stroke-width='4'/%3E%3Ccircle cx='32' cy='26' r='5' fill='%23F5B21A'/%3E%3C/svg%3E">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('ngb-theme') || 'dark'; } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Ngayap<span>Beks!</span></div>
+    <div class="nav-tabs" id="navTabs"></div>
+    <div class="nav-right">
+      <div class="mode-switch">
+        <button class="mode-btn active" id="btnKota" onclick="switchMode('kota')">Kota Bekasi</button>
+        <button class="mode-btn" id="btnKab" onclick="switchMode('kabupaten')">Kab. Bekasi</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Ganti tema gelap/terang" title="Ganti tema"></button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="heroEyebrow">Kota Bekasi, Jawa Barat</div>
+    <h1 class="hero-title" id="heroTitle">Tempat Lahir<br>Para <span class="accent">Perantau</span><br>Sejati.</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Bekasi bukan sekadar penyangga Jakarta — ini kota yang punya jiwa sendiri. Kuliner, budaya, dan semangat warganya membentuk identitas yang unik dan tak tergantikan.</p>
+    <div class="hero-stats" id="heroStats">
+      <div class="stat-item"><div class="stat-val">2<span>.6</span>M</div><div class="stat-label">Penduduk Kota</div></div>
+      <div class="stat-item"><div class="stat-val">12</div><div class="stat-label">Kecamatan</div></div>
+      <div class="stat-item"><div class="stat-val">56</div><div class="stat-label">Kelurahan</div></div>
+      <div class="stat-item"><div class="stat-val">210<span>km²</span></div><div class="stat-label">Luas Wilayah</div></div>
+    </div>
+  </div>
+</section>
+
+<main class="content-area" id="mainContent"></main>
+
+<footer>
+  Dibuat dengan <svg class="ico" width="14" height="14" viewBox="0 0 24 24" style="fill:var(--red);stroke:var(--red);vertical-align:-2px" aria-label="cinta"><path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.3 12 20 12 20z"/></svg> untuk warga Bekasi · <strong>NgayapBeks!</strong> &copy; 2026
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/theme.js"></script>
+<script src="data/wilayah.js"></script>
+<script src="data/items.js"></script>
+<script src="js/state.js"></script>
+<script src="js/render-map.js"></script>
+<script src="js/render-data.js"></script>
+<script src="js/extras.js"></script>
+<script src="js/favs-filters.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

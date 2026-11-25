@@ -1,0 +1,63 @@
+/* ════════════════════════════════════════════════
+   IKON (SVG garis, ikut warna teks)
+════════════════════════════════════════════════ */
+const ICONS = {
+  pin: '<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>',
+  moon: '<path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.2 8.2 0 1 0 10.5 10.5z"/>',
+  train: '<rect x="5" y="3" width="14" height="14" rx="3.2"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/><circle cx="9" cy="14" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r=".9" fill="currentColor" stroke="none"/>',
+  bus: '<rect x="4" y="3.5" width="16" height="14" rx="2.6"/><path d="M4 11h16M7 21v-3.5M17 21v-3.5"/><circle cx="8" cy="14.3" r=".9" fill="currentColor" stroke="none"/><circle cx="16" cy="14.3" r=".9" fill="currentColor" stroke="none"/>',
+  bag: '<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  worship: '<path d="M3 21h18M5 21V11M19 21V11M3 11l9-7 9 7M9 21v-5a3 3 0 0 1 6 0v5"/>',
+  tree: '<path d="M12 21v-6"/><path d="M12 15a5 5 0 0 0 4-8.3 4.6 4.6 0 0 0-8 0A5 5 0 0 0 12 15z"/>',
+  coffee: '<path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M8 3v2.5M12 3v2.5"/>',
+  landmark: '<path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/>',
+  cart: '<path d="M3 4h2l2.2 11h10.6L20 7H6.2"/><circle cx="9" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/>',
+  store: '<path d="M4 9l1.5-5h13L20 9M4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9M5.5 12v8h13v-8M10 20v-4h4v4"/>',
+  users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M18 14a6 6 0 0 1 3 6"/>',
+  park: '<circle cx="16.5" cy="7.5" r="2.4"/><path d="M3 19l6-8 4 5 3-3 5 6z"/>',
+  city: '<path d="M3 21h18M5 21V9h6v12M11 21V4h8v17M8 12h.01M8 15h.01M14 8h2M14 12h2M14 16h2"/>',
+  wave: '<path d="M2 10c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/>',
+  road: '<path d="M8 3L4 21M16 3l4 18M12 4v3M12 10.5v3M12 17v3"/>',
+  factory: '<path d="M3 21V10l6 4v-4l6 4V5h4v16z"/>',
+  cap: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5M22 9v6"/>',
+  sparkle: '<path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+  home: '<path d="M3 11l9-7 9 7M5 9.5V20h14V9.5M10 20v-5h4v5"/>',
+  wheat: '<path d="M12 21V9M12 9c-2.5 0-4-1.7-4-4 2.5 0 4 1.7 4 4zM12 9c2.5 0 4-1.7 4-4-2.5 0-4 1.7-4 4zM12 15c-2.5 0-4-1.7-4-4 2.5 0 4 1.7 4 4zM12 15c2.5 0 4-1.7 4-4-2.5 0-4 1.7-4 4z"/>',
+  box: '<path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5zM3 7.5l9 4.5 9-4.5M12 12v9"/>',
+  leaf: '<path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15"/><path d="M5 19c3-5 6-8 10-10"/>',
+  crane: '<path d="M5 21h6M8 21V4l11 5M8 4L3 9M19 9v6M17 15h4v3h-4z"/>',
+  ferry: '<path d="M3 17l2 3h14l2-3zM6 17v-6h12v6M9 11V7h6v4M12 3v4"/>',
+  bowl: '<path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M9 4c0 1.5 1.5 1.5 1.5 3M14 4c0 1.5 1.5 1.5 1.5 3"/>',
+  fish: '<path d="M2.5 12c3.5-5 10-5.5 14-1.5l5-3.5v10l-5-3.5c-4 4-10.5 3.5-14-1.5z"/><circle cx="7.5" cy="11.2" r=".8" fill="currentColor" stroke="none"/>',
+  cookie: '<circle cx="12" cy="12" r="9"/><path d="M8.5 9h.01M14 8h.01M15.5 13.5h.01M10 15h.01" stroke-width="2.4"/>',
+  skewer: '<path d="M3 21L21 3"/><path d="M7.5 12.5l3-3 2 2-3 3zM12.5 8.5l2.5-2.5 2 2-2.5 2.5z"/>',
+  pot: '<path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h20M9 3.5c0 1.5 1.5 1.5 1.5 3M14 3.5c0 1.5 1.5 1.5 1.5 3"/>',
+  salad: '<path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 11c0-3 2-5 4-5s4 2 4 5M12 6V3"/>',
+  bento: '<rect x="3" y="5" width="18" height="14" rx="2.6"/><path d="M12 5v14M3 12h9"/>',
+  utensils: '<path d="M7 3v7a2 2 0 0 0 2 2v9M5 3v5M9 3v5M16 21V3c-2.5 1.5-3 4-3 7 0 2 1 3 3 3"/>',
+  cake: '<path d="M4 20h16v-7H4zM6 13v-3h12v3M12 10V7"/><path d="M12 7c-1.2-1.2 0-2.5 0-4 1.2 1.5 1.2 2.8 0 4z"/>',
+  drumstick: '<path d="M14.5 3.5a6 6 0 0 1 2 11L15 16 8 9l1.5-1.5a6 6 0 0 1 5-4z"/><path d="M8 9l-4 4M5 12l-2 2 2 2 2-2-2-2z"/>',
+  plate: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/>',
+  flame: '<path d="M12 3c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-10z"/>',
+  rice: '<path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M6 13a6 6 0 0 1 12 0"/>',
+  seafood: '<path d="M3 15c0-6 4-10 9-10s9 4 9 10zM3 15c0 3 4 5 9 5s9-2 9-5M12 5v15M7.5 7l1.5 13M16.5 7L15 20"/>',
+  search: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
+  chev: '<path d="M6 9l6 6 6-6"/>',
+  map: '<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  bookmark: '<path d="M6 3h12v18l-6-4.5L6 21z"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7"/>',
+  share: '<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  more: '<circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
+  hospital: '<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M12 8v8M8 12h8"/>',
+  x: '<path d="M6 6l12 12M18 6L6 18"/>',
+  arrowup: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+  heart: '<path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.3 12 20 12 20z"/>'
+};
+function ic(name, size) {
+  size = size || 16;
+  return `<svg class="ico" width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICONS[name] || ICONS.pin}</svg>`;
+}
+
